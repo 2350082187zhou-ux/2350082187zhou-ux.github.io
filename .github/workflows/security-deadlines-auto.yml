@@ -1,0 +1,147 @@
+name: Auto-update Security Conference Deadlines
+
+# Every six hours plus one initial push bootstrap and an on-demand run.
+# The workflow re-builds and deploys Pages itself after a bot commit:
+# GitHub intentionally does not fire the regular push workflow for commits
+# created with the built-in GITHUB_TOKEN.
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'scripts/update_security_deadlines.py'
+      - 'tests/test_update_security_deadlines.py'
+      - '.github/workflows/security-deadlines-auto.yml'
+      - '_data/security_deadlines.yml'
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - name: Checkout the site
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install YAML parser
+        run: python -m pip install --disable-pip-version-check 'PyYAML==6.0.2'
+
+      - name: Run offline parser and timezone tests
+        run: python -m unittest discover -s tests -p 'test_update_security_deadlines.py' -v
+
+      - name: Fetch, validate, and normalize community source
+        run: python scripts/update_security_deadlines.py
+
+      - name: Commit only changed deadline facts
+        id: commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add _data/security_deadlines_auto.json
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+            echo "No substantive date changes; skipping deployment."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "data: sync community security conference deadlines"
+          git push origin HEAD:master
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: synchronize
+    if: needs.synchronize.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Check out updated data commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.synchronize.outputs.sha }}
+
+      - name: Setup Ruby and Jekyll
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build updated personal homepage and blog
+        run: bundle exec jekyll build --baseurl ""
+        env:
+          JEKYLL_ENV: production
+
+      - name: Ensure deadlines page rendered
+        run: |
+          test -s _site/security-deadlines/index.html
+          test -s _site/blog/index.html
+          grep -q 'id="more-conferences"' _site/security-deadlines/index.html
+
+      - name: Screenshot the refreshed deadline page
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python3 -m http.server 8765 --bind 127.0.0.1 --directory _site >/tmp/ddl-preview.log 2>&1 &
+          for attempt in {1..15}; do
+            if curl -fsS http://127.0.0.1:8765/security-deadlines/ >/dev/null; then break; fi
+            sleep 1
+          done
+          mkdir -p previews
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,2400 --virtual-time-budget=2000 --screenshot=previews/Auto_Updated_Security_Deadlines_Desktop.png http://127.0.0.1:8765/security-deadlines/
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,3400 --virtual-time-budget=2000 --screenshot=previews/Auto_Updated_Security_Deadlines_Mobile.png http://127.0.0.1:8765/security-deadlines/
+          test -s previews/Auto_Updated_Security_Deadlines_Desktop.png
+
+      - name: Upload visual previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-deadlines-auto-preview
+          path: previews/*.png
+          retention-days: 14
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    needs: [synchronize, build]
+    if: needs.synchronize.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish refreshed deadlines
+        id: deployment
+        uses: actions/deploy-pages@v4

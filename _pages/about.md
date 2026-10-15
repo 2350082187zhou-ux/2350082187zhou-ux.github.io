@@ -15,7 +15,25 @@ I am particularly interested in understanding how privileged software interacts 
 
 <div class="security-deadline-entry">
   <span class="security-deadline-entry__symbol" aria-hidden="true">◷</span>
-  <span><strong>Security Top 4 Deadlines</strong> <span class="security-deadline-entry__desc">IEEE S&amp;P · USENIX Security · ACM CCS · NDSS</span></span>
+  {% assign community_venues = site.data.security_deadlines_auto.conferences | where: "tier", "additional" %}
+  {% assign all_security_events = site.data.security_deadlines.events | concat: site.data.security_deadlines_auto.events | sort: 'iso_utc' %}
+  {% assign current_utc = 'now' | date: '%Y-%m-%dT%H:%M:%SZ' %}
+  {% assign next_event = nil %}
+  {% for item in all_security_events %}
+    {% if item.iso_utc > current_utc %}
+      {% assign next_event = item %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  <span><strong>Security Conference Deadlines</strong>
+    <span class="security-deadline-entry__desc">Top 4 + {{ community_venues.size }} additional venues · automated updates every 6 hours</span>
+    {% if next_event %}
+      {% assign manual_venue = site.data.security_deadlines.conferences | where: "id", next_event.conf | first %}
+      {% assign imported_venue = site.data.security_deadlines_auto.conferences | where: "id", next_event.conf | first %}
+      {% assign best_venue = manual_venue | default: imported_venue %}
+      <span class="security-deadline-next">Next: {{ best_venue.short | escape }} — <span data-inline-deadline="{{ next_event.iso_utc }}">Calculating…</span> {% if next_event.source == "community" %}(community listing){% endif %}</span>
+    {% endif %}
+  </span>
   <a href="{{ '/security-deadlines/' | relative_url }}">Live conference countdown ↗</a>
 </div>
 <style>
@@ -24,8 +42,11 @@ I am particularly interested in understanding how privileged software interacts 
 .security-deadline-entry__desc{display:block;font-size:.88em;color:#577284;margin-top:2px}
 .security-deadline-entry>a{margin-left:auto;font-weight:700;color:#087b8c!important;white-space:nowrap}
 .security-deadline-entry>a:hover{text-decoration:underline}
+.security-deadline-next{display:block;margin-top:4px;color:#087d7c;font-size:.85em;font-weight:700}
+.security-deadline-next [data-inline-deadline]{font-variant-numeric:tabular-nums}
 @media(max-width:640px){.security-deadline-entry>a{margin-left:0}}
 </style>
+<script defer src="{{ '/assets/js/security-inline.js' | relative_url }}"></script>
 
 ## Education
 

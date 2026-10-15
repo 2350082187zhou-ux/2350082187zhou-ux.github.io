@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {
+    "name": "sec-deadlines (community curated)",
+    "url": "https://github.com/sec-deadlines/sec-deadlines.github.io/blob/master/_data/conferences.yml",
+    "notice": "Community-maintained listing. Verify all imported dates at the official CFP.",
+    "default_timezone": "AoE (UTC−12) unless source explicitly specifies another timezone"
+  },
+  "conferences": [],
+  "events": []
+}

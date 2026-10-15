@@ -11,6 +11,10 @@
     return {
       row, due, id: row.dataset.eventId,
       conf: row.dataset.conf, kind: row.dataset.kind,
+      source: row.dataset.source || 'official',
+      year: Number(row.dataset.year) || 0,
+      original: row.dataset.original || '',
+      zoneLabel: row.dataset.zoneLabel || 'AoE (UTC−12)',
       cycle: row.querySelector('.cycle-text')?.textContent?.trim() || '',
       milestone: row.querySelector('td:nth-child(2) small')?.textContent?.trim() || '',
       clock: row.querySelector('[data-remain]'),
@@ -56,7 +60,12 @@
     if (fields.zone?.value === 'local') {
       return dateFormatter.format(new Date(event.due));
     }
-    // AoE (UTC−12) official CFP date, avoiding daylight-saving-time ambiguity.
+    // Original zone for imported entries may not be AoE.
+    // We never convert an original IANA deadline into a false AoE label.
+    if (event.source === 'community' && event.original) {
+      return event.original + ' · ' + event.zoneLabel;
+    }
+    // Hand-verified Top Four dates use AoE (UTC−12).
     const aoe = new Date(event.due - 12 * 60 * 60 * 1000);
     const iso = aoe.toISOString();
     return iso.slice(0, 10) + ' · ' + iso.slice(11, 19) + ' AoE';
@@ -70,7 +79,7 @@
         event.clock.classList.toggle('urgent', remaining > 0 && remaining < 3 * 86400000);
       }
       if (event.dateDisplay) event.dateDisplay.textContent = dateLine(event);
-      if (event.zoneHint) event.zoneHint.textContent = fields.zone?.value === 'local' ? 'Browser local time' : 'UTC−12';
+      if (event.zoneHint) event.zoneHint.textContent = fields.zone?.value === 'local' ? 'Browser local time' : event.zoneLabel;
     }
     for (const [key, venue] of conferences) {
       const upcoming = records
@@ -82,7 +91,11 @@
       clock.classList.toggle('is-tbd', upcoming.length === 0);
       if (upcoming.length) {
         clock.textContent = compact(upcoming[0].due - now, false);
-        label.textContent = upcoming[0].cycle+' · '+upcoming[0].milestone;
+        const first = upcoming[0];
+        label.textContent = first.cycle+' · '+first.milestone
+          +(first.source === 'community' ? ' · verify CFP' : '');
+        const yearElement = document.querySelector('[data-conf-card="'+key+'"] .conf-year');
+        if (yearElement && first.year) yearElement.textContent = String(first.year);
       } else if (key === 'ccs') {
         clock.textContent = 'Awaiting official dates';
         label.textContent = '2027 CFP: important dates TBD';
@@ -95,8 +108,9 @@
     if (upcomingAll.length) {
       const soon = upcomingAll[0];
       const venue = conferences.get(soon.conf);
-      if (fields.next) fields.next.textContent = (venue?.short || soon.conf)+' '+(venue?.year || '')+' — '+soon.milestone;
-      if (fields.detail) fields.detail.textContent = soon.cycle+' · '+dateLine(soon);
+      if (fields.next) fields.next.textContent = (venue?.short || soon.conf)+' '+(soon.year || venue?.year || '')+' — '+soon.milestone;
+      if (fields.detail) fields.detail.textContent = soon.cycle+' · '+dateLine(soon)
+        +(soon.source === 'community' ? ' · Community data — confirm CFP' : ' · Official-checked');
       const p = parts(soon.due-now);
       if (fields.days) fields.days.textContent = String(p.days);
       if (fields.hours) fields.hours.textContent = pad(p.hours);

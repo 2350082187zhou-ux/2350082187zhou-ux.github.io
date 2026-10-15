@@ -64,6 +64,37 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
       </a>
     </div>
   </section>
+  <section class="blog-deadlines" id="conference-deadlines" aria-labelledby="blog-ddl-heading">
+    <div class="blog-deadlines-header">
+      <div><span class="section-code">AUTOMATED · CONFERENCE TRACKER</span>
+        <h2 id="blog-ddl-heading">Security Conference <span>Deadlines</span></h2>
+        <p>Top Four official-checked dates + curated community updates every six hours.</p>
+      </div>
+      <a href="{{ '/security-deadlines/' | relative_url }}">Explore all deadlines ↗</a>
+    </div>
+    {% assign deadlines_all = site.data.security_deadlines.events | concat: site.data.security_deadlines_auto.events | sort: 'iso_utc' %}
+    {% assign utc_now = 'now' | date: '%Y-%m-%dT%H:%M:%SZ' %}
+    {% assign visible_deadlines = 0 %}
+    <div class="blog-deadlines-list">
+      {% for event in deadlines_all %}
+        {% if event.iso_utc > utc_now and visible_deadlines < 8 %}
+          {% assign official_venue = site.data.security_deadlines.conferences | where: 'id', event.conf | first %}
+          {% assign other_venue = site.data.security_deadlines_auto.conferences | where: 'id', event.conf | first %}
+          {% assign event_venue = official_venue | default: other_venue %}
+          <div class="blog-ddl-row" data-inline-row>
+            <span class="blog-ddl-name">{{ event_venue.short | escape }} <small>{{ event_venue.year | default: event.year }}</small></span>
+            <span class="blog-ddl-detail">{{ event.cycle | escape }} · {{ event.kind | escape }} {% if event.source == 'community' %}<em>Community</em>{% else %}<em class="official">Official-checked</em>{% endif %}</span>
+            <time data-inline-deadline="{{ event.iso_utc }}" datetime="{{ event.iso_utc }}">Loading…</time>
+          </div>
+          {% assign visible_deadlines = visible_deadlines | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      {% if visible_deadlines == 0 %}
+        <div class="blog-ddl-empty">Waiting for the next published submission cycle. Check official CFPs.</div>
+      {% endif %}
+    </div>
+    <p class="blog-ddl-disclaimer">Automatic community entries are preliminary: verify the official CFP before submitting a paper.</p>
+  </section>
   <section id="featured-investigation" class="research-feature" aria-labelledby="investigation-title">
     <div class="research-feature-heading">
       <div class="feature-identity">

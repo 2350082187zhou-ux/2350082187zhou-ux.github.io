@@ -13,9 +13,11 @@ on:
       - "_pages/about.md"
       - "_pages/security-deadlines.html"
       - "_data/security_deadlines.yml"
+      - "_data/security_deadlines_auto.json"
       - "_data/navigation.yml"
       - "assets/css/security-deadlines.css"
       - "assets/js/security-deadlines.js"
+      - "assets/js/security-inline.js"
       - "assets/js/cyber-*.js"
       - ".github/workflows/cyber-blog-preview.yml"
   workflow_dispatch:

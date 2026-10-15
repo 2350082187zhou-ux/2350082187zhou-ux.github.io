@@ -41,7 +41,7 @@ description: "Live countdowns for IEEE S&P, USENIX Security, ACM CCS and NDSS co
         <div class="hero-tags"><span>IEEE S&amp;P</span><span>USENIX Security</span><span>ACM CCS</span><span>NDSS</span></div>
       </div>
       <aside class="next-focus" aria-labelledby="next-heading">
-        <div class="focus-header"><span class="tiny-dot" aria-hidden="true"></span> NEXT VERIFIED MILESTONE <span class="signal-bits" aria-hidden="true">▂▄▆█</span></div>
+        <div class="focus-header"><span class="tiny-dot" aria-hidden="true"></span> NEXT TRACKED MILESTONE <span class="signal-bits" aria-hidden="true">▂▄▆█</span></div>
         <h2 id="next-heading" class="next-event">Finding upcoming milestones…</h2>
         <p id="next-event-detail" class="next-detail">Dates use AoE (UTC−12) unless you select local time.</p>
         <div class="countdown-box" aria-label="Time remaining until next milestone">
@@ -57,7 +57,7 @@ description: "Live countdowns for IEEE S&P, USENIX Security, ACM CCS and NDSS co
       </aside>
     </section>
     <div class="verification-strip">
-      <div><span class="check-icon" aria-hidden="true">✓</span> Official conference CFP sources</div>
+      <div><span class="check-icon" aria-hidden="true">✓</span> Top 4 verified official CFPs · extra venues community-tracked</div>
       <div><span class="clock-icon" aria-hidden="true">◷</span> Live countdown, updated every second</div>
       <div><span class="calendar-icon" aria-hidden="true">▦</span> Last manually checked: <time datetime="{{ site.data.security_deadlines.verified_on }}">{{ site.data.security_deadlines.verified_on }}</time></div>
     </div>
@@ -81,18 +81,54 @@ description: "Live countdowns for IEEE S&P, USENIX Security, ACM CCS and NDSS co
       </div>
     </section>
 
+
+    <section class="section other-conferences" id="more-conferences" aria-labelledby="extra-heading">
+      {% assign additional_venues = site.data.security_deadlines_auto.conferences | where: "tier", "additional" %}
+      <div class="section-heading">
+        <div><div class="section-kicker">02 / COMMUNITY-SYNCED VENUES</div><h2 id="extra-heading">More security conferences <span class="extra-count">{{ additional_venues.size }}</span></h2></div>
+        <span class="side-caption">Curated: security · privacy · cryptography · hardware</span>
+      </div>
+      <p class="community-disclaimer">
+        These additional dates are imported automatically from the
+        <a href="https://github.com/sec-deadlines/sec-deadlines.github.io/blob/master/_data/conferences.yml" target="_blank" rel="noopener noreferrer">sec-deadlines community calendar ↗</a>
+        approximately every six hours. They are <strong>not individually verified</strong> with the organizers.
+        Always confirm the deadline and any mandatory abstract registration on the official CFP before submission.
+      </p>
+      <div class="extra-grid" aria-label="Automatically tracked security conferences">
+        {% for conference in additional_venues %}
+        <article class="extra-venue accent-{{ conference.theme }}" data-extra-conf="{{ conference.id }}">
+          <div class="extra-top"><span class="extra-category">{{ conference.label | escape }}</span><span class="extra-edition">{{ conference.year }}</span></div>
+          <h3>{{ conference.short | escape }}</h3>
+          <p class="extra-venue-name">{{ conference.name | escape }}</p>
+          <div class="extra-clock" data-card-count="{{ conference.id }}">Checking countdown…</div>
+          <div class="extra-milestone" data-card-label="{{ conference.id }}"></div>
+          <div class="extra-bottom"><span>{{ conference.location | escape }}</span><a href="{{ conference.official }}" rel="noopener noreferrer" target="_blank" aria-label="{{ conference.short | escape }} official conference page">Conference CFP ↗</a></div>
+        </article>
+        {% else %}
+        <p class="extra-empty">Preparing the first automatic feed. The verified Top Four tracker above remains available.</p>
+        {% endfor %}
+      </div>
+    </section>
+
     <section class="section" id="timeline" aria-labelledby="timeline-heading">
       <div class="section-heading">
-        <div><div class="section-kicker">02 / LIVE TIMELINE</div><h2 id="timeline-heading">Submission deadline board</h2></div>
-        <span class="side-caption">All dates from official calls for papers</span>
+        <div><div class="section-kicker">03 / LIVE TIMELINE</div><h2 id="timeline-heading">Submission deadline board</h2></div>
+        <span class="side-caption">Verified Top 4 dates + clearly labeled community listings</span>
       </div>
       <div class="deadline-toolbar">
         <label class="toolbar-search"><span aria-hidden="true">⌕</span><input type="search" id="deadline-search" placeholder="Search IEEE S&P, CCS, cycles…" autocomplete="off" aria-label="Search conference deadlines"></label>
         <label class="toolbar-select">Venue
-          <select id="venue-filter" aria-label="Filter by conference"><option value="all">All four venues</option>
+          <select id="venue-filter" aria-label="Filter by conference"><option value="all">All tracked conferences</option>
+            <optgroup label="Verified Top Four">
             {% for conference in site.data.security_deadlines.conferences %}
             <option value="{{ conference.id }}">{{ conference.short | escape }}</option>
             {% endfor %}
+            </optgroup>
+            <optgroup label="Community-tracked">
+            {% for conference in additional_venues %}
+            <option value="{{ conference.id }}">{{ conference.short | escape }}</option>
+            {% endfor %}
+            </optgroup>
           </select>
         </label>
         <label class="toolbar-select">Time zone
@@ -104,12 +140,12 @@ description: "Live countdowns for IEEE S&P, USENIX Security, ACM CCS and NDSS co
       <p class="table-scroll-hint"><span aria-hidden="true">↔</span> Swipe horizontally to see full timestamps and calendar actions</p>
       <div class="table-shell" role="region" aria-label="Scrollable official deadline timeline" tabindex="0">
         <table class="deadline-table">
-          <thead><tr><th>Conference</th><th>Cycle / Milestone</th><th>Official deadline</th><th>Time remaining</th><th>Actions</th></tr></thead>
+          <thead><tr><th>Conference</th><th>Cycle / Milestone</th><th>Reported deadline</th><th>Time remaining</th><th>Actions</th></tr></thead>
           <tbody id="deadline-rows">
             {% assign ordered_events = site.data.security_deadlines.events | sort: 'iso_utc' %}
             {% for event in ordered_events %}
               {% assign venue = site.data.security_deadlines.conferences | where: "id", event.conf | first %}
-              <tr data-event-id="{{ event.id }}" data-conf="{{ event.conf }}" data-kind="{{ event.kind }}" data-utc="{{ event.iso_utc }}" data-search="{{ venue.short | escape }} {{ venue.name | escape }} {{ event.cycle | escape }} {{ event.label | escape }}">
+              <tr data-event-id="{{ event.id }}" data-conf="{{ event.conf }}" data-kind="{{ event.kind }}" data-utc="{{ event.iso_utc }}" data-source="official" data-year="{{ venue.year }}" data-original="{{ event.local_date }} 23:59:59" data-zone-label="AoE (UTC−12)" data-search="{{ venue.short | escape }} {{ venue.name | escape }} {{ event.cycle | escape }} {{ event.label | escape }}">
                 <td class="venue-name"><strong>{{ venue.short | escape }}</strong><small>{{ venue.year }}</small></td>
                 <td><strong class="cycle-text">{{ event.cycle | escape }}</strong><small>{{ event.label | escape }}</small></td>
                 <td><time class="date-time" datetime="{{ event.iso_utc }}" data-display-date="{{ event.iso_utc }}">{{ event.local_date }} · 23:59:59 AoE</time><small class="tz-hint">UTC−12</small></td>
@@ -122,6 +158,22 @@ description: "Live countdowns for IEEE S&P, USENIX Security, ACM CCS and NDSS co
                 </td>
               </tr>
             {% endfor %}
+            {% assign imported_events = site.data.security_deadlines_auto.events | sort: 'iso_utc' %}
+            {% for event in imported_events %}
+              {% assign venue = site.data.security_deadlines_auto.conferences | where: "id", event.conf | first %}
+              {% if venue %}
+              <tr data-event-id="{{ event.id | escape }}" data-conf="{{ event.conf | escape }}" data-kind="{{ event.kind | escape }}" data-utc="{{ event.iso_utc }}" data-source="community" data-year="{{ event.year }}" data-original="{{ event.original | escape }}" data-zone-label="{{ event.zone_label | escape }}" data-search="{{ venue.short | escape }} {{ venue.name | escape }} {{ event.cycle | escape }} {{ event.label | escape }} {{ venue.label | escape }}">
+                <td class="venue-name"><strong>{{ venue.short | escape }}</strong><small>{{ event.year }}</small></td>
+                <td><strong class="cycle-text">{{ event.cycle | escape }}</strong><small>{{ event.label | escape }}</small><small class="source-community">Community listing · check CFP</small></td>
+                <td><time class="date-time" datetime="{{ event.iso_utc }}" data-display-date="{{ event.iso_utc }}">{{ event.original | escape }} {{ event.zone_label | escape }}</time><small class="tz-hint">{{ event.zone_label | escape }}</small></td>
+                <td><span class="remaining" data-remain="{{ event.id | escape }}">Calculating…</span></td>
+                <td><div class="actions">
+                  <button type="button" class="calendar-button" data-calendar-date="{{ event.iso_utc }}" data-calendar-name="{{ venue.short | escape }} {{ event.year }} — {{ event.cycle | escape }} Paper deadline (community listing)" data-calendar-url="{{ venue.official }}" title="Download a provisional reminder; verify official CFP">+ Calendar</button>
+                  <a href="{{ venue.official }}" target="_blank" rel="noopener noreferrer">CFP ↗</a>
+                </div></td>
+              </tr>
+              {% endif %}
+            {% endfor %}
           </tbody>
         </table>
         <div class="no-matches" id="no-matches" hidden>No matching dates. Try another filter or enable “Show past”.</div>
@@ -130,7 +182,7 @@ description: "Live countdowns for IEEE S&P, USENIX Security, ACM CCS and NDSS co
     </section>
 
     <section class="section guide-section" aria-labelledby="guide-heading">
-      <div class="section-heading"><div><div class="section-kicker">03 / SUBMISSION NOTES</div><h2 id="guide-heading">Before you submit</h2></div></div>
+      <div class="section-heading"><div><div class="section-kicker">04 / SUBMISSION NOTES</div><h2 id="guide-heading">Before you submit</h2></div></div>
       <div class="guide-grid">
         <div><span class="guide-num">01</span><strong>Abstracts may be mandatory</strong><p>IEEE S&amp;P and USENIX Security 2027 require an earlier registration milestone. Do not wait until the full-paper date.</p></div>
         <div><span class="guide-num">02</span><strong>AoE is not local midnight</strong><p>Anywhere on Earth (UTC−12) deadlines appear at a different hour in your local time zone. Switch the display above to check.</p></div>
@@ -142,9 +194,10 @@ description: "Live countdowns for IEEE S&P, USENIX Security, ACM CCS and NDSS co
       <div><a href="{{ '/blog/' | relative_url }}">Cybersecurity Blog</a><a href="{{ '/research/' | relative_url }}">Research</a><a href="https://ccfddl.com/" target="_blank" rel="noopener noreferrer">CCFDDL inspiration ↗</a></div>
     </footer>
   </main>
+  {% assign total_conferences = site.data.security_deadlines.conferences | concat: additional_venues %}
   <script id="conference-data" type="application/json">[
-    {% for conference in site.data.security_deadlines.conferences %}
-      {"id":"{{ conference.id }}","short":"{{ conference.short }}","year":"{{ conference.year }}","official":"{{ conference.official }}"}{% unless forloop.last %},{% endunless %}
+    {% for conference in total_conferences %}
+      {"id":"{{ conference.id }}","short":"{{ conference.short | escape }}","year":"{{ conference.year }}"}{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ]</script>
 </body>
