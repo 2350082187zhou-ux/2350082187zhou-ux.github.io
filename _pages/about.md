@@ -32,6 +32,11 @@ See the [Research page](/research/) for more information about my interests and 
 
 A verified list of publications and publicly available manuscripts will be added as they become available. See the [Publications page](/publications/).
 
+## Contact
+
+- **Primary email (UNR):** [zedongz@unr.edu](mailto:zedongz@unr.edu)
+- **Alternative email:** [2350082187zhou@gmail.com](mailto:2350082187zhou@gmail.com)
+
 ## Links
 
 - [GitHub](https://github.com/2350082187zhou-ux)
