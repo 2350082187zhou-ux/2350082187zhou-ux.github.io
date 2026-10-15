@@ -62,4 +62,5 @@ See [Publications](/publications/) for full author lists and publication details
 ## Links
 
 - [GitHub](https://github.com/2350082187zhou-ux)
+- [Google Scholar](https://scholar.google.com/citations?user=vkzLMEcAAAAJ&hl=en)
 - [Research](/research/)
