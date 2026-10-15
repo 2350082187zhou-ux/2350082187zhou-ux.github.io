@@ -36,6 +36,15 @@ Wuhu, Anhui, China
 - Storage systems and hardware-assisted data protection
 - Software vulnerability analysis
 
+## Undergraduate Research Experience
+
+**Applied Intelligent Algorithms and Intelligent Perception**  
+Anhui Polytechnic University · September 2021 – June 2025
+
+- Investigated applications of intelligent algorithms in battery health prediction and electricity consumption forecasting.
+- Developed a research foundation in **computer vision, visual–inertial SLAM, mapping, sensor fusion, and state estimation**.
+- Gained familiarity with **3D reconstruction** and the concepts and applications of **large language models (LLMs)**.
+
 ## Selected Research
 
 **When AI Agents Go Rogue: Who Protects Your Files?**  
