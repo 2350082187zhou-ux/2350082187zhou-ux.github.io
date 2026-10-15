@@ -58,4 +58,5 @@ My selected journal and conference publications, including work on battery healt
 
 - [GitHub](https://github.com/2350082187zhou-ux)
 - [ORCID](https://orcid.org/0009-0009-2268-059X)
+- [Google Scholar](https://scholar.google.com/citations?user=vkzLMEcAAAAJ&hl=en)
 - [University of Nevada, Reno](https://www.unr.edu/)
