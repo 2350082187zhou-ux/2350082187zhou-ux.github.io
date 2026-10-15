@@ -50,6 +50,7 @@ My selected journal and conference publications, including work on battery healt
 
 - **Primary email (UNR):** [zedongz@unr.edu](mailto:zedongz@unr.edu)
 - **Alternative email:** [2350082187zhou@gmail.com](mailto:2350082187zhou@gmail.com)
+- **WhatsApp:** [+1 (775) 203-1866](https://wa.me/17752031866)
 - **QQ:** 2350082187
 - **WeChat:** `zhou13155311153`
 
