@@ -23,7 +23,7 @@ repository               : "2350082187zhou-ux/2350082187zhou-ux.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "https://avatars.githubusercontent.com/u/225627999?v=4"
+  avatar           : "zedong-photo.jpg"
   name             : "Zedong Zhou"
   pronouns         : # example: "she/her"  
   bio              : "Ph.D. Student in Computer Science | Systems Security & AI Agent Security"
