@@ -59,3 +59,7 @@
 @media(max-width:900px){.cyber-holo-emblem{opacity:.38}.cyber-hud-panel{right:3%;width:175px}.cyber-art{right:-290px;top:85px;opacity:.7}.hero-copy{width:72%}}
 @media(max-width:650px){.cyber-hero{min-height:665px}.hero-shell{min-height:665px}.hero-copy{width:100%;padding-top:58px}.hero-copy h1{font-size:clamp(41px,10vw,57px)}.cyber-hero:before{background-position:58% center}.cyber-art{right:-460px;top:160px;width:850px;height:465px;opacity:.55}.cyber-hero:after{background:linear-gradient(180deg,#020b19f2 0%,#020b19da 45%,#020b1980 72%,#020b19d0 100%)}.cyber-holo-emblem,.cyber-hud-panel{display:none}.signal-chips span{font-size:9px}.hero-stats{font-size:8px}.cyber-hero .tracer-rail{bottom:12px}.blog-main{padding-top:20px}}
 @media(prefers-reduced-motion:reduce){.cyber-art,.cyber-holo-emblem,.cyber-holo-emblem:before,.cyber-holo-emblem:after,.cyber-hero .tracer-rail:after,.cyber-hud-panel .meter i{animation:none!important}.reveal-on-scroll{opacity:1;transform:none}}
+
+/* Desktop refinements: preserve the approved two-line hero headline and safe art bounds */
+@media(min-width:901px){.hero-copy h1 span{white-space:nowrap;font-size:clamp(41px,4.1vw,65px)}.cyber-art{right:0;width:min(1050px,76vw)}}
+@media(max-width:650px){.cyber-hero,.hero-shell{min-height:610px}.cyber-art{top:145px;height:445px}}

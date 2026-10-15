@@ -44,8 +44,8 @@ jobs:
           done
           mkdir -p previews
           BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
-          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,1520 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Cyber_Blog_Desktop.png http://127.0.0.1:8765/blog/
-          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,1700 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Cyber_Blog_Mobile.png http://127.0.0.1:8765/blog/
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,1960 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Cyber_Blog_Desktop.png http://127.0.0.1:8765/blog/
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,2600 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Cyber_Blog_Mobile.png http://127.0.0.1:8765/blog/
           test -s previews/Zedong_Zhou_Cyber_Blog_Desktop.png
           test -s previews/Zedong_Zhou_Cyber_Blog_Mobile.png
 
