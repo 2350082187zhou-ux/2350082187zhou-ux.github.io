@@ -35,7 +35,7 @@ See the [Research page](/research/) for more information about my interests and 
 
 ## Publications
 
-A verified list of publications and publicly available manuscripts will be added as they become available. See the [Publications page](/publications/).
+My selected journal and conference publications, including work on battery health prediction, visual–inertial SLAM, and electricity demand forecasting, are listed on the [Publications page](/publications/).
 
 ## Contact
 
