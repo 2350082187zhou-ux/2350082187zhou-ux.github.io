@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "Zedong Zhou | Academic Website"
+title                    : "Zedong Zhou"
 title_separator          : "-"
 name                     : &name "Zedong Zhou"
 description              : &description "Academic website of Zedong Zhou, Ph.D. student in Computer Science at the University of Nevada, Reno, focused on systems and AI agent security."
