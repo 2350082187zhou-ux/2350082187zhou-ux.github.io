@@ -12,7 +12,8 @@ redirect_from:
 **Ph.D. Student in Computer Science**  
 University of Nevada, Reno
 
-This page provides a brief academic profile. A downloadable, complete CV will be added after the details are finalized.
+**[Download Current Academic CV (PDF)](/files/Zedong_Zhou_CV.pdf)**  
+Updated October 2026. This downloadable CV includes my education, research experience, publications and preprints, technical skills, and selected honors.
 
 ## Education
 
