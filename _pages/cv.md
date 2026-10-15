@@ -17,7 +17,7 @@ This page provides a brief academic profile. A downloadable, complete CV will be
 ## Education
 
 - **Ph.D. in Computer Science**, University of Nevada, Reno, Reno, NV, USA — in progress.
-  - **Ph.D. Advisor:** [Dr. Niusen Chen](https://www.unr.edu/cse/people/niusen-chen), Assistant Professor, Computer Science and Engineering.
+  - **Ph.D. Advisor:** [Dr. Niusen Chen](https://www.unr.edu/cse/people/niusen-chen).
 - **Bachelor's degree in Electrical Engineering and Automation**, School of Electrical Engineering, Anhui Polytechnic University, Wuhu, China — September 2021 – June 20, 2025.
 
 ## Research Interests
