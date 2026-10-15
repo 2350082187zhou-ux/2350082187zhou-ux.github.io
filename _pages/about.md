@@ -11,6 +11,11 @@ I am **Zedong Zhou**, a Ph.D. student in Computer Science at the **University of
 
 I am particularly interested in understanding how privileged software interacts with traditional security boundaries, and how data can remain protected even when the host environment is not fully trusted.
 
+## Education
+
+- **Ph.D. in Computer Science**, University of Nevada, Reno — in progress.
+- **Undergraduate studies (completed)**, School of Electrical Engineering, Anhui Polytechnic University, Wuhu, China — September 2021 – June 20, 2025.
+
 ## Research Interests
 
 - **AI Agent Security:** Security risks posed by AI agents with elevated permissions, including unauthorized file modification or deletion.
