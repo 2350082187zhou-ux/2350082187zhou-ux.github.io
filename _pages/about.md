@@ -13,8 +13,17 @@ I am particularly interested in understanding how privileged software interacts 
 
 ## Education
 
-- **Ph.D. in Computer Science**, University of Nevada, Reno — in progress.
-- **Bachelor's degree in Electrical Engineering and Automation**, School of Electrical Engineering, Anhui Polytechnic University, Wuhu, China — September 2021 – June 20, 2025.
+### University of Nevada, Reno
+
+**Ph.D. in Computer Science**  
+Reno, Nevada, USA  
+*In progress*
+
+### Anhui Polytechnic University
+
+**Bachelor's Degree in Electrical Engineering and Automation**  
+School of Electrical Engineering · Wuhu, China  
+*September 2021 – June 20, 2025*
 
 ## Research Interests
 
