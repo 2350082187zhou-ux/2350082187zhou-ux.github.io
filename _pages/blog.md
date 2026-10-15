@@ -20,8 +20,8 @@ description: "Security research, Linux internals, AI agent safety and reproducib
 .cyber-terminal{margin-top:27px;padding:14px 18px;background:#050d15c9;border:1px solid #24455a;border-radius:9px;color:#a6e5d5;font: .77rem/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
 .cyber-prompt{color:#6cb4ff}.cyber-caret{display:inline-block;width:7px;height:1em;vertical-align:-2px;background:#29dcb0;animation:cyber-blink 1.2s steps(1) infinite}
 .cyber-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:34px 0 16px}
-.cyber-heading h2{font-size:1.3rem!important;margin:0!important;border:0!important}
-.cyber-heading small{font: .72rem ui-monospace,monospace;color:#688a9a}
+.cyber-heading h2{font-size:1.3rem!important;margin:0!important;border:0!important;color:#243c4d!important}
+.cyber-heading small{font: .72rem ui-monospace,monospace;color:#567486}
 .cyber-topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
 .cyber-topic{border:1px solid #2a465a;border-radius:11px;padding:19px 15px;background:linear-gradient(145deg,#101f2d,#0c1722);color:#e3f5fc;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
 .cyber-topic:hover{transform:translateY(-4px);border-color:#25d8ac;box-shadow:0 8px 25px #0c504c30}
