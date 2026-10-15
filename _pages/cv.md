@@ -34,6 +34,11 @@ Research on file integrity when AI agents operate with elevated privileges, with
 
 A verified publication and presentation list will be added when available.
 
+## Contact
+
+- **Primary email:** [zedongz@unr.edu](mailto:zedongz@unr.edu)
+- **Alternative email:** [2350082187zhou@gmail.com](mailto:2350082187zhou@gmail.com)
+
 ## Links
 
 - [GitHub](https://github.com/2350082187zhou-ux)
