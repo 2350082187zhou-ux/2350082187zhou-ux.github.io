@@ -44,7 +44,7 @@ See the [Research page](/research/) for more information about my interests and 
 
 ## Publications
 
-My selected journal and conference publications, including work on battery health prediction, visual–inertial SLAM, and electricity demand forecasting, are listed on the [Publications page](/publications/).
+My publications and preprints cover efficient 3D reconstruction, battery health prediction, visual–inertial SLAM, and electricity demand forecasting. See the [Publications page](/publications/) for full citations and links to papers and code.
 
 ## Contact
 
