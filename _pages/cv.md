@@ -1,64 +1,40 @@
 ---
 layout: archive
-title: "CV"
+title: "Curriculum Vitae"
 permalink: /cv/
 author_profile: true
 redirect_from:
   - /resume
 ---
 
-{% include base_path %}
+## Zedong Zhou
 
-Education
-======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+**Ph.D. Student in Computer Science**  
+University of Nevada, Reno
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+This page provides a brief academic profile. A downloadable, complete CV will be added after the details are finalized.
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+## Education
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+- **Ph.D. in Computer Science**, University of Nevada, Reno — in progress.
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+## Research Interests
+
+- AI agent security and safe automation
+- Operating systems and Linux kernel security
+- Storage systems and hardware-assisted data protection
+- Software vulnerability analysis
+
+## Selected Research
+
+**When AI Agents Go Rogue: Who Protects Your Files?**  
+Research on file integrity when AI agents operate with elevated privileges, with experimental evaluation of AppArmor, eBPF LSM, and block-layer controls.
+
+## Publications and Presentations
+
+A verified publication and presentation list will be added when available.
+
+## Links
+
+- [GitHub](https://github.com/2350082187zhou-ux)
+- [Research](/research/)
