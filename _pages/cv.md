@@ -20,7 +20,7 @@ This page provides a brief academic profile. A downloadable, complete CV will be
 
 **Ph.D. in Computer Science**  
 Reno, Nevada, USA  
-*In progress*  
+*September 2026 – Present*  
 **Ph.D. Advisor:** [Dr. Niusen Chen](https://www.unr.edu/cse/people/niusen-chen)
 
 ### Anhui Polytechnic University
