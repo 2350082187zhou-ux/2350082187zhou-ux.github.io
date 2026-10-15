@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 580" role="img" aria-labelledby="title desc">
+<title id="title">Linux security architecture under cyber attack</title><desc id="desc">Linux penguin over kernel, eBPF and hardware layers protected by a glowing shield from malicious traffic.</desc>
+<defs>
+<linearGradient id="night" x2="0.3" y2="1"><stop stop-color="#071422"/><stop offset=".5" stop-color="#061522"/><stop offset="1" stop-color="#031019"/></linearGradient>
+<linearGradient id="pane" x2="1" y2="1"><stop stop-color="#164365"/><stop offset=".55" stop-color="#0c2239"/><stop offset="1" stop-color="#04131f"/></linearGradient>
+<linearGradient id="teal" x2="1" y2="1"><stop stop-color="#74ffe2"/><stop offset=".48" stop-color="#08bfa7"/><stop offset="1" stop-color="#045d74"/></linearGradient>
+<linearGradient id="blue" x2="0" y2="1"><stop stop-color="#33afff"/><stop offset="1" stop-color="#14447b"/></linearGradient>
+<linearGradient id="red" x2="0" y2="1"><stop stop-color="#fc7086"/><stop offset="1" stop-color="#91243c"/></linearGradient>
+<radialGradient id="aura"><stop stop-color="#1affe1" stop-opacity=".23"/><stop offset=".6" stop-color="#008e9e" stop-opacity=".08"/><stop offset="1" stop-opacity="0"/></radialGradient>
+<filter id="glow" x="-55%" y="-55%" width="210%" height="210%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="soft"><feGaussianBlur stdDeviation="14"/></filter>
+<pattern id="micro" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#42ccef" stroke-opacity=".07"/></pattern>
+</defs>
+<rect width="1120" height="580" fill="url(#night)"/><rect width="1120" height="580" fill="url(#micro)"/>
+<ellipse cx="675" cy="255" rx="440" ry="300" fill="url(#aura)"/>
+<!-- neon server towers and city -->
+<g fill="#04111f" stroke="#17527a" stroke-width="1.5" opacity=".82">
+<path d="M0 460V142h62V86h54v374M128 460V96h65V60h58v400M254 460V137h75V89h49v371M880 460V100h84V42h70v418M1046 460V150h74v310"/>
+</g>
+<g stroke="#058fcb" stroke-width="2" opacity=".45">
+<path d="M20 185h28m-28 17h28m-28 17h28M153 150h62m-62 16h34m-34 18h49M280 175h80m-80 18h54M910 149h108m-108 19h82m-82 19h101M1062 222h44m-44 18h36m-36 17h44"/>
+<path d="M30 91v22m150-67v30M330 82v37M927 76v31M1081 115v36"/>
+</g>
+<g fill="#10e5b6" opacity=".66"><circle cx="50" cy="110" r="2"/><circle cx="180" cy="84" r="2"/><circle cx="331" cy="127" r="2"/><circle cx="933" cy="113" r="2"/><circle cx="1065" cy="196" r="2"/></g>
+<path d="M0 471L1120 471M0 478L1120 478" stroke="#08a4bf" stroke-opacity=".36"/><path d="M0 517Q300 477 570 513T1120 505" stroke="#07698d" opacity=".52" fill="none"/>
+<!-- left monitoring readouts -->
+<g transform="translate(120 136)" opacity=".88" font-family="monospace">
+<rect width="160" height="188" rx="9" fill="#071927" stroke="#1b85b5" stroke-opacity=".68"/>
+<text x="18" y="28" fill="#39dcfa" font-size="13">SYSTEM MONITOR</text>
+<path d="M15 40h126" stroke="#296682"/>
+<g fill="#b3ddeb" font-size="12"><text x="18" y="69">01  Processes</text><text x="18" y="97">02  Files</text><text x="18" y="125">03  Network</text><text x="18" y="153">04  Storage</text><text x="18" y="181">05  Security</text></g>
+<g fill="#0fffc7"><circle cx="147" cy="64" r="3"/><circle cx="147" cy="92" r="3"/><circle cx="147" cy="120" r="3"/><circle cx="147" cy="148" r="3"/><circle cx="147" cy="175" r="3"/></g>
+</g>
+<!-- holographic data lines -->
+<g fill="none" stroke-width="2.1" opacity=".88">
+<path d="M390 270C485 222 515 272 600 238S755 233 830 247" stroke="#14e2d0" filter="url(#glow)"/>
+<path d="M389 303C503 356 542 260 635 296S752 287 829 255" stroke="#09b7fd" filter="url(#glow)"/>
+<path d="M380 341C514 300 569 362 673 308S766 284 825 266" stroke="#08f6a5"/>
+<path d="M390 368C498 435 630 354 710 345S781 300 831 274" stroke="#2d8eff"/>
+</g>
+<!-- layered architecture -->
+<g transform="translate(350 207)" font-family="system-ui,Arial,sans-serif" font-size="17" text-anchor="middle">
+<g><rect width="270" height="53" rx="7" fill="url(#pane)" stroke="#27a7fa" stroke-width="2"/><path d="M8 9h254" stroke="#6acafe" opacity=".5"/><text x="135" y="34" fill="#e4f7ff">Applications</text></g>
+<g transform="translate(0 57)"><rect width="270" height="53" rx="7" fill="url(#pane)" stroke="#2589cb" stroke-width="2"/><text x="135" y="34" fill="#e4f7ff">System Libraries</text></g>
+<g transform="translate(0 114)"><rect width="270" height="57" rx="7" fill="#073337" stroke="#31ffcd" stroke-width="3" filter="url(#glow)"/><text x="135" y="37" fill="#8affe2" font-weight="700">Linux Kernel</text></g>
+<g transform="translate(0 175)"><rect width="270" height="53" rx="7" fill="url(#pane)" stroke="#268add" stroke-width="2"/><text x="135" y="34" fill="#d6faff">Drivers / eBPF</text></g>
+<g transform="translate(0 232)"><rect width="270" height="53" rx="7" fill="#071d2e" stroke="#245c89" stroke-width="2"/><text x="135" y="34" fill="#bfdff3">Hardware</text></g>
+</g>
+<!-- tux stylized icon with glossy highlights -->
+<g transform="translate(428 46)">
+<ellipse cx="60" cy="102" rx="53" ry="76" fill="#04111d" stroke="#25baf0" stroke-width="3"/>
+<ellipse cx="60" cy="115" rx="37" ry="52" fill="#e6f6ff"/>
+<ellipse cx="60" cy="39" rx="32" ry="36" fill="#091723" stroke="#28a8f6" stroke-width="2"/>
+<ellipse cx="49" cy="35" rx="10" ry="15" fill="white"/><ellipse cx="72" cy="35" rx="10" ry="15" fill="white"/>
+<ellipse cx="51" cy="37" rx="3.5" ry="6" fill="#00121b"/><ellipse cx="71" cy="37" rx="3.5" ry="6" fill="#00121b"/>
+<path d="M47 53Q60 44 74 53L64 67Q58 70 52 65Z" fill="#ffd263" stroke="#c78c1d" stroke-width="1.3"/>
+<path d="M25 153Q12 162 8 176Q23 191 56 182L63 166Q43 157 25 153" fill="#ffc543" stroke="#c7922a" stroke-width="2"/>
+<path d="M91 153Q111 161 119 179Q105 189 68 182L63 166Q78 156 91 153" fill="#ffc543" stroke="#c7922a" stroke-width="2"/>
+<path d="M28 73Q7 111 28 139" fill="none" stroke="#0a2332" stroke-width="19" stroke-linecap="round"/>
+<path d="M93 75Q111 112 94 145" fill="none" stroke="#0a2332" stroke-width="19" stroke-linecap="round"/>
+</g>
+<!-- protected barrier -->
+<g transform="translate(700 130)" filter="url(#glow)">
+<path d="M105 0L195 39V142C195 213 146 248 105 266C58 247 15 209 15 142V39Z" fill="#0b4549" fill-opacity=".47" stroke="#26ffcf" stroke-width="6"/>
+<path d="M105 21L172 51V143C172 189 143 222 105 240C70 221 39 191 39 143V51Z" fill="#0a293d" fill-opacity=".55" stroke="#85ffe2" stroke-width="2"/>
+<path d="M75 125v-22a30 30 0 0 1 60 0v22" fill="none" stroke="#77ffe2" stroke-width="10" stroke-linecap="round"/>
+<rect x="63" y="122" width="84" height="76" rx="11" fill="url(#teal)" stroke="#d7fff5" stroke-width="3"/>
+<circle cx="105" cy="156" r="10" fill="#064b51"/><path d="M103 164l-4 15h12l-4-15" fill="#064b51"/>
+</g>
+<!-- adversarial traffic -->
+<g fill="none" stroke="#ff475d" stroke-width="3" filter="url(#glow)">
+<path d="M1110 209Q978 176 928 246L904 266"/><path d="M1110 277Q985 268 929 278L910 292"/><path d="M1110 344Q1001 333 946 310L912 302"/><path d="M1090 411Q999 395 929 330L902 317"/>
+</g>
+<g fill="#ff6078"><circle cx="1001" cy="189" r="5"/><circle cx="988" cy="271" r="4"/><circle cx="1040" cy="355" r="6"/><circle cx="967" cy="380" r="4"/></g>
+<g font-family="monospace" font-size="14" font-weight="700">
+<g transform="translate(948 135)"><rect width="160" height="41" rx="5" fill="#270d1b" stroke="#f04460"/><text x="18" y="26" fill="#ff7a8b">!  MALWARE</text></g>
+<g transform="translate(966 208)"><rect width="142" height="41" rx="5" fill="#270d1b" stroke="#f04460"/><text x="18" y="26" fill="#ff7a8b">!  EXPLOIT</text></g>
+<g transform="translate(946 284)"><rect width="162" height="41" rx="5" fill="#270d1b" stroke="#f04460"/><text x="13" y="26" fill="#ff7a8b">!  RANSOMWARE</text></g>
+<g transform="translate(958 359)"><rect width="150" height="41" rx="5" fill="#270d1b" stroke="#f04460"/><text x="17" y="26" fill="#ff7a8b">!  DATA LEAK</text></g>
+</g>
+<g opacity=".8" font-family="monospace" fill="#18e0b4" font-size="12"><text x="22" y="551">LINUX / KERNEL / eBPF / STORAGE / SECURITY</text><text x="850" y="551">INTEGRITY: PROTECTED</text></g>
+</svg>

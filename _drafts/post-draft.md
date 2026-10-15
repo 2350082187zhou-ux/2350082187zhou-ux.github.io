@@ -1,12 +1,11 @@
 ---
-layout: single
+layout: cyber-post
 title: "New Research Note — Draft"
 excerpt: "Write a one-sentence summary here."
 categories:
   - Research Notes
 tags:
   - Systems
-author_profile: true
 comments: false
 ---
 
