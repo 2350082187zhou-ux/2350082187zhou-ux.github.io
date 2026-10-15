@@ -6,7 +6,12 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
 ---
 <section class="cyber-hero" aria-labelledby="hero-title">
   <div class="hero-particles" aria-hidden="true"></div>
-  <div class="cyber-art" role="img" aria-label="Illustration of Linux kernel layers and eBPF protected by a cybersecurity shield against malware and ransomware"></div>
+  <div class="cyber-neural-grid" aria-hidden="true"></div>
+  <canvas class="cyber-signal-canvas" id="cyber-signal-canvas" aria-hidden="true"></canvas>
+  <div class="cyber-art" role="img" aria-label="Illustrated Linux kernel, eBPF and hardware stack defended by a glowing shield against malware, exploits and ransomware"></div>
+  <div class="cyber-holo-emblem" aria-hidden="true"></div>
+  <div class="cyber-hud-panel" aria-hidden="true"><span class="cyber-hud-heading">Kernel defense · eBPF / LSM</span><div class="meter"><i></i></div><small>CONCEPT VISUALIZATION · NOT LIVE DATA</small></div>
+  <div class="tracer-rail" aria-hidden="true"></div>
   <div class="hero-shell">
     <div class="hero-copy">
       <div class="eyebrow">Cybersecurity research blog</div>
@@ -17,6 +22,7 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
         <div class="terminal-line">Linux Kernel · eBPF · AI Agent Security · Storage Systems</div>
         <div class="terminal-line"><span class="cursor" aria-hidden="true"></span></div>
       </div>
+      <div class="signal-chips" aria-label="Research topics"><span>●  LINUX KERNEL</span><span>eBPF / LSM</span><span>DATA INTEGRITY</span></div>
       <span class="hero-stats">// LINUX &nbsp; // SECURITY &nbsp; // SYSTEMS &nbsp; // OPEN RESEARCH</span>
     </div>
   </div>
