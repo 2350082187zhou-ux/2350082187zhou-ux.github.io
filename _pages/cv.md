@@ -33,7 +33,13 @@ Research on file integrity when AI agents operate with elevated privileges, with
 
 ## Publications and Presentations
 
-A verified publication and presentation list will be added when available.
+My selected publications include two journal articles and one conference paper:
+
+- **Lithium battery health state prediction based on sample entropy and time feature fusion**, *Ionics* (2025). [DOI](https://doi.org/10.1007/s11581-025-06560-2)
+- **SM-VINS: A Fast and Decoupled Monocular Visual–Inertial Sensors SLAM System With Stepwise Marginalization**, *IEEE Sensors Journal* (2024). [DOI](https://doi.org/10.1109/JSEN.2024.3418334)
+- **Prediction of electricity consumption in Anhui Province based on HP-ARIMA-BP**, *EIECC 2022* (published 2023). [DOI](https://doi.org/10.1117/12.2671443)
+
+See [Publications](/publications/) for full author lists and publication details.
 
 ## Contact
 
