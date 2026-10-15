@@ -12,6 +12,9 @@ main:
   - title: "Blog"
     url: /blog/
 
+  - title: "Deadlines"
+    url: /security-deadlines/
+
   - title: "CV"
     url: /cv/
 

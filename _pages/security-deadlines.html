@@ -1,0 +1,150 @@
+---
+layout: null
+title: "Security Top 4 Conference Deadlines"
+permalink: /security-deadlines/
+description: "Live countdowns for IEEE S&P, USENIX Security, ACM CCS and NDSS conference deadlines."
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#04111c">
+  <meta name="description" content="{{ page.description | escape }}">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <title>Security Top 4 Deadlines | Zedong Zhou</title>
+  <link rel="stylesheet" href="{{ '/assets/css/security-deadlines.css' | relative_url }}">
+  <script defer src="{{ '/assets/js/security-deadlines.js' | relative_url }}"></script>
+</head>
+<body class="deadline-page">
+  <a class="skip-link" href="#deadlines-content">Skip to deadlines</a>
+  <div class="ambient-grid" aria-hidden="true"></div>
+  <header class="top-bar">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Zedong Zhou homepage"><span>Zedong</span> Zhou<span class="brand-cursor">_</span></a>
+    <nav aria-label="Site navigation">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <a href="{{ '/research/' | relative_url }}">Research</a>
+      <a href="{{ '/blog/' | relative_url }}">Blog</a>
+      <a class="active" href="{{ '/security-deadlines/' | relative_url }}" aria-current="page">Deadlines</a>
+      <a href="{{ '/cv/' | relative_url }}">CV</a>
+    </nav>
+    <a class="source-link" href="https://ccfddl.com/" target="_blank" rel="noopener noreferrer">Inspired by CCFDDL <span aria-hidden="true">↗</span></a>
+  </header>
+  <main id="deadlines-content" class="main-container">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse-point" aria-hidden="true"></span> SECURITY RESEARCH · PAPER SUBMISSION TRACKER</div>
+        <h1>Security Top <span>4</span><br>Conference Deadlines<span class="cursor">_</span></h1>
+        <p>A focused, real-time countdown for the four major computer security venues. Verified CFP dates, accurate AoE conversions, and one-click access to official sources.</p>
+        <div class="hero-tags"><span>IEEE S&amp;P</span><span>USENIX Security</span><span>ACM CCS</span><span>NDSS</span></div>
+      </div>
+      <aside class="next-focus" aria-labelledby="next-heading">
+        <div class="focus-header"><span class="tiny-dot" aria-hidden="true"></span> NEXT VERIFIED MILESTONE <span class="signal-bits" aria-hidden="true">▂▄▆█</span></div>
+        <h2 id="next-heading" class="next-event">Finding upcoming milestones…</h2>
+        <p id="next-event-detail" class="next-detail">Dates use AoE (UTC−12) unless you select local time.</p>
+        <div class="countdown-box" aria-label="Time remaining until next milestone">
+          <div><strong id="next-days">--</strong><small>DAYS</small></div>
+          <span>:</span>
+          <div><strong id="next-hours">--</strong><small>HRS</small></div>
+          <span>:</span>
+          <div><strong id="next-minutes">--</strong><small>MIN</small></div>
+          <span>:</span>
+          <div><strong id="next-seconds">--</strong><small>SEC</small></div>
+        </div>
+        <p class="next-footer">Calculated by your browser clock · No account required.</p>
+      </aside>
+    </section>
+    <div class="verification-strip">
+      <div><span class="check-icon" aria-hidden="true">✓</span> Official conference CFP sources</div>
+      <div><span class="clock-icon" aria-hidden="true">◷</span> Live countdown, updated every second</div>
+      <div><span class="calendar-icon" aria-hidden="true">▦</span> Last manually checked: <time datetime="{{ site.data.security_deadlines.verified_on }}">{{ site.data.security_deadlines.verified_on }}</time></div>
+    </div>
+
+    <section class="section" aria-labelledby="conference-grid-heading">
+      <div class="section-heading">
+        <div><div class="section-kicker">01 / VENUE TRACKER</div><h2 id="conference-grid-heading">Four leading security venues</h2></div>
+        <span class="side-caption">2027 editions · official dates only</span>
+      </div>
+      <div class="conference-grid">
+        {% for conference in site.data.security_deadlines.conferences %}
+        <article class="conf-card accent-{{ conference.theme }}" data-conf-card="{{ conference.id }}" aria-label="{{ conference.short | escape }} 2027 deadlines">
+          <div class="conf-top"><span class="conf-monogram">{{ conference.short | slice: 0, 2 }}</span><span class="conf-year">{{ conference.year }}</span></div>
+          <h3>{{ conference.short | escape }}</h3>
+          <p class="conf-name">{{ conference.name | escape }}</p>
+          <p class="conf-track">{{ conference.label | escape }}</p>
+          <div class="conf-next"><small>NEXT SUBMISSION MILESTONE</small><div class="conf-countdown" data-card-count="{{ conference.id }}">Checking…</div><div class="conf-milestone" data-card-label="{{ conference.id }}"></div></div>
+          <div class="conf-foot"><span>{{ conference.location | escape }}<br>{{ conference.dates | escape }}</span><a href="{{ conference.official }}" target="_blank" rel="noopener noreferrer" aria-label="{{ conference.short | escape }} official CFP">Official CFP ↗</a></div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="section" id="timeline" aria-labelledby="timeline-heading">
+      <div class="section-heading">
+        <div><div class="section-kicker">02 / LIVE TIMELINE</div><h2 id="timeline-heading">Submission deadline board</h2></div>
+        <span class="side-caption">All dates from official calls for papers</span>
+      </div>
+      <div class="deadline-toolbar">
+        <label class="toolbar-search"><span aria-hidden="true">⌕</span><input type="search" id="deadline-search" placeholder="Search IEEE S&P, CCS, cycles…" autocomplete="off" aria-label="Search conference deadlines"></label>
+        <label class="toolbar-select">Venue
+          <select id="venue-filter" aria-label="Filter by conference"><option value="all">All four venues</option>
+            {% for conference in site.data.security_deadlines.conferences %}
+            <option value="{{ conference.id }}">{{ conference.short | escape }}</option>
+            {% endfor %}
+          </select>
+        </label>
+        <label class="toolbar-select">Time zone
+          <select id="zone-select" aria-label="Deadline time zone"><option value="aoe" selected>AoE (UTC−12)</option><option value="local">My local time</option></select>
+        </label>
+        <label class="control-check"><input type="checkbox" id="paper-only"><span>Paper only</span></label>
+        <label class="control-check"><input type="checkbox" id="show-past"><span>Show past</span></label>
+      </div>
+      <div class="table-shell">
+        <table class="deadline-table">
+          <thead><tr><th>Conference</th><th>Cycle / Milestone</th><th>Official deadline</th><th>Time remaining</th><th>Actions</th></tr></thead>
+          <tbody id="deadline-rows">
+            {% assign ordered_events = site.data.security_deadlines.events | sort: 'iso_utc' %}
+            {% for event in ordered_events %}
+              {% assign venue = site.data.security_deadlines.conferences | where: "id", event.conf | first %}
+              <tr data-event-id="{{ event.id }}" data-conf="{{ event.conf }}" data-kind="{{ event.kind }}" data-utc="{{ event.iso_utc }}" data-search="{{ venue.short | escape }} {{ venue.name | escape }} {{ event.cycle | escape }} {{ event.label | escape }}">
+                <td class="venue-name"><strong>{{ venue.short | escape }}</strong><small>{{ venue.year }}</small></td>
+                <td><strong class="cycle-text">{{ event.cycle | escape }}</strong><small>{{ event.label | escape }}</small></td>
+                <td><time class="date-time" datetime="{{ event.iso_utc }}" data-display-date="{{ event.iso_utc }}">{{ event.local_date }} · 23:59:59 AoE</time><small class="tz-hint">UTC−12</small></td>
+                <td><span class="remaining" data-remain="{{ event.id }}">Calculating…</span></td>
+                <td>
+                  <div class="actions">
+                    <button type="button" class="calendar-button" data-calendar-date="{{ event.iso_utc }}" data-calendar-name="{{ venue.short | escape }} {{ venue.year }} — {{ event.cycle | escape }} {{ event.label | escape }}" data-calendar-url="{{ venue.official }}" title="Download calendar reminder">+ Calendar</button>
+                    <a href="{{ venue.official }}" target="_blank" rel="noopener noreferrer" title="Read official CFP">CFP ↗</a>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="no-matches" id="no-matches" hidden>No matching dates. Try another filter or enable “Show past”.</div>
+      </div>
+      <p class="tbd-banner"><span aria-hidden="true">◈</span> <strong>ACM CCS 2027:</strong> The CFP exists, but the official <em>Important Dates</em> section still says <strong>TBD</strong>. The tracker will not guess or reuse a past year's submission dates. <a href="https://www.sigsac.org/ccs/CCS2027/cfp.html" target="_blank" rel="noopener noreferrer">Check the CCS CFP ↗</a></p>
+    </section>
+
+    <section class="section guide-section" aria-labelledby="guide-heading">
+      <div class="section-heading"><div><div class="section-kicker">03 / SUBMISSION NOTES</div><h2 id="guide-heading">Before you submit</h2></div></div>
+      <div class="guide-grid">
+        <div><span class="guide-num">01</span><strong>Abstracts may be mandatory</strong><p>IEEE S&amp;P and USENIX Security 2027 require an earlier registration milestone. Do not wait until the full-paper date.</p></div>
+        <div><span class="guide-num">02</span><strong>AoE is not local midnight</strong><p>Anywhere on Earth (UTC−12) deadlines appear at a different hour in your local time zone. Switch the display above to check.</p></div>
+        <div><span class="guide-num">03</span><strong>Verify the official CFP</strong><p>Conference organizers can revise deadlines or submission rules. This independent tracker is a reference, not an official announcement.</p></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div>Built by <a href="{{ '/' | relative_url }}">Zedong Zhou</a> · University of Nevada, Reno<br><small>Independent research utility · not affiliated with the conference organizers</small></div>
+      <div><a href="{{ '/blog/' | relative_url }}">Cybersecurity Blog</a><a href="{{ '/research/' | relative_url }}">Research</a><a href="https://ccfddl.com/" target="_blank" rel="noopener noreferrer">CCFDDL inspiration ↗</a></div>
+    </footer>
+  </main>
+  <script id="conference-data" type="application/json">[
+    {% for conference in site.data.security_deadlines.conferences %}
+      {"id":"{{ conference.id }}","short":"{{ conference.short }}","year":"{{ conference.year }}","official":"{{ conference.official }}"}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]</script>
+</body>
+</html>

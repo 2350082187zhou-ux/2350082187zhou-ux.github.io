@@ -11,6 +11,11 @@ on:
       - "assets/images/cyber-*.svg"
       - "assets/images/agent-storage-trust-boundary.svg"
       - "_pages/about.md"
+      - "_pages/security-deadlines.html"
+      - "_data/security_deadlines.yml"
+      - "_data/navigation.yml"
+      - "assets/css/security-deadlines.css"
+      - "assets/js/security-deadlines.js"
       - "assets/js/cyber-*.js"
       - ".github/workflows/cyber-blog-preview.yml"
   workflow_dispatch:
@@ -53,6 +58,12 @@ jobs:
           curl --fail --silent http://127.0.0.1:8765/ >/dev/null
           "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,2300 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Homepage_Desktop.png http://127.0.0.1:8765/
           "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,3200 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Homepage_Mobile.png http://127.0.0.1:8765/
+          # Capture this independent subpage without relying on external DNS.
+          curl --fail --silent http://127.0.0.1:8765/security-deadlines/ >/dev/null
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,2200 --virtual-time-budget=2500 --screenshot=previews/Zedong_Zhou_Security_Deadlines_Desktop.png http://127.0.0.1:8765/security-deadlines/
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,3400 --virtual-time-budget=2500 --screenshot=previews/Zedong_Zhou_Security_Deadlines_Mobile.png http://127.0.0.1:8765/security-deadlines/
+          test -s previews/Zedong_Zhou_Security_Deadlines_Desktop.png
+          test -s previews/Zedong_Zhou_Security_Deadlines_Mobile.png
           test -s previews/Zedong_Zhou_Homepage_Desktop.png
           test -s previews/Zedong_Zhou_Homepage_Mobile.png
           test -s previews/Zedong_Zhou_Cyber_Blog_Desktop.png

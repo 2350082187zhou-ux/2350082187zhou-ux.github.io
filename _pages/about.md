@@ -13,6 +13,20 @@ I am **Zedong Zhou**, a Ph.D. student in Computer Science at the **University of
 
 I am particularly interested in understanding how privileged software interacts with traditional security boundaries, and how data can remain protected even when the host environment is not fully trusted.
 
+<div class="security-deadline-entry">
+  <span class="security-deadline-entry__symbol" aria-hidden="true">◷</span>
+  <span><strong>Security Top 4 Deadlines</strong> <span class="security-deadline-entry__desc">IEEE S&amp;P · USENIX Security · ACM CCS · NDSS</span></span>
+  <a href="{{ '/security-deadlines/' | relative_url }}">Live conference countdown ↗</a>
+</div>
+<style>
+.security-deadline-entry{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#eef7fb;border:1px solid #c8e3e9;border-left:4px solid #168da0;border-radius:8px;padding:13px 15px;margin:20px 0 27px;font-size:.88em;color:#223a4e}
+.security-deadline-entry__symbol{font-size:1.5em;color:#148b93}
+.security-deadline-entry__desc{display:block;font-size:.88em;color:#577284;margin-top:2px}
+.security-deadline-entry>a{margin-left:auto;font-weight:700;color:#087b8c!important;white-space:nowrap}
+.security-deadline-entry>a:hover{text-decoration:underline}
+@media(max-width:640px){.security-deadline-entry>a{margin-left:0}}
+</style>
+
 ## Education
 
 ### University of Nevada, Reno
