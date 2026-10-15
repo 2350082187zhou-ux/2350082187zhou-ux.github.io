@@ -63,3 +63,8 @@
 /* Desktop refinements: preserve the approved two-line hero headline and safe art bounds */
 @media(min-width:901px){.hero-copy h1 span{white-space:nowrap;font-size:clamp(41px,4.1vw,65px)}.cyber-art{right:0;width:min(1050px,76vw)}}
 @media(max-width:650px){.cyber-hero,.hero-shell{min-height:610px}.cyber-art{top:145px;height:445px}}
+
+/* Use authentic, aspect-locked Tux illustration. Never force different width / height ratios. */
+.channel-card .channel-art img.linux-tux-card{display:block;width:75px;height:75px;max-width:100%;object-fit:contain;aspect-ratio:1/1;filter:drop-shadow(0 0 12px #0bffd277)}
+@media(max-width:1200px){.channel-card .channel-art img.linux-tux-card{width:51px;height:51px}}
+@media(max-width:430px){.channel-card .channel-art img.linux-tux-card{width:69px;height:69px}}

@@ -35,12 +35,7 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
     </div>
     <div class="channel-grid">
       <a class="channel-card green" href="{{ '/research/' | relative_url }}" aria-label="Explore Linux and eBPF research">
-        <span class="channel-art" aria-hidden="true">
-          <svg viewBox="0 0 80 92" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 76h74M4 13h70v62H4z" stroke="#00b78d" opacity=".3"/><path d="M13 21h45M13 30h36M13 39h42M13 48h27" stroke="#00c5a6" stroke-width="2" opacity=".5"/>
-            <ellipse cx="41" cy="51" rx="23" ry="30" fill="#071928" stroke="#26e3ca" stroke-width="2"/><ellipse cx="41" cy="57" rx="16" ry="23" fill="#e9fbff"/><ellipse cx="41" cy="31" rx="16" ry="19" fill="#071928" stroke="#61d9f0"/><ellipse cx="35" cy="28" rx="5" ry="8" fill="#fff"/><ellipse cx="47" cy="28" rx="5" ry="8" fill="#fff"/><circle cx="36" cy="30" r="2" fill="#052638"/><circle cx="46" cy="30" r="2" fill="#052638"/><path d="M35 39h12l-6 9zM25 75l-7 8 22 1 3-8M54 75l8 9-21 1 1-9" fill="#ffce56" stroke="#d99e38"/>
-          </svg>
-        </span>
+        <span class="channel-art" aria-hidden="true"><img class="linux-tux-card" src="{{ '/assets/images/linux-tux-original.svg' | relative_url }}" width="77" height="77" alt="" loading="lazy" decoding="async"></span>
         <span class="channel-text"><strong>Linux &amp; eBPF</strong><small>Kernel instrumentation, security mechanisms, and observability.</small></span><span class="channel-arrow" aria-hidden="true">→</span>
       </a>
       <a class="channel-card blue" href="{{ '/research/' | relative_url }}" aria-label="Explore AI agent security research">
