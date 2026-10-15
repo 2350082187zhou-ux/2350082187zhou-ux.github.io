@@ -22,7 +22,7 @@ Reno, Nevada, USA
 ### Anhui Polytechnic University
 
 **Bachelor's Degree in Electrical Engineering and Automation**  
-School of Electrical Engineering · Wuhu, China  
+Wuhu, Anhui, China  
 *September 2021 – June 20, 2025*
 
 ## Research Interests
