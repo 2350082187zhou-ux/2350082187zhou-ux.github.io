@@ -29,6 +29,21 @@ This project investigates the resilience of sensitive-file protections against a
 
 **Status:** Research/poster project. Public artifacts or a citable paper will be linked here when available.
 
+## Undergraduate Research
+
+**Anhui Polytechnic University, School of Electrical Engineering**  
+**B.Eng. in Electrical Engineering and Automation | September 2021 – June 2025**
+
+My undergraduate research focused on **applied intelligent algorithms, time-series modeling, and sensor fusion** for practical engineering problems. My publications in this area span three application domains:
+
+- **Battery health prediction:** Lithium-ion battery health state prediction using sample entropy and temporal feature fusion.
+- **Visual–inertial SLAM:** Monocular visual–inertial sensing, state estimation, and stepwise marginalization for efficient SLAM.
+- **Energy forecasting:** Regional electricity consumption prediction using a hybrid HP–ARIMA–BP approach.
+
+These topics provided a foundation in data-driven modeling, algorithm design, state estimation, and intelligent engineering systems. The related work includes two first-author publications and one coauthored journal article. The lithium battery article appeared in September 2025, after I completed my undergraduate degree.
+
+[View my publications](/publications/)
+
 ## Other Interests
 
 I am also interested in applying machine learning and program analysis to vulnerability detection and security analysis.
