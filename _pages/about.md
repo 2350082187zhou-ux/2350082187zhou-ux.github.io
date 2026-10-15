@@ -65,4 +65,5 @@ My publications and preprints cover efficient 3D reconstruction, battery health 
 - [GitHub](https://github.com/2350082187zhou-ux)
 - [ORCID](https://orcid.org/0009-0009-2268-059X)
 - [Google Scholar](https://scholar.google.com/citations?user=vkzLMEcAAAAJ&hl=en)
+- [LinkedIn](https://www.linkedin.com/in/zedong-zhou-19b50041a/)
 - [University of Nevada, Reno](https://www.unr.edu/)
