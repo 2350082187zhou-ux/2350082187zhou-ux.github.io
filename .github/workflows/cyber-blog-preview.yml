@@ -1,0 +1,57 @@
+name: Cyber Blog Visual Preview
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "_pages/blog.md"
+      - "_layouts/cyber-blog.html"
+      - "assets/css/cyber-blog.css"
+      - "assets/css/cyber-cinematic.css"
+      - "assets/images/cyber-*.svg"
+      - "assets/js/cyber-*.js"
+      - ".github/workflows/cyber-blog-preview.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll build --baseurl ""
+        env:
+          JEKYLL_ENV: production
+
+      - name: Render desktop and mobile previews
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python3 -m http.server 8765 --bind 127.0.0.1 --directory _site >/tmp/cyber-blog-server.log 2>&1 &
+          for attempt in {1..12}; do
+            if curl --fail --silent http://127.0.0.1:8765/blog/ >/dev/null; then break; fi
+            sleep 1
+          done
+          mkdir -p previews
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,1520 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Cyber_Blog_Desktop.png http://127.0.0.1:8765/blog/
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,1700 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Cyber_Blog_Mobile.png http://127.0.0.1:8765/blog/
+          test -s previews/Zedong_Zhou_Cyber_Blog_Desktop.png
+          test -s previews/Zedong_Zhou_Cyber_Blog_Mobile.png
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cyber-blog-previews
+          path: previews/*.png
+          if-no-files-found: error
+          retention-days: 14
