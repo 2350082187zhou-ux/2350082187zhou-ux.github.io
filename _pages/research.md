@@ -31,16 +31,19 @@ This project investigates the resilience of sensitive-file protections against a
 
 ## Undergraduate Research
 
-**Anhui Polytechnic University, School of Electrical Engineering**  
+**Anhui Polytechnic University**  
 **B.Eng. in Electrical Engineering and Automation | September 2021 – June 2025**
 
-My undergraduate research focused on **applied intelligent algorithms, time-series modeling, and sensor fusion** for practical engineering problems. My publications in this area span three application domains:
+During my undergraduate studies, I explored the application of **intelligent algorithms** to engineering problems, with particular interests in **computer vision, visual–inertial SLAM and mapping, time-series modeling, and sensor fusion**.
 
-- **Battery health prediction:** Lithium-ion battery health state prediction using sample entropy and temporal feature fusion.
-- **Visual–inertial SLAM:** Monocular visual–inertial sensing, state estimation, and stepwise marginalization for efficient SLAM.
-- **Energy forecasting:** Regional electricity consumption prediction using a hybrid HP–ARIMA–BP approach.
+- **Computer vision and mapping:** Studied visual perception, visual–inertial state estimation, sensor fusion, and SLAM-based mapping, as reflected in my coauthored work on monocular visual–inertial SLAM.
+- **Battery health prediction:** Investigated lithium-ion battery health assessment using sample entropy and temporal feature fusion.
+- **Energy forecasting:** Explored time-series modeling and hybrid HP–ARIMA–BP methods for electricity consumption prediction.
+- **Large models and AI:** Gained familiarity with the concepts and applications of **large language models (LLMs)** and other large-scale AI models, alongside my broader interests in intelligent perception.
 
-These topics provided a foundation in data-driven modeling, algorithm design, state estimation, and intelligent engineering systems. The related work includes two first-author publications and one coauthored journal article. The lithium battery article appeared in September 2025, after I completed my undergraduate degree.
+I also have an interest in **3D reconstruction and image-based scene understanding**. My subsequent coauthored work, [Lite3R (2026)](https://arxiv.org/abs/2605.11354), reflects this continuing research direction.
+
+Together, these experiences developed my foundation in algorithmic modeling, computer vision, sensor fusion, and intelligent computing systems.
 
 [View my publications](/publications/)
 
