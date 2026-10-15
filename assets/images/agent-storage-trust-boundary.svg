@@ -73,10 +73,10 @@
     <text x="54" y="51" text-anchor="middle" font-family="monospace" font-size="15" font-weight="700" fill="#9adfff">NVMe</text>
     <path d="M7 83v9M23 83v9M39 83v9M55 83v9M71 83v9M87 83v9" stroke="#e5ba68" stroke-width="3"/>
   </g>
-  <text x="88" y="126" text-anchor="middle" font-weight="700" font-size="19" fill="#ddf8ff">Block I/O</text>
-  <text x="88" y="147" text-anchor="middle" font-size="13" fill="#9cbbd4">Reads / writes</text>
-  <path d="M16 160H160" stroke="#265f93"/>
-  <text x="88" y="179" text-anchor="middle" font-family="monospace" font-size="11" fill="#7dbafe">Observe sectors</text>
+  <text x="88" y="143" text-anchor="middle" font-weight="700" font-size="19" fill="#ddf8ff">Block I/O</text>
+  <text x="88" y="162" text-anchor="middle" font-size="13" fill="#9cbbd4">Reads / writes</text>
+  <path d="M16 176H160" stroke="#265f93"/>
+  <text x="88" y="194" text-anchor="middle" font-family="monospace" font-size="11" fill="#7dbafe">Observe sectors</text>
 </g>
 <!-- Boundary -->
 <g transform="translate(1061 115)">
