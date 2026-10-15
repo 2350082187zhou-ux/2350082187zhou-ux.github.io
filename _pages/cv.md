@@ -16,7 +16,8 @@ This page provides a brief academic profile. A downloadable, complete CV will be
 
 ## Education
 
-- **Ph.D. in Computer Science**, University of Nevada, Reno — in progress.
+- **Ph.D. in Computer Science**, University of Nevada, Reno, Reno, NV, USA — in progress.
+- **Undergraduate studies (completed)**, School of Electrical Engineering, Anhui Polytechnic University, Wuhu, China — September 2021 – June 20, 2025.
 
 ## Research Interests
 
