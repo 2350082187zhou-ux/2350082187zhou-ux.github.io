@@ -101,7 +101,8 @@ description: "Live countdowns for IEEE S&P, USENIX Security, ACM CCS and NDSS co
         <label class="control-check"><input type="checkbox" id="paper-only"><span>Paper only</span></label>
         <label class="control-check"><input type="checkbox" id="show-past"><span>Show past</span></label>
       </div>
-      <div class="table-shell">
+      <p class="table-scroll-hint"><span aria-hidden="true">↔</span> Swipe horizontally to see full timestamps and calendar actions</p>
+      <div class="table-shell" role="region" aria-label="Scrollable official deadline timeline" tabindex="0">
         <table class="deadline-table">
           <thead><tr><th>Conference</th><th>Cycle / Milestone</th><th>Official deadline</th><th>Time remaining</th><th>Actions</th></tr></thead>
           <tbody id="deadline-rows">
