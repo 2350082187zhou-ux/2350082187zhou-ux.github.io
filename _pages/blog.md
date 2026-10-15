@@ -81,7 +81,8 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
       </div>
     </div>
     <figure class="security-map">
-      <div class="security-map-viewport">
+      <div class="security-map-hint" aria-hidden="true"><span>↔</span> Swipe horizontally to explore each security layer</div>
+      <div class="security-map-viewport" role="region" aria-label="Scrollable research diagram showing the path from AI agent privileges to storage trust boundaries" tabindex="0">
         <img src="{{ '/assets/images/agent-storage-trust-boundary.svg' | relative_url }}" width="1280" height="470" alt="Research diagram: an AI agent with root privileges issues system calls that cross the Linux LSM and block I/O layers, reaching a possible independent device trust boundary." decoding="async" loading="lazy">
       </div>
       <figcaption><span class="caption-dot" aria-hidden="true"></span> Conceptual attack-and-defense pathway. The diagram illustrates the research threat model, not real-time telemetry or guaranteed protection.</figcaption>
