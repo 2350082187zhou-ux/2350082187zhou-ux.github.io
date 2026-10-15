@@ -25,6 +25,12 @@ Reno, Nevada, USA
 Wuhu, Anhui, China  
 *September 2021 – June 20, 2025*
 
+## Undergraduate Research Background
+
+My undergraduate research focused on **applied intelligent algorithms**, with work in **visual–inertial SLAM and mapping**, battery health prediction, and energy forecasting. I also developed familiarity with **computer vision, 3D reconstruction**, and the concepts and applications of **large language models (LLMs)**. These interests complement my current Ph.D. research in systems and AI agent security.
+
+[Learn more about my research](/research/)
+
 ## Research Interests
 
 - **AI Agent Security:** Security risks posed by AI agents with elevated permissions, including unauthorized file modification or deletion.
