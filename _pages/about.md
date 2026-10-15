@@ -25,8 +25,10 @@ I am particularly interested in understanding how privileged software interacts 
       {% break %}
     {% endif %}
   {% endfor %}
-  <span><strong>Security Conference Deadlines</strong>
-    <span class="security-deadline-entry__desc">Top 4 + {{ community_venues.size }} additional venues · automated updates every 6 hours</span>
+  <span class="security-deadline-entry__content">
+    <strong>Security Conference Paper Submission Deadlines</strong>
+    <span class="security-deadline-entry__intro">Explore submission deadlines, upcoming paper and abstract registration dates, and live countdowns for leading cybersecurity and systems security conferences.</span>
+    <span class="security-deadline-entry__desc">IEEE S&amp;P · USENIX Security · ACM CCS · NDSS · {{ community_venues.size }} additional security conferences · automatically checked every 6 hours</span>
     {% if next_event %}
       {% assign manual_venue = site.data.security_deadlines.conferences | where: "id", next_event.conf | first %}
       {% assign imported_venue = site.data.security_deadlines_auto.conferences | where: "id", next_event.conf | first %}
@@ -34,17 +36,20 @@ I am particularly interested in understanding how privileged software interacts 
       <span class="security-deadline-next">Next: {{ best_venue.short | escape }} — <span data-inline-deadline="{{ next_event.iso_utc }}">Calculating…</span> {% if next_event.source == "community" %}(community listing){% endif %}</span>
     {% endif %}
   </span>
-  <a href="{{ '/security-deadlines/' | relative_url }}">Live conference countdown ↗</a>
+  <a href="{{ '/security-deadlines/' | relative_url }}" aria-label="View cybersecurity conference paper submission deadlines and live countdowns">View Submission Deadlines &amp; Live Countdowns ↗</a>
 </div>
 <style>
-.security-deadline-entry{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#eef7fb;border:1px solid #c8e3e9;border-left:4px solid #168da0;border-radius:8px;padding:13px 15px;margin:20px 0 27px;font-size:.88em;color:#223a4e}
-.security-deadline-entry__symbol{font-size:1.5em;color:#148b93}
-.security-deadline-entry__desc{display:block;font-size:.88em;color:#577284;margin-top:2px}
-.security-deadline-entry>a{margin-left:auto;font-weight:700;color:#087b8c!important;white-space:nowrap}
-.security-deadline-entry>a:hover{text-decoration:underline}
-.security-deadline-next{display:block;margin-top:4px;color:#087d7c;font-size:.85em;font-weight:700}
+.security-deadline-entry{display:grid;grid-template-columns:34px minmax(0,1fr);column-gap:15px;row-gap:14px;align-items:start;background:#edf8fa;border:1px solid #c6e6e9;border-left:4px solid #138d9c;border-radius:10px;padding:20px 22px;margin:24px 0 32px;color:#223a4e;box-shadow:0 5px 20px rgba(22,94,111,.06)}
+.security-deadline-entry__symbol{font-size:1.8em;color:#148b93;line-height:1.25}
+.security-deadline-entry__content{min-width:0}
+.security-deadline-entry__content>strong{display:block;font-size:1.1em;line-height:1.4;color:#143b4b;margin-bottom:8px}
+.security-deadline-entry__intro{display:block;font-size:.92em;line-height:1.65;color:#315368;margin-bottom:8px}
+.security-deadline-entry__desc{display:block;font-size:.83em;line-height:1.65;color:#577284}
+.security-deadline-entry>a{grid-column:2;justify-self:start;display:inline-block;padding:9px 15px;background:#087f8c;border:1px solid #087f8c;color:#fff!important;border-radius:6px;font-size:.87em;font-weight:700;line-height:1.45}
+.security-deadline-entry>a:hover{background:#066674;color:#fff!important;text-decoration:none}
+.security-deadline-next{display:block;margin-top:8px;color:#087d7c;font-size:.87em;font-weight:700;line-height:1.55}
 .security-deadline-next [data-inline-deadline]{font-variant-numeric:tabular-nums}
-@media(max-width:640px){.security-deadline-entry>a{margin-left:0}}
+@media(max-width:640px){.security-deadline-entry{grid-template-columns:1fr;padding:16px}.security-deadline-entry__symbol{display:none}.security-deadline-entry>a{grid-column:1}}
 </style>
 <script defer src="{{ '/assets/js/security-inline.js' | relative_url }}"></script>
 
