@@ -43,8 +43,9 @@ Research on file integrity when AI agents operate with elevated privileges, with
 
 ## Publications and Presentations
 
-My selected publications include two journal articles and one conference paper:
+My selected research outputs include one arXiv preprint, two journal articles, and one conference paper:
 
+- **Lite3R: A Model-Agnostic Framework for Efficient Feed-Forward 3D Reconstruction**, *arXiv:2605.11354* (2026). [arXiv](https://arxiv.org/abs/2605.11354) · [Code](https://github.com/AIGeeksGroup/Lite3R)
 - **Lithium battery health state prediction based on sample entropy and time feature fusion**, *Ionics* (2025). [DOI](https://doi.org/10.1007/s11581-025-06560-2)
 - **SM-VINS: A Fast and Decoupled Monocular Visual–Inertial Sensors SLAM System With Stepwise Marginalization**, *IEEE Sensors Journal* (2024). [DOI](https://doi.org/10.1109/JSEN.2024.3418334)
 - **Prediction of electricity consumption in Anhui Province based on HP-ARIMA-BP**, *EIECC 2022* (published 2023). [DOI](https://doi.org/10.1117/12.2671443)
