@@ -35,4 +35,5 @@ A verified list of publications and publicly available manuscripts will be added
 ## Links
 
 - [GitHub](https://github.com/2350082187zhou-ux)
+- [ORCID](https://orcid.org/0009-0009-2268-059X)
 - [University of Nevada, Reno](https://www.unr.edu/)
