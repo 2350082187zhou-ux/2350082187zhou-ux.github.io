@@ -55,6 +55,7 @@ See [Publications](/publications/) for full author lists and publication details
 
 - **Primary email:** [zedongz@unr.edu](mailto:zedongz@unr.edu)
 - **Alternative email:** [2350082187zhou@gmail.com](mailto:2350082187zhou@gmail.com)
+- **WhatsApp:** [+1 (775) 203-1866](https://wa.me/17752031866)
 - **QQ:** 2350082187
 - **WeChat:** `zhou13155311153`
 
