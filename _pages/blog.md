@@ -64,6 +64,35 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
       </a>
     </div>
   </section>
+  <section id="featured-investigation" class="research-feature" aria-labelledby="investigation-title">
+    <div class="research-feature-heading">
+      <div class="feature-identity">
+        <span class="feature-overline"><span class="status-pip" aria-hidden="true"></span> FEATURED INVESTIGATION · SYSTEMS SECURITY</span>
+        <h2 id="investigation-title">When AI Agents Go Rogue:<br><span>Who Protects Your Files?</span></h2>
+        <p>An empirical investigation into the limits of host-side data protection when an AI agent has root privileges. Explore the path from agent actions through Linux security controls to persistent storage.</p>
+        <div class="feature-links"><a class="feature-primary" href="{{ '/research/' | relative_url }}">Explore this research <span aria-hidden="true">↗</span></a><a class="feature-secondary" href="{{ '/publications/' | relative_url }}">Publications <span aria-hidden="true">→</span></a></div>
+      </div>
+      <div class="feature-console" aria-label="Research questions">
+        <div class="console-top"><span>root@research-lab</span><span>~/threat-model</span></div>
+        <div class="console-line"><span class="console-caret">$</span> investigate --layer <strong>lsm</strong></div>
+        <div class="console-line"><span class="console-caret">$</span> trace --target <strong>block-io</strong></div>
+        <div class="console-line"><span class="console-caret">$</span> evaluate --boundary <strong>storage</strong></div>
+        <div class="console-status">RESEARCH QUESTIONS / NO LIVE SYSTEM ACCESS</div>
+      </div>
+    </div>
+    <figure class="security-map">
+      <div class="security-map-viewport">
+        <img src="{{ '/assets/images/agent-storage-trust-boundary.svg' | relative_url }}" width="1280" height="470" alt="Research diagram: an AI agent with root privileges issues system calls that cross the Linux LSM and block I/O layers, reaching a possible independent device trust boundary." decoding="async" loading="lazy">
+      </div>
+      <figcaption><span class="caption-dot" aria-hidden="true"></span> Conceptual attack-and-defense pathway. The diagram illustrates the research threat model, not real-time telemetry or guaranteed protection.</figcaption>
+    </figure>
+    <div class="feature-methods" aria-label="Research focus areas">
+      <div><span class="method-num">01 /</span><strong>Privilege &amp; Agency</strong><small>What changes when the agent runs as root?</small></div>
+      <div><span class="method-num">02 /</span><strong>Kernel Policy</strong><small>LSM enforcement, AppArmor, eBPF hooks.</small></div>
+      <div><span class="method-num">03 /</span><strong>I/O Observability</strong><small>File operations and storage block traces.</small></div>
+      <div><span class="method-num">04 /</span><strong>Trust Boundaries</strong><small>Separating host control from data integrity.</small></div>
+    </div>
+  </section>
   <section id="posts" aria-labelledby="posts-heading">
     <div class="section-heading">
       <div class="section-heading-left"><h2 id="posts-heading">Latest Posts</h2><p>Research, experimentation, and technical deep dives.</p></div>

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 470" role="img" aria-labelledby="map-title map-description">
+<title id="map-title">Privileged AI agents and the Linux storage trust boundary</title>
+<desc id="map-description">An illustrated research map showing an agent's privileged requests crossing system call, Linux LSM, block I/O, and storage layers, with the research question of which safeguards remain independent of root privilege.</desc>
+<defs>
+<linearGradient id="bg" x2="1" y2="1"><stop stop-color="#071626"/><stop offset=".6" stop-color="#06192a"/><stop offset="1" stop-color="#071522"/></linearGradient>
+<linearGradient id="card" x2="0.8" y2="1"><stop stop-color="#10405b"/><stop offset=".6" stop-color="#092239"/><stop offset="1" stop-color="#061629"/></linearGradient>
+<linearGradient id="hot" x2="0.8" y2="1"><stop stop-color="#6b2035"/><stop offset="1" stop-color="#1c112a"/></linearGradient>
+<linearGradient id="cyan" x2="1" y2="0"><stop stop-color="#16f4ba"/><stop offset="1" stop-color="#42c8ff"/></linearGradient>
+<linearGradient id="warm" x2="1" y2="0"><stop stop-color="#ff586f"/><stop offset="1" stop-color="#ffbe62"/></linearGradient>
+<filter id="glow" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#155c83" stroke-width=".7" opacity=".25"/></pattern>
+</defs>
+<rect width="1280" height="470" rx="18" fill="url(#bg)"/><rect width="1280" height="470" rx="18" fill="url(#grid)"/>
+<ellipse cx="788" cy="205" rx="430" ry="160" fill="#0dd2e0" opacity=".08" filter="url(#soft)"/>
+<!-- Panel labels -->
+<g font-family="monospace" font-size="13" font-weight="600" letter-spacing="1.9">
+<text x="43" y="45" fill="#8caec7">THREAT MODEL</text>
+<text x="453" y="45" fill="#40d8f8">HOST-CONTROLLED MECHANISMS</text>
+<text x="1060" y="45" fill="#7cf9d7">DEVICE TRUST</text>
+</g>
+<path d="M423 66H1038V425H423Z" fill="#03263e" fill-opacity=".2" stroke="#26a6d9" stroke-width="1.5" stroke-dasharray="6 9"/>
+<path d="M1040 66v359" stroke="#32efbd" stroke-width="2" stroke-dasharray="6 8" filter="url(#glow)"/>
+<g font-family="monospace" font-size="11" fill="#8ac4d1">
+<text x="436" y="438">USER / KERNEL SPACE</text><text x="1057" y="438" fill="#4effc4">BOUNDARY?</text>
+</g>
+<!-- Attack/requests ingress, four actual research layers -->
+<g font-family="Arial,sans-serif">
+<g transform="translate(38 105)">
+  <rect width="280" height="254" rx="14" fill="url(#hot)" stroke="#ff6376" stroke-width="2"/>
+  <rect x="16" y="15" width="102" height="25" rx="12" fill="#5f2235"/>
+  <text x="29" y="32" font-size="12" font-weight="700" fill="#ffafba">ROOT ACCESS</text>
+  <g transform="translate(80 50)" stroke="#ff8298" stroke-width="3" fill="#321829">
+     <rect width="120" height="90" rx="24"/><path d="M60 0v-14"/><circle cx="60" cy="-18" r="6" fill="#ff6179"/>
+     <rect x="12" y="27" width="96" height="42" rx="17" fill="#071928" stroke="#ff8298"/><rect x="32" y="43" width="14" height="8" rx="4" fill="#ffca92" stroke="none"/><rect x="75" y="43" width="14" height="8" rx="4" fill="#ffca92" stroke="none"/>
+     <path d="M41 75q20 11 38 0" fill="none"/>
+  </g>
+  <text x="140" y="166" text-anchor="middle" font-size="20" font-weight="700" fill="#ffe8ed">AI Agent</text>
+  <text x="140" y="187" text-anchor="middle" font-size="13" fill="#ffc1c8">Privileged tool execution</text>
+  <path d="M20 207H260" stroke="#9a4357" opacity=".7"/>
+  <text x="25" y="226" font-size="12" fill="#fec5cd">Potential action:</text><text x="25" y="244" font-family="monospace" font-size="13" fill="#ff929d">unlink() · write() · chmod()</text>
+</g>
+<!-- syscall card -->
+<g transform="translate(447 130)">
+  <rect width="176" height="204" rx="12" fill="url(#card)" stroke="#319cdb" stroke-width="1.8"/>
+  <rect x="18" y="18" width="140" height="44" rx="7" fill="#051b2c" stroke="#317aa4"/>
+  <path d="M30 32h55M30 43h93M30 54h70" stroke="#2cdbed" stroke-width="2"/>
+  <text x="88" y="92" font-weight="700" text-anchor="middle" font-size="19" fill="#ddf8ff">Syscalls</text>
+  <text x="88" y="115" text-anchor="middle" font-size="13" fill="#8ebbcf">VFS / file API</text>
+  <path d="M17 132H159" stroke="#235c7b"/>
+  <text x="20" y="153" font-family="monospace" font-size="12" fill="#5fffe3">sys_enter</text>
+  <text x="20" y="173" font-family="monospace" font-size="12" fill="#76c9f7">sys_exit</text>
+</g>
+<!-- LSM card -->
+<g transform="translate(647 130)">
+  <rect width="176" height="204" rx="12" fill="#06352f" stroke="#43efc0" stroke-width="2.5"/>
+  <g transform="translate(54 14)">
+    <path d="M34 0L66 13V52c0 23-17 36-32 44C17 86 2 75 2 52V13Z" fill="#0c6650" stroke="#76ffcc" stroke-width="2.6"/>
+    <path d="M20 44v-8a14 14 0 0 1 28 0v8" stroke="#98ffe1" stroke-width="4" fill="none"/>
+    <rect x="17" y="42" width="34" height="29" rx="4" fill="#71ffd4"/>
+  </g>
+  <text x="88" y="126" text-anchor="middle" font-weight="700" font-size="18" fill="#e4fff7">Linux LSM</text>
+  <text x="88" y="147" text-anchor="middle" font-size="13" fill="#9de5d4">eBPF / AppArmor</text>
+  <path d="M16 160H160" stroke="#30977b"/>
+  <text x="88" y="178" text-anchor="middle" font-family="monospace" font-size="11" fill="#54f0bc">Policy under test</text>
+</g>
+<!-- block card -->
+<g transform="translate(847 130)">
+  <rect width="176" height="204" rx="12" fill="url(#card)" stroke="#4599f9" stroke-width="2"/>
+  <g transform="translate(34 24)">
+    <rect x="4" y="10" width="100" height="70" rx="6" fill="#0c344e" stroke="#5dc9ff" stroke-width="2"/>
+    <rect x="15" y="22" width="78" height="46" rx="4" fill="#071e33" stroke="#2885b0"/>
+    <text x="54" y="51" text-anchor="middle" font-family="monospace" font-size="15" font-weight="700" fill="#9adfff">NVMe</text>
+    <path d="M7 83v9M23 83v9M39 83v9M55 83v9M71 83v9M87 83v9" stroke="#e5ba68" stroke-width="3"/>
+  </g>
+  <text x="88" y="126" text-anchor="middle" font-weight="700" font-size="19" fill="#ddf8ff">Block I/O</text>
+  <text x="88" y="147" text-anchor="middle" font-size="13" fill="#9cbbd4">Reads / writes</text>
+  <path d="M16 160H160" stroke="#265f93"/>
+  <text x="88" y="179" text-anchor="middle" font-family="monospace" font-size="11" fill="#7dbafe">Observe sectors</text>
+</g>
+<!-- Boundary -->
+<g transform="translate(1061 115)">
+  <rect width="184" height="242" rx="12" fill="#06362f" fill-opacity=".7" stroke="#39eec6" stroke-width="2" stroke-dasharray="8 4"/>
+  <g transform="translate(43 19)">
+    <path d="M49 0l46 17v66c0 35-26 58-46 68C23 137 3 113 3 83V17Z" fill="#124b45" stroke="#60ffdf" stroke-width="3" filter="url(#glow)"/>
+    <path d="M31 66v-15a18 18 0 0 1 36 0v15" stroke="#c4fff0" stroke-width="6" fill="none"/>
+    <rect x="25" y="63" width="49" height="44" rx="6" fill="#39e4b5" stroke="#c4fff0" stroke-width="2"/>
+    <circle cx="49" cy="80" r="6" fill="#0a6952"/>
+  </g>
+  <text x="92" y="182" text-anchor="middle" font-size="18" font-weight="700" fill="#caffed">Data integrity</text>
+  <text x="92" y="204" text-anchor="middle" font-size="12" fill="#a4dfcc">Independent policy?</text>
+  <text x="92" y="224" text-anchor="middle" font-family="monospace" font-size="10" fill="#46f4bd">RESEARCH QUESTION</text>
+</g>
+</g>
+<!-- Hot and secure flows -->
+<g fill="none" stroke-width="3" stroke-linecap="round">
+<path d="M318 231H430" stroke="url(#warm)" stroke-dasharray="9 7" filter="url(#glow)"/>
+<path d="M622 231h23" stroke="#22bde9"/><path d="M823 231h22" stroke="#22e9d2"/><path d="M1023 231h35" stroke="#66f9dd"/>
+<path d="M424 224l8 7-8 7" stroke="#ff8c8f"/><path d="M637 225l8 6-8 6" stroke="#58baff"/><path d="M837 225l8 6-8 6" stroke="#5dfec9"/><path d="M1050 225l8 6-8 6" stroke="#9cffe5"/>
+</g>
+<g fill="#fff" font-size="11" font-family="monospace"><text x="322" y="207" fill="#ff91a1">REQUEST</text><text x="1047" y="94" fill="#60fcd5">TRUST?</text></g>
+<path d="M20 394H1259" stroke="#225773"/>
+<g font-family="monospace" font-size="12" fill="#9dbed0"><text x="36" y="413">TRACE · TEST · REPRODUCE · COMPARE</text><text x="757" y="413">WHICH PROTECTIONS SURVIVE HOST COMPROMISE?</text></g>
+<circle cx="39" cy="439" r="4" fill="#24f0b4"/><text x="54" y="444" font-family="monospace" font-size="11" fill="#75c4ca">CONCEPT DIAGRAM — NOT A LIVE ATTACK TRACE</text>
+</svg>
