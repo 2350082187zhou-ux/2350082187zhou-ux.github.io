@@ -17,7 +17,7 @@ I am particularly interested in understanding how privileged software interacts 
 
 **Ph.D. in Computer Science**  
 Reno, Nevada, USA  
-*In progress*
+*September 2026 – Present*
 
 ### Anhui Polytechnic University
 
