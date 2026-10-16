@@ -5,6 +5,14 @@ on:
     branches: [master]
     paths:
       - "_pages/blog.md"
+      - "_includes/masthead.html"
+      - "_includes/head/custom.html"
+      - "_includes/footer/custom.html"
+      - "assets/css/site-language.css"
+      - "assets/js/site-i18n.js"
+      - "assets/css/visitor-geo.css"
+      - "assets/js/visitor-geo*.js"
+      - "workers/**"
       - "_layouts/cyber-blog.html"
       - "assets/css/cyber-blog.css"
       - "assets/css/cyber-cinematic.css"
@@ -42,6 +50,13 @@ jobs:
           ruby-version: '3.1'
           bundler-cache: true
 
+      - name: Verify localization and visitor-map JavaScript
+        run: |
+          node --check assets/js/site-i18n.js
+          node --check assets/js/visitor-geo.js
+          node --check assets/js/visitor-geo-config.js
+          node --check workers/visitor-map-worker.js
+
       - name: Build site
         run: bundle exec jekyll build --baseurl ""
         env:
@@ -59,12 +74,23 @@ jobs:
           mkdir -p previews
           BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,3700 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Cyber_Blog_Desktop.png http://127.0.0.1:8765/blog/
-          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,3600 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Cyber_Blog_Mobile.png http://127.0.0.1:8765/blog/
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,6200 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Cyber_Blog_Mobile.png http://127.0.0.1:8765/blog/
+
+          # Verify client-side language switch with real headless Chrome (home + blog).
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --virtual-time-budget=2000 --dump-dom "http://127.0.0.1:8765/?lang=zh" > /tmp/zz-home-zh.html
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --virtual-time-budget=2000 --dump-dom "http://127.0.0.1:8765/blog/?lang=fr" > /tmp/zz-blog-fr.html
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --virtual-time-budget=2000 --dump-dom "http://127.0.0.1:8765/blog/?lang=de" > /tmp/zz-blog-de.html
+          grep -q "欢迎来到我的网站" /tmp/zz-home-zh.html
+          grep -q "RADAR MONDIAL DES VISITEURS" /tmp/zz-blog-fr.html
+          grep -q "WELTWEITER BESUCHERRADAR" /tmp/zz-blog-de.html
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=1440,3000 --virtual-time-budget=1700 --screenshot=previews/Zedong_Home_Chinese.png "http://127.0.0.1:8765/?lang=zh"
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=1440,3500 --virtual-time-budget=1700 --screenshot=previews/Zedong_Blog_French.png "http://127.0.0.1:8765/blog/?lang=fr"
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=1440,3500 --virtual-time-budget=1700 --screenshot=previews/Zedong_Blog_German.png "http://127.0.0.1:8765/blog/?lang=de"
 
           # Also capture the actual academic home page without relying on custom-domain DNS.
           curl --fail --silent http://127.0.0.1:8765/ >/dev/null
-          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,2300 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Homepage_Desktop.png http://127.0.0.1:8765/
-          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,3200 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Homepage_Mobile.png http://127.0.0.1:8765/
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,3800 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Homepage_Desktop.png http://127.0.0.1:8765/
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,6200 --virtual-time-budget=1500 --screenshot=previews/Zedong_Zhou_Homepage_Mobile.png http://127.0.0.1:8765/
           # Capture this independent subpage without relying on external DNS.
           curl --fail --silent http://127.0.0.1:8765/security-deadlines/ >/dev/null
           "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,2200 --virtual-time-budget=2500 --screenshot=previews/Zedong_Zhou_Security_Deadlines_Desktop.png http://127.0.0.1:8765/security-deadlines/
