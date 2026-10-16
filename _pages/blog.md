@@ -65,12 +65,30 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
     </div>
   </section>
   <section class="blog-deadlines" id="conference-deadlines" aria-labelledby="blog-ddl-heading">
+    <div class="blog-ops-topline"><span class="blog-ops-ping">RESEARCH RADAR / SIGNAL ACTIVE</span><span class="blog-ops-marker">LIVE CFP FEED · ACADEMIC TRACKER</span></div>
     <div class="blog-deadlines-header">
-      <div><span class="section-code">AUTOMATED · CONFERENCE TRACKER</span>
-        <h2 id="blog-ddl-heading">Security Conference <span>Deadlines</span></h2>
-        <p>Top Four official-checked dates + curated community updates every six hours.</p>
+      <div><span class="section-code">AUTOMATED INTELLIGENCE · SUBMISSION TRACKER</span>
+        <h2 id="blog-ddl-heading">Security Conference <span>Deadline Radar</span></h2>
+        <p>A neon-lit radar for upcoming paper deadlines. Live countdowns, original/local time zone checks, and research-grade CFP references — with official dates clearly separated from community listings.</p>
       </div>
-      <a href="{{ '/security-deadlines/' | relative_url }}">Explore all deadlines ↗</a>
+      <a href="{{ '/security-deadlines/' | relative_url }}">Launch full CFP operations center ↗</a>
+    </div>
+    <div class="blog-ops-dashboard" aria-label="Live next conference submission">
+      <div class="blog-ops-terminal">
+        <div class="blog-ops-terminal-bar"><span>~/security/cfp-watch</span></div>
+        <div class="blog-ops-terminal-body">
+          <div class="blog-ops-terminal-key">&gt; NEXT SUBMISSION SIGNAL</div>
+          <div class="blog-ops-next-name" id="blog-ops-next-title">Scanning tracked conferences…</div>
+          <div class="blog-ops-next-count" id="blog-ops-next-time" aria-live="off">--d --h --m --s</div>
+          <div class="blog-ops-next-meta" id="blog-ops-next-meta">Upcoming deadlines · official / community sources</div>
+          <div class="blog-ops-progress" aria-label="30-day deadline proximity visual"><span id="blog-ops-progress-fill"></span></div>
+        </div>
+      </div>
+      <div class="blog-ops-sensor" aria-hidden="true"><span class="blog-ops-sensor-label">CFP / SCAN<small>SECURITY RESEARCH</small></span></div>
+    </div>
+    <div class="blog-ops-controls">
+      <strong>UPCOMING MILESTONES / NEXT 03 SIGNALS</strong>
+      <button type="button" id="blog-zone-toggle" aria-pressed="false" title="Toggle source time zone / your browser's local time">TIME ZONE · ORIGINAL / AoE</button>
     </div>
     {% assign deadlines_all = site.data.security_deadlines.events | concat: site.data.security_deadlines_auto.events | sort: 'iso_utc' %}
     {% assign utc_now = 'now' | date: '%Y-%m-%dT%H:%M:%SZ' %}
@@ -81,9 +99,10 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
           {% assign official_venue = site.data.security_deadlines.conferences | where: 'id', event.conf | first %}
           {% assign other_venue = site.data.security_deadlines_auto.conferences | where: 'id', event.conf | first %}
           {% assign event_venue = official_venue | default: other_venue %}
-          <div class="blog-ddl-row" data-inline-row>
-            <span class="blog-ddl-name">{{ event_venue.short | escape }} <small>{{ event_venue.year | default: event.year }}</small></span>
-            <span class="blog-ddl-detail">{{ event.cycle | escape }} · {{ event.kind | escape }} {% if event.source == 'community' %}<em>Community</em>{% else %}<em class="official">Official-checked</em>{% endif %}</span>
+          {% assign blog_rank = site.data.security_ccf.ranks[event.conf] | default: 'NA' %}
+          <div class="blog-ddl-row" data-inline-row data-blog-utc="{{ event.iso_utc }}" data-blog-source="{{ event.source | default: 'official' }}" data-blog-original="{{ event.original | default: event.local_date | escape }}" data-blog-zone="{{ event.zone_label | default: 'AoE (UTC−12)' | escape }}">
+            <span class="blog-ddl-name">{{ event_venue.short | escape }} <small>{{ event_venue.year | default: event.year }}</small> <small class="blog-ccf-rank" data-rank="{{ blog_rank }}">{% if blog_rank == 'NA' %}NOT MAPPED{% else %}CCF {{ blog_rank }}{% endif %}</small></span>
+            <span class="blog-ddl-detail">{{ event.cycle | escape }} · {{ event.kind | escape }} {% if event.source == 'community' %}<em>Community · check CFP</em>{% else %}<em class="official">Official-checked</em>{% endif %}<span class="blog-ddl-date" aria-label="Deadline date and timezone">Loading time zone…</span></span>
             <time data-inline-deadline="{{ event.iso_utc }}" datetime="{{ event.iso_utc }}">Loading…</time>
           </div>
           {% assign visible_deadlines = visible_deadlines | plus: 1 %}
@@ -93,7 +112,7 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
         <div class="blog-ddl-empty">Waiting for the next published submission cycle. Check official CFPs.</div>
       {% endif %}
     </div>
-    <p class="blog-ddl-disclaimer">Automatic community entries are preliminary: verify the official CFP before submitting a paper.</p>
+    <p class="blog-ddl-disclaimer">CCF ranking labels reference the <a href="https://www.ccf.org.cn/Academic_Evaluation/NIS/" target="_blank" rel="noopener noreferrer">CCF Network &amp; Information Security catalogue ↗</a>. They are distinct from CFP verification. Community listings are preliminary; verify all submission dates with the official CFP. Open the operations center for CCF A/B/C filters, research categories, a full Timeline, and calendar reminders.</p>
   </section>
   <section id="featured-investigation" class="research-feature" aria-labelledby="investigation-title">
     <div class="research-feature-heading">
