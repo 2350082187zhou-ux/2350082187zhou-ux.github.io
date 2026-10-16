@@ -1,0 +1,10 @@
+# Obtain a D1 ID from: npx wrangler d1 create zz-visitor-map
+name = "zz-visitor-map"
+main = "./visitor-map-worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "zz-visitor-map"
+database_id = "REPLACE_WITH_YOUR_DATABASE_ID"
