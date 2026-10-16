@@ -22,9 +22,9 @@
 <text x="800" y="547" text-anchor="middle" font-size="12" font-family="monospace" fill="#72ceec" letter-spacing="3">USER / KERNEL SPACE · HOST-CONTROLLED</text>
 <!-- arrows deliberately occupy gutters and never intersect the node borders -->
 <path d="M316 332H358" stroke="#5cdbfd" stroke-width="3.8" stroke-linecap="round"/><path d="M345 322L358 332L345 342" fill="none" stroke="#5cdbfd" stroke-width="3.8" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M625 332H669" stroke="#5cdbfd" stroke-width="3.8" stroke-linecap="round"/><path d="M656 322L669 332L656 342" fill="none" stroke="#5cdbfd" stroke-width="3.8" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M936 332H980" stroke="#5cdbfd" stroke-width="3.8" stroke-linecap="round"/><path d="M967 322L980 332L967 342" fill="none" stroke="#5cdbfd" stroke-width="3.8" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M1247 332H1291" stroke="#5cdbfd" stroke-width="3.8" stroke-linecap="round"/><path d="M1278 322L1291 332L1278 342" fill="none" stroke="#5cdbfd" stroke-width="3.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M637 332H669" stroke="#5cdbfd" stroke-width="3.8" stroke-linecap="round"/><path d="M656 322L669 332L656 342" fill="none" stroke="#5cdbfd" stroke-width="3.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M948 332H980" stroke="#5cdbfd" stroke-width="3.8" stroke-linecap="round"/><path d="M967 322L980 332L967 342" fill="none" stroke="#5cdbfd" stroke-width="3.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1259 332H1291" stroke="#5cdbfd" stroke-width="3.8" stroke-linecap="round"/><path d="M1278 322L1291 332L1278 342" fill="none" stroke="#5cdbfd" stroke-width="3.8" stroke-linejoin="round" stroke-linecap="round"/>
 <!-- agent -->
 <rect x="35" y="170" width="270" height="320" rx="14" fill="url(#red)" stroke="#ff7393" stroke-width="2.7"/>
 <rect x="62" y="185" width="112" height="27" rx="13.5" fill="#813044" opacity=".65"/>
