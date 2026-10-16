@@ -199,7 +199,7 @@
     });
   }
   function applyNav(lang){
-    document.querySelectorAll('#site-nav .masthead__menu-item:not(.masthead__menu-item--lg) a, .cyber-navbar .nav-links a').forEach(a=>{
+    document.querySelectorAll('#site-nav .masthead__menu-item:not(.masthead__menu-item--lg):not(#theme-toggle) a[href], .cyber-navbar .nav-links a[href]').forEach(a=>{
       const path = new URL(a.href, location.href).pathname;
       const route=Object.keys(routes).find(key=>routes[key]===path && key!=='about') ||
         (path==='/'?'about':null);
