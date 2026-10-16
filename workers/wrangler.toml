@@ -1,5 +1,6 @@
-# Cloudflare D1 database already created; retained on GitHub Pages static-site architecture.
-name = "zz-visitor-map"
+# Cloudflare Worker already created in dashboard as dry-wildflower-8d08.
+# D1 database name is zz-visitor-map; the domain stays on GitHub Pages.
+name = "dry-wildflower-8d08"
 main = "./visitor-map-worker.js"
 compatibility_date = "2026-10-01"
 workers_dev = true
