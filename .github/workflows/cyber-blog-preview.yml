@@ -10,6 +10,8 @@ on:
       - "_includes/footer/custom.html"
       - "assets/css/site-language.css"
       - "assets/js/site-i18n.js"
+      - "assets/js/home-languages.js"
+      - "assets/css/home-academic.css"
       - "assets/css/visitor-geo.css"
       - "assets/js/visitor-geo*.js"
       - "workers/**"
@@ -58,6 +60,7 @@ jobs:
       - name: Verify localization and visitor-map JavaScript
         run: |
           node --check assets/js/site-i18n.js
+          node --check assets/js/home-languages.js
           node --check assets/js/visitor-geo.js
           node --check assets/js/visitor-geo-config.js
           node --check workers/visitor-map-worker.js
@@ -86,6 +89,27 @@ jobs:
           "$BROWSER" --headless=new --no-sandbox --disable-gpu --virtual-time-budget=2000 --dump-dom "http://127.0.0.1:8765/blog/?lang=fr" > /tmp/zz-blog-fr.html
           "$BROWSER" --headless=new --no-sandbox --disable-gpu --virtual-time-budget=2000 --dump-dom "http://127.0.0.1:8765/blog/?lang=de" > /tmp/zz-blog-de.html
           grep -q "欢迎来到我的网站" /tmp/zz-home-zh.html
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --virtual-time-budget=2000 --dump-dom "http://127.0.0.1:8765/?lang=ja" > /tmp/zz-home-ja.html
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --virtual-time-budget=2000 --dump-dom "http://127.0.0.1:8765/?lang=ko" > /tmp/zz-home-ko.html
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --virtual-time-budget=2000 --dump-dom "http://127.0.0.1:8765/?lang=de" > /tmp/zz-home-de.html
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --virtual-time-budget=2000 --dump-dom "http://127.0.0.1:8765/?lang=fr" > /tmp/zz-home-fr.html
+          # Test the rendered DOM, not translation strings hidden in a script.
+          grep -q '欢迎来到我的网站' /tmp/zz-home-zh.html
+          grep -q '计算机科学博士研究生' /tmp/zz-home-zh.html
+          grep -q '网站访问概况' /tmp/zz-home-zh.html
+          grep -q '私のウェブサイトへようこそ' /tmp/zz-home-ja.html
+          grep -q 'コンピュータサイエンス博士課程' /tmp/zz-home-ja.html
+          grep -q '제 웹사이트에 오신 것을 환영합니다' /tmp/zz-home-ko.html
+          grep -q '컴퓨터과학 박사과정' /tmp/zz-home-ko.html
+          grep -q 'Willkommen auf meiner Website' /tmp/zz-home-de.html
+          grep -q 'Bienvenue sur mon site' /tmp/zz-home-fr.html
+          grep -q 'class="visitor-geo home-visitor-activity"' /tmp/zz-home-ja.html
+          grep -q 'data-home-language' /tmp/zz-home-ko.html
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=1440,3800 --virtual-time-budget=1700 --screenshot=previews/Zedong_Home_Japanese.png "http://127.0.0.1:8765/?lang=ja"
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=1440,3800 --virtual-time-budget=1700 --screenshot=previews/Zedong_Home_Korean.png "http://127.0.0.1:8765/?lang=ko"
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=1440,3800 --virtual-time-budget=1700 --screenshot=previews/Zedong_Home_German.png "http://127.0.0.1:8765/?lang=de"
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=1440,3800 --virtual-time-budget=1700 --screenshot=previews/Zedong_Home_French.png "http://127.0.0.1:8765/?lang=fr"
+
           grep -q "RADAR MONDIAL DES VISITEURS" /tmp/zz-blog-fr.html
           grep -q "WELTWEITER BESUCHERRADAR" /tmp/zz-blog-de.html
           "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=1440,3000 --virtual-time-budget=1700 --screenshot=previews/Zedong_Home_Chinese.png "http://127.0.0.1:8765/?lang=zh"
