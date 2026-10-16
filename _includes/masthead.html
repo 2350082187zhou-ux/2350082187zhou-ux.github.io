@@ -18,11 +18,28 @@
               <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
             </li>
           {% endfor %}
+          {% if page.url == '/' %}
+          <li class="masthead__menu-item persist home-lang-item">
+            <label class="home-lang-control" aria-label="Academic homepage language">
+              <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.5 12h17M12 3c-3 3-4 6-4 9s1 6 4 9M12 3c3 3 4 6 4 9s-1 6-4 9"/></svg>
+              <span class="home-lang-text">Language</span>
+              <select data-home-language aria-label="Choose language for academic homepage">
+                <option value="en">English</option>
+                <option value="zh">中文</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+              </select>
+            </label>
+          </li>
+          {% else %}
           <li class="masthead__menu-item persist site-lang-item">
             <label class="site-lang-picker" aria-label="Website language">🌐 <select data-site-language aria-label="Website language">
               <option value="en">English</option><option value="zh">中文</option><option value="fr">Français</option><option value="de">Deutsch</option>
             </select></label>
           </li>
+          {% endif %}
           <li id="theme-toggle" class="masthead__menu-item persist tail">
             <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
           </li>
