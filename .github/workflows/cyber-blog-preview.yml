@@ -14,6 +14,11 @@ on:
       - "_pages/security-deadlines.html"
       - "_data/security_deadlines.yml"
       - "_data/security_deadlines_auto.json"
+      - "_data/security_ccf.yml"
+      - "assets/css/security-ops-upgrade.css"
+      - "assets/js/security-ops-upgrade.js"
+      - "assets/css/blog-deadlines-ops.css"
+      - "assets/js/blog-deadlines-ops.js"
       - "_data/navigation.yml"
       - "assets/css/security-deadlines.css"
       - "assets/js/security-deadlines.js"
@@ -64,6 +69,9 @@ jobs:
           curl --fail --silent http://127.0.0.1:8765/security-deadlines/ >/dev/null
           "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,2200 --virtual-time-budget=2500 --screenshot=previews/Zedong_Zhou_Security_Deadlines_Desktop.png http://127.0.0.1:8765/security-deadlines/
           "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,3400 --virtual-time-budget=2500 --screenshot=previews/Zedong_Zhou_Security_Deadlines_Mobile.png http://127.0.0.1:8765/security-deadlines/
+          # Full-size capture includes the CCF-ranked venue cards, Timeline/Table switcher and additional venue calendar.
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1440,7000 --virtual-time-budget=3500 --screenshot=previews/Zedong_Zhou_Security_Deadlines_Full_Desktop.png http://127.0.0.1:8765/security-deadlines/
+          test -s previews/Zedong_Zhou_Security_Deadlines_Full_Desktop.png
           test -s previews/Zedong_Zhou_Security_Deadlines_Desktop.png
           test -s previews/Zedong_Zhou_Security_Deadlines_Mobile.png
           test -s previews/Zedong_Zhou_Homepage_Desktop.png
