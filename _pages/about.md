@@ -9,9 +9,11 @@ redirect_from:
 
 **Welcome to my website!**
 
-I am **Zedong Zhou**, a Ph.D. student in Computer Science at the **University of Nevada, Reno (UNR)**, advised by [Dr. Niusen Chen](https://www.unr.edu/cse/people/niusen-chen). My research interests lie at the intersection of **systems security**, **operating systems**, **storage systems**, and the security implications of increasingly autonomous AI agents.
+## About Me
 
-I am particularly interested in understanding how privileged software interacts with traditional security boundaries, and how data can remain protected even when the host environment is not fully trusted.
+Zedong Zhou received his Bachelor's degree in **Electrical Engineering and Automation** from **Anhui Polytechnic University**, Wuhu, China, in 2025. He is currently pursuing a **Ph.D. in Computer Science** at the **University of Nevada, Reno (UNR)**, USA, under the supervision of [Dr. Niusen Chen](https://www.unr.edu/cse/people/niusen-chen).
+
+His research interests include **computer systems security, operating systems, storage systems, AI agent security, and hardware security**. His current work investigates the risks posed by highly privileged AI agents, evaluates host-side protections at the file-system, kernel, and block-device layers, and explores stronger security boundaries for protecting sensitive data from unauthorized modification or deletion.
 
 <div class="security-deadline-entry">
   <span class="security-deadline-entry__symbol" aria-hidden="true">◷</span>
