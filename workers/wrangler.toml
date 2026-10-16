@@ -2,8 +2,15 @@
 # D1 database name is zz-visitor-map; the domain stays on GitHub Pages.
 name = "dry-wildflower-8d08"
 main = "./visitor-map-worker.js"
-compatibility_date = "2026-10-01"
+compatibility_date = "2026-10-16"
+preview_urls = false
 workers_dev = true
+
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
 
 [triggers]
 crons = ["13 3 * * *"]
