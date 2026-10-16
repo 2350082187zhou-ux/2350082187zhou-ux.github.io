@@ -10,7 +10,7 @@
   "zh": {
     "welcome": "<strong>欢迎来到我的网站！</strong>",
     "aboutTitle": "关于我",
-    "introEducation": "我于 2025 年毕业于中国安徽省芜湖市的<strong>安徽工程大学</strong>，取得<strong>电气工程及其自动化学士学位</strong>。目前，我正在美国<strong>内华达大学里诺分校（UNR）</strong>攻读<strong>计算机科学博士学位</strong>，导师为 <a href=\"https://www.unr.edu/cse/people/niusen-chen\">Niusen Chen 博士</a>。",
+    "introEducation": "我于 2025 年毕业于中国安徽省芜湖市的<strong>安徽工程大学</strong>，取得<strong>电气工程及其自动化学士学位</strong>。目前，我正在美国<strong>内华达大学里诺分校（UNR）</strong>攻读<strong>计算机科学博士学位</strong>，导师为 <a href=\"https://niusenc.github.io/\" target=\"_blank\" rel=\"noopener noreferrer\">Niusen Chen 博士</a> (<a href=\"https://www.unr.edu/cse/people/niusen-chen\" target=\"_blank\" rel=\"noopener noreferrer\">UNR 官方教师主页</a>)。",
     "introResearch": "我的研究兴趣包括<strong>计算机系统安全、操作系统、存储系统、AI 智能体安全和硬件安全</strong>。目前我研究拥有高权限的 AI 智能体带来的安全风险，评估文件系统、内核及块设备层的主机侧防护机制，并探索能够防止敏感数据被未经授权修改或删除的更可靠的安全边界。",
     "educationTitle": "教育经历",
     "unrTitle": "内华达大学里诺分校",
@@ -59,7 +59,7 @@
   "ja": {
     "welcome": "<strong>私のウェブサイトへようこそ！</strong>",
     "aboutTitle": "自己紹介",
-    "introEducation": "私は2025年に中国・安徽省蕪湖市の<strong>安徽工程大学</strong>を卒業し、<strong>電気工学・自動化の学士号</strong>を取得しました。現在は米国の<strong>ネバダ大学リノ校（UNR）</strong>で<strong>コンピュータサイエンスの博士課程</strong>に在籍し、<a href=\"https://www.unr.edu/cse/people/niusen-chen\">Niusen Chen 博士</a>の指導を受けています。",
+    "introEducation": "私は2025年に中国・安徽省蕪湖市の<strong>安徽工程大学</strong>を卒業し、<strong>電気工学・自動化の学士号</strong>を取得しました。現在は米国の<strong>ネバダ大学リノ校（UNR）</strong>で<strong>コンピュータサイエンスの博士課程</strong>に在籍し、<a href=\"https://niusenc.github.io/\" target=\"_blank\" rel=\"noopener noreferrer\">Niusen Chen 博士</a> (<a href=\"https://www.unr.edu/cse/people/niusen-chen\" target=\"_blank\" rel=\"noopener noreferrer\">UNR 教員紹介</a>)の指導を受けています。",
     "introResearch": "私の研究分野は、<strong>コンピュータシステムセキュリティ、オペレーティングシステム、ストレージシステム、AIエージェントのセキュリティ、ハードウェアセキュリティ</strong>です。現在は、高い権限を持つAIエージェントのリスクを研究し、ファイルシステム、カーネル、ブロックデバイス層のホスト側保護機構を評価するとともに、機密データの不正な変更や削除を防ぐための、より強固な信頼境界を探究しています。",
     "educationTitle": "学歴",
     "unrTitle": "ネバダ大学リノ校",
@@ -108,7 +108,7 @@
   "ko": {
     "welcome": "<strong>제 웹사이트에 오신 것을 환영합니다!</strong>",
     "aboutTitle": "소개",
-    "introEducation": "저는 2025년 중국 안후이성 우후의 <strong>안후이공정대학교</strong>에서 <strong>전기공학 및 자동화 학사 학위</strong>를 받았습니다. 현재 미국 <strong>네바다 대학교 리노 캠퍼스(UNR)</strong>에서 <strong>컴퓨터과학 박사과정</strong>을 이수하고 있으며, <a href=\"https://www.unr.edu/cse/people/niusen-chen\">Niusen Chen 박사</a>의 지도를 받고 있습니다.",
+    "introEducation": "저는 2025년 중국 안후이성 우후의 <strong>안후이공정대학교</strong>에서 <strong>전기공학 및 자동화 학사 학위</strong>를 받았습니다. 현재 미국 <strong>네바다 대학교 리노 캠퍼스(UNR)</strong>에서 <strong>컴퓨터과학 박사과정</strong>을 이수하고 있으며, <a href=\"https://niusenc.github.io/\" target=\"_blank\" rel=\"noopener noreferrer\">Niusen Chen 박사</a> (<a href=\"https://www.unr.edu/cse/people/niusen-chen\" target=\"_blank\" rel=\"noopener noreferrer\">UNR 교수진 소개</a>)의 지도를 받고 있습니다.",
     "introResearch": "저의 연구 관심 분야는 <strong>컴퓨터 시스템 보안, 운영체제, 스토리지 시스템, AI 에이전트 보안 및 하드웨어 보안</strong>입니다. 현재 높은 권한을 가진 AI 에이전트가 초래할 수 있는 보안 위험을 연구하고, 파일 시스템·커널·블록 장치 계층의 호스트 측 보호 메커니즘을 평가하며, 민감한 데이터의 무단 수정과 삭제를 막기 위한 더욱 강력한 신뢰 경계를 탐구하고 있습니다.",
     "educationTitle": "학력",
     "unrTitle": "네바다 대학교 리노 캠퍼스",
@@ -157,7 +157,7 @@
   "de": {
     "welcome": "<strong>Willkommen auf meiner Website!</strong>",
     "aboutTitle": "Über mich",
-    "introEducation": "2025 habe ich meinen <strong>Bachelorabschluss in Elektrotechnik und Automatisierung</strong> an der <strong>Anhui Polytechnic University</strong> in Wuhu, China, erworben. Derzeit promoviere ich in <strong>Informatik</strong> an der <strong>University of Nevada, Reno (UNR)</strong> in den USA unter der Betreuung von <a href=\"https://www.unr.edu/cse/people/niusen-chen\">Dr. Niusen Chen</a>.",
+    "introEducation": "2025 habe ich meinen <strong>Bachelorabschluss in Elektrotechnik und Automatisierung</strong> an der <strong>Anhui Polytechnic University</strong> in Wuhu, China, erworben. Derzeit promoviere ich in <strong>Informatik</strong> an der <strong>University of Nevada, Reno (UNR)</strong> in den USA unter der Betreuung von <a href=\"https://niusenc.github.io/\" target=\"_blank\" rel=\"noopener noreferrer\">Dr. Niusen Chen</a> (<a href=\"https://www.unr.edu/cse/people/niusen-chen\" target=\"_blank\" rel=\"noopener noreferrer\">UNR-Fakultätsprofil</a>).",
     "introResearch": "Meine Forschungsschwerpunkte sind <strong>Computersystemsicherheit, Betriebssysteme, Speichersysteme, Sicherheit von KI-Agenten und Hardwaresicherheit</strong>. Ich untersuche Sicherheitsrisiken hochprivilegierter KI-Agenten, evaluiere hostseitige Schutzmechanismen auf Dateisystem-, Kernel- und Blockgeräteebene und erforsche stärkere Vertrauensgrenzen zum Schutz sensibler Daten vor unbefugter Änderung und Löschung.",
     "educationTitle": "Ausbildung",
     "unrTitle": "University of Nevada, Reno",
@@ -206,7 +206,7 @@
   "fr": {
     "welcome": "<strong>Bienvenue sur mon site !</strong>",
     "aboutTitle": "À propos de moi",
-    "introEducation": "J'ai obtenu en 2025 une <strong>licence en génie électrique et automatisation</strong> à l'<strong>Université polytechnique de l'Anhui</strong>, à Wuhu, en Chine. Je poursuis actuellement un <strong>doctorat en informatique</strong> à l'<strong>Université du Nevada à Reno (UNR)</strong>, aux États-Unis, sous la direction du <a href=\"https://www.unr.edu/cse/people/niusen-chen\">Dr Niusen Chen</a>.",
+    "introEducation": "J'ai obtenu en 2025 une <strong>licence en génie électrique et automatisation</strong> à l'<strong>Université polytechnique de l'Anhui</strong>, à Wuhu, en Chine. Je poursuis actuellement un <strong>doctorat en informatique</strong> à l'<strong>Université du Nevada à Reno (UNR)</strong>, aux États-Unis, sous la direction du <a href=\"https://niusenc.github.io/\" target=\"_blank\" rel=\"noopener noreferrer\">Dr Niusen Chen</a> (<a href=\"https://www.unr.edu/cse/people/niusen-chen\" target=\"_blank\" rel=\"noopener noreferrer\">profil UNR</a>).",
     "introResearch": "Mes recherches portent sur la <strong>sécurité des systèmes informatiques, les systèmes d'exploitation, les systèmes de stockage, la sécurité des agents d'IA et la sécurité matérielle</strong>. J'étudie les risques liés aux agents d'IA dotés de privilèges élevés, j'évalue les protections côté hôte aux niveaux du système de fichiers, du noyau et des périphériques de blocs, et j'explore des frontières de confiance plus robustes pour protéger les données sensibles.",
     "educationTitle": "Formation",
     "unrTitle": "Université du Nevada à Reno",
