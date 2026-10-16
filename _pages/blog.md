@@ -176,4 +176,32 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
     {% endif %}
     <p class="empty-search" id="no-search-results" role="status">No matching articles. Try another keyword.</p>
   </section>
+
+<section class="visitor-geo" id="global-visitors" data-visitor-geo aria-labelledby="global-visitors-heading">
+ <div class="visitor-geo-header">
+  <div>
+   <span class="visitor-geo-kicker" data-geo-t="eyebrow">GLOBAL RESEARCH VISITOR RADAR</span>
+   <h2 id="global-visitors-heading" data-geo-t="heading">Visitors Around the World <span>↗</span></h2>
+   <p data-geo-t="description">An approximate geographic distribution of visitors to my research website. Individual IP addresses are never published.</p>
+  </div>
+  <span class="visitor-geo-badge" data-geo-t="badge">● PRIVACY-FIRST TELEMETRY</span>
+ </div>
+ <div class="visitor-geo-panel">
+  <div class="visitor-geo-stats">
+   <div><small data-geo-t="visits">Visits · 90 days</small><strong data-geo-stat="total">—</strong></div>
+   <div><small data-geo-t="countries">Countries / regions</small><strong data-geo-stat="countries">—</strong></div>
+   <div><small data-geo-t="locations">Approximate locations</small><strong data-geo-stat="points">—</strong></div>
+  </div>
+  <div class="visitor-geo-map">
+   <div data-geo-map aria-label="World map of approximate visitor locations"></div>
+   <span class="visitor-geo-compass" aria-hidden="true">N ↑ · GEO / IP</span>
+  </div>
+  <div class="visitor-geo-bottom">
+    <span class="visitor-geo-status" data-geo-status role="status">Visitor analytics are not connected yet. No visitor locations have been recorded by this feature.</span>
+    <button type="button" class="visitor-geo-optin" data-geo-optin hidden>Share my approximate region</button>
+  </div>
+  <p class="visitor-geo-privacy" data-geo-t="privacy">Opt-in only. No full IP addresses or GPS coordinates are saved or shown. Anonymous approximate locations are kept for up to 90 days.</p>
+ </div>
+</section>
+
 </div>
