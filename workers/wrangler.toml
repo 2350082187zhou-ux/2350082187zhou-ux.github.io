@@ -4,6 +4,9 @@ main = "./visitor-map-worker.js"
 compatibility_date = "2026-10-01"
 workers_dev = true
 
+[triggers]
+crons = ["13 3 * * *"]
+
 [[d1_databases]]
 binding = "DB"
 database_name = "zz-visitor-map"

@@ -16,7 +16,14 @@ async function sign(secret,msg){
  const raw=new Uint8Array(await crypto.subtle.sign('HMAC',key,utf.encode(msg)));
  return Array.from(raw,b=>b.toString(16).padStart(2,'0')).join('');
 }
-export default {async fetch(request,env){
+export default {
+ async scheduled(_event,env,ctx){
+  // Enforce 90-day retention even if there are no new consented visits.
+  if(!env.DB)return;
+  const cutoff=new Date(Date.now()-90*86400000).toISOString().slice(0,10);
+  ctx.waitUntil(env.DB.prepare('DELETE FROM geo_visits WHERE day<?').bind(cutoff).run());
+ },
+ async fetch(request,env){
  const origin=request.headers.get('Origin')||'';
  if(!allowed.has(origin))return new Response('Forbidden',{status:403});
  if(request.method==='OPTIONS')return new Response(null,{status:204,headers:{

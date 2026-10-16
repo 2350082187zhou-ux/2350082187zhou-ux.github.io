@@ -41,9 +41,9 @@ zhouzedong.top's DNS or change GitHub Pages settings.
   fingerprints with a secret unavailable to the browser. It never stores or
   publishes raw IP, UA, GPS, or visitor identities.
 - Database rows count unique fingerprints per day, not every page view.
-  90-day queries exclude older records; opportunistic deletion is done during
-  collection. For guaranteed storage expiration when there is no new traffic,
-  schedule a Cloudflare Cron maintenance job to delete old rows.
+  90-day queries exclude older records; opportunistic deletion occurs during
+  collection, and the Worker includes a daily scheduled Cron deletion of old
+  database rows, even if no new traffic arrives.
 - Map's continent outlines are schematic; dots use geographical projection
   based on REAL API data, never hard-coded invented visit locations.
 - Only allowlisted zhouzedong.top / www and owner github.io origins may
