@@ -2,12 +2,12 @@
    Requires Cloudflare Worker URL in visitor-map-config.js. */
 (()=>{'use strict';
  const langs={
- en:{heading:'Visitors Around the World <span>↗</span>',eyebrow:'GLOBAL RESEARCH VISITOR RADAR',description:'An approximate geographic distribution of visitors to my research website. Individual IP addresses are never published.',badge:'● PRIVACY-FIRST TELEMETRY',visits:'Visits · 90 days',countries:'Countries / regions',locations:'Approximate locations',pending:'Visitor analytics are not connected yet. No visitor locations have been recorded by this feature.',loading:'Checking visitor map service…',error:'Visitor map service is unavailable.',empty:'Visitor map enabled. No consenting visits recorded yet.',active:'Live aggregate data · last 90 days',share:'Share my approximate region',stop:'Stop counting my future visits',privacy:'Opt-in only. No full IP addresses or GPS coordinates are saved or shown. Anonymous approximate locations are kept for up to 90 days.'},
- zh:{heading:'全球访客<span>散点地图 ↗</span>',eyebrow:'全球学术访问雷达',description:'展示本学术网站访客的近似地理分布。只展示真实的聚合统计，不会公开任何访客的完整 IP 地址。',badge:'● 隐私优先统计',visits:'访问量 · 近 90 天',countries:'国家 / 地区',locations:'来源地位置',pending:'访客统计服务尚未连接。该功能目前尚未采集真实访问位置。',loading:'正在连接全球访客统计…',error:'暂时无法连接访客统计服务。',empty:'统计已启用，但还没有获得授权的访客记录。',active:'真实聚合记录 · 近 90 天',share:'同意分享我的近似地区',stop:'停止记录我之后的访问',privacy:'仅在访客明确同意后收集；不保存或展示完整 IP、精确 GPS 或身份信息。匿名近似地理数据保留最多 90 天。'},
- fr:{heading:'Visiteurs dans le monde <span>↗</span>',eyebrow:'RADAR MONDIAL DES VISITEURS',description:'Carte des régions approximatives des visiteurs du site. Les adresses IP individuelles ne sont jamais publiées.',badge:'● STATISTIQUES RESPECTUEUSES DE LA VIE PRIVÉE',visits:'Visites · 90 jours',countries:'Pays / régions',locations:'Localisations approximatives',pending:'Le service de statistiques n’est pas connecté. Aucun emplacement n’a encore été enregistré.',loading:'Connexion aux statistiques…',error:'Le service de statistiques est indisponible.',empty:'Le service est activé, mais aucune visite consentie n’est enregistrée.',active:'Données réelles agrégées · 90 jours',share:'Partager ma région approximative',stop:'Ne plus comptabiliser mes visites',privacy:'Participation facultative. Aucune IP complète ni position GPS précise n’est enregistrée ou publiée. Conservation maximale de 90 jours.'},
- ja:{heading:'世界の訪問者',eyebrow:'学術サイトの訪問状況',description:'訪問者の大まかな地域分布。個人のIPアドレスは公開しません。',badge:'プライバシー重視',visits:'訪問 · 90日',countries:'国・地域',locations:'おおよその地域',pending:'訪問者統計サービスはまだ接続されていません。現在、この機能では訪問者の位置を記録していません。',loading:'統計サービスに接続しています…',error:'統計サービスを利用できません。',empty:'統計機能は有効ですが、同意に基づく訪問記録はまだありません。',active:'実際の集計データ · 過去90日',share:'おおよその地域を共有する',stop:'今後の訪問を記録しない',privacy:'明示的な同意が必要です。完全なIPアドレス、GPS位置、個人情報は保存・公開されません。'},
- ko:{heading:'전 세계 방문자',eyebrow:'학술 사이트 방문 현황',description:'방문자의 대략적인 지역 분포입니다. 개인 IP 주소는 공개하지 않습니다.',badge:'개인정보 보호 중심',visits:'방문 · 90일',countries:'국가 / 지역',locations:'대략적인 위치',pending:'방문자 통계 서비스가 아직 연결되지 않았습니다. 이 기능은 현재 방문자 위치를 기록하지 않습니다.',loading:'통계 서비스 연결 중…',error:'통계 서비스를 사용할 수 없습니다.',empty:'서비스가 활성화되었지만 동의한 방문 기록이 아직 없습니다.',active:'실제 집계 데이터 · 최근 90일',share:'나의 대략적인 지역 공유',stop:'앞으로의 방문 기록 중지',privacy:'명시적 동의가 있어야 합니다. 전체 IP, 정확한 GPS 및 개인 식별 정보는 저장되거나 공개되지 않습니다.'},
- de:{heading:'Besucher weltweit <span>↗</span>',eyebrow:'WELTWEITER BESUCHERRADAR',description:'Ungefähre geografische Verteilung der Besucher meiner Forschungswebsite. Einzelne IP-Adressen werden nicht veröffentlicht.',badge:'● DATENSCHONENDE ANALYSE',visits:'Besuche · 90 Tage',countries:'Länder / Regionen',locations:'Ungefähre Standorte',pending:'Der Besucherdienst ist noch nicht verbunden. Es wurden keine Standorte erfasst.',loading:'Verbindung zum Besucherdienst…',error:'Der Besucherdienst ist nicht verfügbar.',empty:'Dienst aktiv, noch keine Besuche mit Einwilligung erfasst.',active:'Echte aggregierte Daten · 90 Tage',share:'Meine ungefähre Region teilen',stop:'Zukünftige Besuche nicht erfassen',privacy:'Nur mit Einwilligung. Keine vollständigen IP-Adressen oder präzisen GPS-Koordinaten werden gespeichert oder veröffentlicht. Aufbewahrung höchstens 90 Tage.'}
+ en:{heading:'Visitors Around the World <span>↗</span>',eyebrow:'GLOBAL RESEARCH VISITOR RADAR',description:'An approximate geographic distribution of visitors to my research website. Individual IP addresses are never published.',badge:'● PRIVACY-FIRST TELEMETRY',visits:'Visits · 90 days',countries:'Countries / regions',locations:'Approximate locations',pending:'Visitor analytics are not connected yet. No visitor locations have been recorded by this feature.',loading:'Checking visitor map service…',error:'Visitor map service is unavailable.',empty:'Automatic pageview tracking is active. No recorded locations yet.',active:'Live pageview origins · last 90 days',share:'Share my approximate region',stop:'Stop counting my future visits',privacy:'Opt-in only. No full IP addresses or GPS coordinates are saved or shown. Anonymous approximate locations are kept for up to 90 days.'},
+ zh:{heading:'全球访客<span>散点地图 ↗</span>',eyebrow:'全球学术访问雷达',description:'展示本学术网站访客的近似地理分布。只展示真实的聚合统计，不会公开任何访客的完整 IP 地址。',badge:'● 隐私优先统计',visits:'访问量 · 近 90 天',countries:'国家 / 地区',locations:'来源地位置',pending:'访客统计服务尚未连接。该功能目前尚未采集真实访问位置。',loading:'正在连接全球访客统计…',error:'暂时无法连接访客统计服务。',empty:'统计已启用，但还没有获得授权的访客记录。',active:'真实页面访问来源 · 近 90 天',share:'同意分享我的近似地区',stop:'停止记录我之后的访问',privacy:'仅在访客明确同意后收集；不保存或展示完整 IP、精确 GPS 或身份信息。匿名近似地理数据保留最多 90 天。'},
+ fr:{heading:'Visiteurs dans le monde <span>↗</span>',eyebrow:'RADAR MONDIAL DES VISITEURS',description:'Carte des régions approximatives des visiteurs du site. Les adresses IP individuelles ne sont jamais publiées.',badge:'● STATISTIQUES RESPECTUEUSES DE LA VIE PRIVÉE',visits:'Visites · 90 jours',countries:'Pays / régions',locations:'Localisations approximatives',pending:'Le service de statistiques n’est pas connecté. Aucun emplacement n’a encore été enregistré.',loading:'Connexion aux statistiques…',error:'Le service de statistiques est indisponible.',empty:'Le suivi des pages vues est actif, sans aucune région enregistrée pour le moment.',active:'Origine réelle des pages vues · 90 jours',share:'Partager ma région approximative',stop:'Ne plus comptabiliser mes visites',privacy:'Participation facultative. Aucune IP complète ni position GPS précise n’est enregistrée ou publiée. Conservation maximale de 90 jours.'},
+ ja:{heading:'世界の訪問者',eyebrow:'学術サイトの訪問状況',description:'訪問者の大まかな地域分布。個人のIPアドレスは公開しません。',badge:'プライバシー重視',visits:'訪問 · 90日',countries:'国・地域',locations:'おおよその地域',pending:'訪問元のデータサービスはまだ接続されていません。',loading:'統計サービスに接続しています…',error:'統計サービスを利用できません。',empty:'ページビュー集計は有効ですが、記録された地域はまだありません。',active:'実際の集計データ · 過去90日',share:'おおよその地域を共有する',stop:'今後の訪問を記録しない',privacy:'明示的な同意が必要です。完全なIPアドレス、GPS位置、個人情報は保存・公開されません。'},
+ ko:{heading:'전 세계 방문자',eyebrow:'학술 사이트 방문 현황',description:'방문자의 대략적인 지역 분포입니다. 개인 IP 주소는 공개하지 않습니다.',badge:'개인정보 보호 중심',visits:'방문 · 90일',countries:'국가 / 지역',locations:'대략적인 위치',pending:'방문자 통계 서비스가 아직 연결되지 않았습니다. 이 기능은 현재 방문자 위치를 기록하지 않습니다.',loading:'통계 서비스 연결 중…',error:'통계 서비스를 사용할 수 없습니다.',empty:'페이지 조회 통계가 활성화되었지만 아직 방문 지역 기록은 없습니다.',active:'실제 페이지 조회 지역 · 최근 90일',share:'나의 대략적인 지역 공유',stop:'앞으로의 방문 기록 중지',privacy:'명시적 동의가 있어야 합니다. 전체 IP, 정확한 GPS 및 개인 식별 정보는 저장되거나 공개되지 않습니다.'},
+ de:{heading:'Besucher weltweit <span>↗</span>',eyebrow:'WELTWEITER BESUCHERRADAR',description:'Ungefähre geografische Verteilung der Besucher meiner Forschungswebsite. Einzelne IP-Adressen werden nicht veröffentlicht.',badge:'● DATENSCHONENDE ANALYSE',visits:'Besuche · 90 Tage',countries:'Länder / Regionen',locations:'Ungefähre Standorte',pending:'Der Besucherdienst ist noch nicht verbunden. Es wurden keine Standorte erfasst.',loading:'Verbindung zum Besucherdienst…',error:'Der Besucherdienst ist nicht verfügbar.',empty:'Seitenaufrufe werden automatisch erfasst; noch keine Standorte verfügbar.',active:'Echte Seitenaufrufe nach Herkunft · 90 Tage',share:'Meine ungefähre Region teilen',stop:'Zukünftige Besuche nicht erfassen',privacy:'Nur mit Einwilligung. Keine vollständigen IP-Adressen oder präzisen GPS-Koordinaten werden gespeichert oder veröffentlicht. Aufbewahrung höchstens 90 Tage.'}
  };
  const continents=[
  'M64 105L83 101 98 83 136 74 154 79 170 97 188 88 208 96 225 92 251 114 274 122 283 143 276 160 258 171 243 196 218 202 208 218 191 207 183 186 166 195 146 175 127 168 115 145 98 143 82 129 67 120Z',
@@ -32,6 +32,7 @@
  const enabled=/^https:\/\/[a-z0-9.-]+(:[0-9]+)?$/i.test(endpoint);
  const views=Array.from(document.querySelectorAll('[data-visitor-geo]'));
  if(!views.length)return;
+ const homeAutomatic=views.some(view=>view.classList.contains('home-visitor-activity'));
  let state='pending',data=null;
  const loc=()=>{const l=document.documentElement.lang.slice(0,2);return langs[l]?l:'en';};
  const dict=()=>langs[loc()];
@@ -61,7 +62,7 @@
      v.querySelectorAll('[data-geo-t]').forEach(el=>{const key=el.dataset.geoT;if(t[key]){if(key==='heading')el.innerHTML=t[key];else el.textContent=t[key];}});
    }
    const n=v.querySelector('[data-geo-status]');if(n)n.textContent=t[state]||t.pending;
-   const b=v.querySelector('[data-geo-optin]');if(b){b.hidden=!enabled;b.textContent=consented()?t.stop:t.share;}
+   const b=v.querySelector('[data-geo-optin]');if(b){b.hidden=homeAutomatic||!enabled;b.textContent=consented()?t.stop:t.share;}
    if(data){
      const pointCount=Array.isArray(data.points)?data.points.length:0;
      for(const [name,val] of Object.entries({total:data.total||0,countries:data.countries||0,points:pointCount})){
@@ -90,13 +91,40 @@
      if(r.ok)await refresh();
    }catch(_){status('error');paint();}
  }
+ async function recordHomepageView(){
+   if(!enabled||!homeAutomatic)return;
+   // Respect browser-wide opt-out preferences.
+   const optedOut=navigator.globalPrivacyControl===true ||
+     navigator.doNotTrack==='1' || window.doNotTrack==='1';
+   if(optedOut){await refresh();return;}
+   status('loading');
+   try{
+     const reply=await fetch(endpoint+'/collect',{
+       method:'POST',mode:'cors',credentials:'omit',cache:'no-store',
+       headers:{'Content-Type':'text/plain'},
+       body:'pageview=1',keepalive:true
+     });
+     if(!reply.ok)throw new Error('Request failed: '+reply.status);
+   }catch(_){/* A privacy extension or network might block analytics. */}
+   await refresh();
+ }
  for(const v of views){
-  plot(v,null);
-  const b=v.querySelector('[data-geo-optin]');
-  if(b)b.addEventListener('click',async()=>{const agree=!consented();try{if(agree)localStorage.setItem('zz_geo_consent','yes');else localStorage.removeItem('zz_geo_consent')}catch(_){}
-    paint();if(agree)await collect();
-  });
+   plot(v,null);
+   const b=v.querySelector('[data-geo-optin]');
+   if(homeAutomatic){
+     if(b)b.remove();
+   }else if(b){
+     b.addEventListener('click',async()=>{
+       const agree=!consented();
+       try{if(agree)localStorage.setItem('zz_geo_consent','yes');else localStorage.removeItem('zz_geo_consent')}catch(_){}
+       paint();if(agree)await collect();
+     });
+   }
  }
  document.addEventListener('zedong:language-changed',paint);
- paint();if(enabled)refresh().then(()=>{if(consented())collect();});
+ paint();
+ if(enabled){
+   if(homeAutomatic)recordHomepageView();
+   else refresh().then(()=>{if(consented())collect();});
+ }
 })();

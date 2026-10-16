@@ -1,5 +1,5 @@
 /* Real visit origins: academic homepage only. The cyber blog is untouched.
- * The Cloudflare Worker records only visitors who explicitly opt in.
+ * The Cloudflare Worker counts anonymous pageviews automatically.
  * Do not place credentials or the VISITOR_HASH_SECRET in this public file.
  */
 window.ZEDONG_VISITOR_API =

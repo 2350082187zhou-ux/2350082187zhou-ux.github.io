@@ -1,6 +1,6 @@
 /**
- * Zedong Zhou: opt-in IP-based country/region aggregation for the public map.
- * IP and user-agent are used transiently to deduplicate; never persist them.
+ * Zedong Zhou: coarse location pageview counts, not user tracking.
+ * No full IP, User-Agent, cookie, or persistent visitor identifier stored.
  */
 const allowed=new Set(['https://zhouzedong.top','https://www.zhouzedong.top','https://2350082187zhou-ux.github.io']);
 function response(data,origin,status=200){
@@ -10,15 +10,9 @@ function response(data,origin,status=200){
   'Access-Control-Allow-Headers':'Content-Type','Vary':'Origin','X-Content-Type-Options':'nosniff'
  }});
 }
-async function sign(secret,msg){
- const utf=new TextEncoder();
- const key=await crypto.subtle.importKey('raw',utf.encode(secret),{name:'HMAC',hash:'SHA-256'},false,['sign']);
- const raw=new Uint8Array(await crypto.subtle.sign('HMAC',key,utf.encode(msg)));
- return Array.from(raw,b=>b.toString(16).padStart(2,'0')).join('');
-}
 export default {
  async scheduled(_event,env,ctx){
-  // Enforce 90-day retention even if there are no new consented visits.
+  // Enforce 90-day retention even when there are no new pageviews.
   if(!env.DB)return;
   const cutoff=new Date(Date.now()-90*86400000).toISOString().slice(0,10);
   ctx.waitUntil(env.DB.prepare('DELETE FROM geo_visits WHERE day<?').bind(cutoff).run());
@@ -29,7 +23,7 @@ export default {
  if(request.method==='OPTIONS')return new Response(null,{status:204,headers:{
     'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Methods':'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers':'Content-Type','Vary':'Origin'}});
- if(!env.DB||!env.VISITOR_HASH_SECRET)return response({error:'Backend not configured'},origin,503);
+ if(!env.DB)return response({error:'Backend not configured'},origin,503);
  const path=new URL(request.url).pathname;
  const cutoff=new Date(Date.now()-90*86400000).toISOString().slice(0,10);
  try{
@@ -47,20 +41,19 @@ export default {
   }
   if(path==='/collect'&&request.method==='POST'){
    if((request.headers.get('Content-Type')||'').split(';')[0]!=='text/plain')return response({error:'Content type'},origin,415);
-   if((await request.text()).trim()!=='consent=1')return response({error:'Consent required'},origin,400);
+   const event=(await request.text()).trim();
+   if(event!=='pageview=1' && event!=='consent=1')return response({error:'Invalid event'},origin,400);
    const cf=request.cf||{};
-   const ip=request.headers.get('CF-Connecting-IP');
-   const ua=(request.headers.get('User-Agent')||'').slice(0,200);
+   const hasGeo=cf.latitude!=null && cf.longitude!=null && cf.latitude!=='' && cf.longitude!=='';
    const lat=Number(cf.latitude),lon=Number(cf.longitude);
    const country=String(cf.country||'').toUpperCase();
-   if(!ip||!Number.isFinite(lat)||!Number.isFinite(lon)||lat<-90||lat>90||lon<-180||lon>180||!/^([A-Z]{2})$/.test(country)){
+   if(!hasGeo||!Number.isFinite(lat)||!Number.isFinite(lon)||lat<-90||lat>90||lon<-180||lon>180||!/^([A-Z]{2})$/.test(country)){
       return response({recorded:false,reason:'Geolocation unavailable'},origin,202);
    }
    const day=new Date().toISOString().slice(0,10);
-   const key=await sign(env.VISITOR_HASH_SECRET,day+'|'+ip+'|'+ua);
-   // Coordinates rounded to ~2° before saving: NOT precise GPS.
-   await env.DB.prepare('INSERT OR IGNORE INTO geo_visits (fingerprint,day,country,lat,lon) VALUES (?,?,?,?,?)')
-     .bind(key,day,country,Math.round(lat/2)*2,Math.round(lon/2)*2).run();
+   // Random record ID per page view, never a stable visitor fingerprint.
+   await env.DB.prepare('INSERT INTO geo_visits (fingerprint,day,country,lat,lon) VALUES (?,?,?,?,?)')
+     .bind(crypto.randomUUID(),day,country,Math.round(lat/2)*2,Math.round(lon/2)*2).run();
    await env.DB.prepare('DELETE FROM geo_visits WHERE day<?').bind(cutoff).run();
    return response({recorded:true},origin);
   }

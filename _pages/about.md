@@ -79,13 +79,13 @@ redirect_from:
     <div>
       <span class="visitor-geo-kicker" data-geo-t="eyebrow">RESEARCH WEBSITE ACTIVITY</span>
       <h2 id="global-visitors-heading" data-geo-t="heading">Website Activity <span>&amp; Visitor Origins</span></h2>
-      <p data-geo-t="description">A privacy-respecting overview of the countries and approximate regions from which readers visit my academic website. Counts reflect visitors who opt in.</p>
+      <p data-geo-t="description">An overview of where readers access my academic website. The figures count page views by country and approximate region, not unique visitors.</p>
     </div>
     <span class="visitor-geo-badge" data-geo-t="badge">VISITOR GEOGRAPHY</span>
   </div>
   <div class="visitor-geo-panel">
     <div class="visitor-geo-stats">
-      <div><small data-geo-t="visits">Consented visits · 90 days</small><strong data-geo-stat="total">—</strong></div>
+      <div><small data-geo-t="visits">Page views · 90 days</small><strong data-geo-stat="total">—</strong></div>
       <div><small data-geo-t="countries">Countries / regions</small><strong data-geo-stat="countries">—</strong></div>
       <div><small data-geo-t="locations">Approximate locations</small><strong data-geo-stat="points">—</strong></div>
     </div>
@@ -94,9 +94,9 @@ redirect_from:
       <span class="visitor-geo-compass" aria-hidden="true">WORLDWIDE · GEO</span>
     </div>
     <div class="visitor-geo-bottom">
-      <span class="visitor-geo-status" data-geo-status role="status">Visitor analytics are not connected yet. No locations have been recorded by this feature.</span>
-      <button type="button" class="visitor-geo-optin" data-geo-optin hidden>Share my approximate region</button>
+      <span class="visitor-geo-status" data-geo-status role="status">Loading geographic pageview statistics…</span>
+      
     </div>
-    <p class="visitor-geo-privacy" data-geo-t="privacy">Opt-in only. Full IP addresses, precise GPS locations, and visitor identities are not stored or published. Figures appear only after a data service is connected.</p>
+    <p class="visitor-geo-privacy" data-geo-t="privacy">Opening this homepage automatically counts page views by country and approximate region. No cookies, full IP addresses, precise GPS locations or persistent visitor IDs are stored. Records are retained for up to 90 days.</p>
   </div>
 </section>

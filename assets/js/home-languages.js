@@ -49,12 +49,12 @@
     "sidebarFollow": "关注",
     "mapEyebrow": "学术网站访问活跃度",
     "mapHeading": "网站访问概况 <span>与访客来源</span>",
-    "mapDescription": "了解来自哪些国家和地区的读者访问了我的学术主页。展示的是访客自愿授权后的匿名、近似地理位置统计。",
+    "mapDescription": "按国家和近似地区查看学术主页的页面访问来源。这是浏览次数统计，不代表独立访客人数。",
     "mapBadge": "来源地统计",
-    "mapVisits": "已授权访问 · 近 90 天",
+    "mapVisits": "页面浏览量 · 近 90 天",
     "mapCountries": "国家 / 地区",
     "mapLocations": "近似来源地",
-    "mapPrivacy": "仅在访客同意后记录；不存储或公开完整 IP、精确 GPS 位置或个人身份信息。连接统计服务后才会显示真实数据。"
+    "mapPrivacy": "加载主页时自动统计国家及粗略地理区域；不使用 Cookie，也不保存完整 IP、精确 GPS 或持续性访客标识。记录最多保留 90 天。"
   },
   "ja": {
     "welcome": "<strong>私のウェブサイトへようこそ！</strong>",
@@ -98,12 +98,12 @@
     "sidebarFollow": "フォロー",
     "mapEyebrow": "研究サイトのアクセス状況",
     "mapHeading": "サイトのアクセス状況 <span>と訪問者の地域</span>",
-    "mapDescription": "私の学術サイトを訪問した読者の国・地域を概略で表示します。利用者が同意した匿名の位置情報のみを集計します。",
+    "mapDescription": "学術サイトへのページビューを国と大まかな地域別に表示します。ユニークユーザー数ではありません。",
     "mapBadge": "訪問元の分布",
-    "mapVisits": "同意済み訪問 · 過去90日",
+    "mapVisits": "ページビュー · 過去90日",
     "mapCountries": "国・地域",
     "mapLocations": "おおよその地域",
-    "mapPrivacy": "明示的な同意がある場合のみ集計します。完全なIPアドレス、正確なGPS位置、個人識別情報は保存・公開しません。サービスの接続後に実際のデータを表示します。"
+    "mapPrivacy": "ページを開くと国と大まかな地域を自動集計します。Cookie、完全なIPアドレス、正確なGPS情報、持続的な訪問者IDは保存しません。保存期間は最大90日です。"
   },
   "ko": {
     "welcome": "<strong>제 웹사이트에 오신 것을 환영합니다!</strong>",
@@ -147,12 +147,12 @@
     "sidebarFollow": "팔로우",
     "mapEyebrow": "학술 사이트 방문 현황",
     "mapHeading": "웹사이트 방문 현황 <span>및 방문자 지역</span>",
-    "mapDescription": "이 학술 웹사이트의 독자들이 어느 국가와 지역에서 방문했는지 개략적으로 보여줍니다. 동의한 방문자의 익명 집계만 표시합니다.",
+    "mapDescription": "학술 홈페이지의 국가별·대략적인 지역별 페이지 조회수입니다. 고유 방문자 수와는 다릅니다.",
     "mapBadge": "방문자 지역",
-    "mapVisits": "동의한 방문 · 최근 90일",
+    "mapVisits": "페이지 조회수 · 최근 90일",
     "mapCountries": "국가 / 지역",
     "mapLocations": "대략적인 위치",
-    "mapPrivacy": "방문자가 명시적으로 동의한 경우에만 집계합니다. 전체 IP 주소, 정확한 GPS 위치, 신원 정보는 저장하거나 공개하지 않습니다. 통계 서비스 연결 후 실제 데이터를 표시합니다."
+    "mapPrivacy": "홈페이지를 열면 국가 및 대략적인 지역별로 자동 집계합니다. 쿠키, 전체 IP, 정확한 GPS 또는 지속적인 방문자 식별자는 저장하지 않습니다. 최대 90일간 보관합니다."
   },
   "de": {
     "welcome": "<strong>Willkommen auf meiner Website!</strong>",
@@ -196,12 +196,12 @@
     "sidebarFollow": "Folgen",
     "mapEyebrow": "AKTIVITÄT DER FORSCHUNGSWEBSITE",
     "mapHeading": "Website-Aktivität <span>&amp; Besucherherkunft</span>",
-    "mapDescription": "Übersicht über Länder und ungefähre Regionen, aus denen Leser meine akademische Website besuchen. Gezählt werden nur Besuche mit Einwilligung.",
+    "mapDescription": "Seitenaufrufe meiner akademischen Website nach Land und ungefährer Region. Dies sind Seitenaufrufe, keine eindeutigen Besucher.",
     "mapBadge": "BESUCHERHERKUNFT",
-    "mapVisits": "Besuche mit Einwilligung · 90 Tage",
+    "mapVisits": "Seitenaufrufe · 90 Tage",
     "mapCountries": "Länder / Regionen",
     "mapLocations": "Ungefähre Standorte",
-    "mapPrivacy": "Nur mit ausdrücklicher Einwilligung. Vollständige IP-Adressen, genaue GPS-Positionen und Identitäten werden weder gespeichert noch veröffentlicht. Echte Daten erscheinen erst nach Verbindung mit dem Statistikdienst."
+    "mapPrivacy": "Beim Öffnen der Homepage werden Land und grobe Region automatisch gezählt. Keine Cookies, vollständigen IP-Adressen, genauen GPS-Daten oder dauerhaften Kennungen werden gespeichert. Aufbewahrung bis zu 90 Tage."
   },
   "fr": {
     "welcome": "<strong>Bienvenue sur mon site !</strong>",
@@ -245,12 +245,12 @@
     "sidebarFollow": "Suivre",
     "mapEyebrow": "ACTIVITÉ DU SITE DE RECHERCHE",
     "mapHeading": "Activité du site <span>et origine des visiteurs</span>",
-    "mapDescription": "Aperçu des pays et des régions approximatives d'où proviennent les lecteurs de mon site universitaire. Les chiffres concernent uniquement les visiteurs ayant donné leur consentement.",
+    "mapDescription": "Répartition des pages vues sur mon site universitaire par pays et région approximative. Ce ne sont pas des visiteurs uniques.",
     "mapBadge": "ORIGINE DES VISITEURS",
-    "mapVisits": "Visites consenties · 90 jours",
+    "mapVisits": "Pages vues · 90 jours",
     "mapCountries": "Pays / régions",
     "mapLocations": "Régions approximatives",
-    "mapPrivacy": "Participation volontaire uniquement. Aucune adresse IP complète, position GPS précise ou identité n'est enregistrée ou publiée. Des données réelles apparaîtront après connexion du service statistique."
+    "mapPrivacy": "Chaque chargement de la page compte automatiquement le pays et la région approximative. Aucun cookie, adresse IP complète, position GPS précise ou identifiant persistant n’est conservé. Durée maximale : 90 jours."
   }
 };
   const originals = new WeakMap();

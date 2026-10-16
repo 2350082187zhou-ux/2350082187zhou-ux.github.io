@@ -1,61 +1,63 @@
-# Activate the real worldwide visitor map
+# Homepage visitor origins — automatic, no button
 
-The four-language academic homepage and cyber blog already include the visitor
-map frontend. **Actual recording is not enabled until its Worker endpoint is
-deployed and configured.** GitHub Pages is a static hosting service and cannot
-alone provide the site owner with per-visitor IP geolocation logs.
+GitHub Pages loads `assets/js/visitor-geo.js` on the academic homepage.
+When opened, it automatically submits `pageview=1` to the existing Cloudflare
+Worker `dry-wildflower-8d08` and loads the public `/stats` API.
+The cyber blog remains unchanged and does not send automatic pageviews.
 
-We supply a Cloudflare Worker + D1 implementation. You do NOT need to transfer
-zhouzedong.top's DNS or change GitHub Pages settings.
+## Privacy and what the numbers mean
 
-## Set up the backend (one-time, with your own Cloudflare account)
+- The Worker receives approximate IP-based Cloudflare geolocation metadata,
+  but it never reads, stores, or exposes a full IP address, User-Agent or GPS.
+- Only UTC day, ISO country code, latitude/longitude rounded to 2 degrees and
+  a freshly generated random row ID are written to D1.
+- These rows represent **page views**, not deduplicated or unique people.
+  Reloading the homepage increments the count again.
+- No cookies or durable visitor identifiers are used.
+- Pageview requests are skipped when the browser advertises Do Not Track or
+  Global Privacy Control. Ad blockers, disabled JavaScript and network
+  restrictions can also prevent counting.
+- The world map plots real aggregate points only; no mock traffic is used.
+- Rows older than 90 days are deleted by scheduled Worker cron, and again
+  during new pageview inserts. The page discloses automatic approximate stats.
+- IP-derived location can be imprecise (VPNs/mobile providers); international
+  privacy and disclosure requirements should be reviewed for this use.
 
-1. Install Node.js and use `npx wrangler login`.
-2. From the repository root run `npx wrangler d1 create zz-visitor-map`.
-3. Copy the output UUID into `workers/wrangler.toml`, replacing
-   `REPLACE_WITH_YOUR_DATABASE_ID`.
-4. Run `npx wrangler d1 execute zz-visitor-map --remote --file=workers/schema.sql`.
-5. Generate a random secret locally:
-   `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`.
-6. Run `npx wrangler secret put VISITOR_HASH_SECRET --config workers/wrangler.toml`;
-   paste the random secret when prompted. Never commit secrets.
-7. Run `npx wrangler deploy --config workers/wrangler.toml`.
-8. Find the new Worker URL, for example
-   `https://zz-visitor-map.YOUR-SUBDOMAIN.workers.dev`.
-   In `assets/js/visitor-geo-config.js` replace
-   `window.ZEDONG_VISITOR_API = "";`
-   with `window.ZEDONG_VISITOR_API = "https://...workers.dev";`.
-   Commit the config change. The visible map starts fetching real data.
+## Update the Worker already created on Cloudflare
 
-## What the feature does
+Cloudflare account has Worker `dry-wildflower-8d08`, binding `DB` to
+D1 database `zz-visitor-map`, and an existing D1 table `geo_visits`.
+**No database schema migration is needed.**
 
-- Public map: plots approximate global latitude/longitude of opt-in visitors,
-  grouped by region and country, with hover details and 90-day totals.
-- A visitor must select *Share my approximate region* before any visit
-  is collected. Their choice is saved locally and can be revoked using the
-  same button, preventing future collection. Historical anonymous aggregates
-  remain until expiry.
-- Cloudflare edge location is approximate IP-based geography, NOT phone GPS.
-  Coordinates are rounded to 2 degrees (large area, often >200 km).
-- The server uses IP + User-Agent *only in memory*, to compute daily HMAC
-  fingerprints with a secret unavailable to the browser. It never stores or
-  publishes raw IP, UA, GPS, or visitor identities.
-- Database rows count unique fingerprints per day, not every page view.
-  90-day queries exclude older records; opportunistic deletion occurs during
-  collection, and the Worker includes a daily scheduled Cron deletion of old
-  database rows, even if no new traffic arrives.
-- Map's continent outlines are schematic; dots use geographical projection
-  based on REAL API data, never hard-coded invented visit locations.
-- Only allowlisted zhouzedong.top / www and owner github.io origins may
-  call the API from normal web browsers; this is not strong protection against
-  intentional server-side Origin spoofing. Cloudflare rate limits are advisable
-  if spam becomes an issue.
+In Windows PowerShell:
+
+```powershell
+Set-Location "$env:USERPROFILE\zz-visitor-worker"
+$base = "https://raw.githubusercontent.com/2350082187zhou-ux/2350082187zhou-ux.github.io/master/workers"
+Invoke-WebRequest "$base/visitor-map-worker.js" -OutFile ".\visitor-map-worker.js"
+Invoke-WebRequest "$base/wrangler.toml" -OutFile ".\wrangler.toml"
+node --check .\visitor-map-worker.js
+npx.cmd --yes wrangler@latest deploy --config .\wrangler.toml
+```
+
+The website client should be deployed before / alongside the new Worker.
+While transitioning, Worker accepts the old `consent=1` event payload as well.
 
 ## Verification
 
-With the URL configured, open `https://zhouzedong.top/` or
-`https://zhouzedong.top/blog/` and select *Share my approximate region*.
-The map should update. Without endpoint configured, it explicitly displays
-*Visitor analytics are not connected yet* rather than fake hits.
+```powershell
+$api = "https://dry-wildflower-8d08.zhouzedongunr.workers.dev"
+Invoke-RestMethod "$api/stats" -Headers @{Origin="https://zhouzedong.top"}
+```
 
-Cloudflare Workers and D1 free tiers have limits; consult current docs.
+Visit `https://zhouzedong.top/` once from a browser without DNT enabled and
+with Cloudflare geo metadata available, then run the request again. The
+`total` field should increment by one; `countries` and `points` represent
+approximate locations. The website itself shows the same data.
+
+`VISITOR_HASH_SECRET` is no longer used by the Worker. The previous secret
+was shared in a transcript; remove it from Worker settings once this version is
+deployed, or rotate if used elsewhere. Never paste an active secret into chat.
+
+Cloudflare Worker CORS Origin checks limit ordinary browsers, but are not a
+strong defense against determined script-origin spoofing or artificial traffic.
