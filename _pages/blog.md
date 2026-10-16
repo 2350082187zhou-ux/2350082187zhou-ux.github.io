@@ -39,28 +39,16 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
         <span class="channel-text"><strong>Linux &amp; eBPF</strong><small>Kernel instrumentation, security mechanisms, and observability.</small></span><span class="channel-arrow" aria-hidden="true">→</span>
       </a>
       <a class="channel-card blue" href="{{ '/research/' | relative_url }}" aria-label="Explore AI agent security research">
-        <span class="channel-art" aria-hidden="true">
-          <svg viewBox="0 0 80 92" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M31 12c-12 1-21 10-21 24 0 11 5 17 12 24l5 20h37l-7-20c9-4 13-13 13-24 0-14-11-24-25-24z" fill="#102c52" stroke="#489dff" stroke-width="2"/><path d="M21 34h12l6-12 5 24 5-12h12M26 58h26M30 68h19" stroke="#39a9ff" stroke-width="2"/><circle cx="40" cy="34" r="5" stroke="#75baff"/><circle cx="27" cy="25" r="3" fill="#55eaff"/><circle cx="52" cy="23" r="3" fill="#55eaff"/><path d="M9 66l10 11M68 60l8 7M16 12l5 9" stroke="#2c7fd1"/>
-          </svg>
-        </span>
-        <span class="channel-text"><strong>AI Agent Security</strong><small>Privilege boundaries, safe autonomy, and file protection.</small></span><span class="channel-arrow" aria-hidden="true">→</span>
+        <span class="channel-art" aria-hidden="true"><img class="channel-topic-icon" src="{{ '/assets/images/channel-agent-security.svg' | relative_url }}" width="92" height="92" alt="" loading="lazy" decoding="async"></span>
+                <span class="channel-text"><strong>AI Agent Security</strong><small>Privilege boundaries, safe autonomy, and file protection.</small></span><span class="channel-arrow" aria-hidden="true">→</span>
       </a>
       <a class="channel-card" href="{{ '/research/' | relative_url }}" aria-label="Explore storage security research">
-        <span class="channel-art" aria-hidden="true">
-          <svg viewBox="0 0 80 92" xmlns="http://www.w3.org/2000/svg" fill="none">
-            <ellipse cx="40" cy="20" rx="30" ry="11" fill="#0b3557" stroke="#4ab7ff" stroke-width="2"/><path d="M10 20v20c0 6 13 12 30 12s30-6 30-12V20M10 40v20c0 6 13 12 30 12s30-6 30-12V40" fill="#08263e" stroke="#50bfff" stroke-width="2"/><ellipse cx="40" cy="40" rx="30" ry="11" stroke="#48a8e5" stroke-width="2"/><ellipse cx="40" cy="60" rx="30" ry="11" stroke="#39a1d1"/><circle cx="60" cy="35" r="3" fill="#38ffd0"/><circle cx="60" cy="56" r="3" fill="#38ffd0"/><path d="M16 24h21M16 43h21M16 63h21" stroke="#7fd6ff" stroke-width="2"/>
-          </svg>
-        </span>
-        <span class="channel-text"><strong>Storage Security</strong><small>File systems, block I/O, and data integrity.</small></span><span class="channel-arrow" aria-hidden="true">→</span>
+        <span class="channel-art" aria-hidden="true"><img class="channel-topic-icon" src="{{ '/assets/images/channel-storage-security.svg' | relative_url }}" width="92" height="92" alt="" loading="lazy" decoding="async"></span>
+                <span class="channel-text"><strong>Storage Security</strong><small>File systems, block I/O, and data integrity.</small></span><span class="channel-arrow" aria-hidden="true">→</span>
       </a>
       <a class="channel-card purple" href="{{ '/publications/' | relative_url }}" aria-label="Explore publications and research notes">
-        <span class="channel-art" aria-hidden="true">
-          <svg viewBox="0 0 80 92" xmlns="http://www.w3.org/2000/svg" fill="none">
-            <path d="M15 10h37l14 14v55H15z" fill="#171b49" stroke="#8e7dff" stroke-width="2"/><path d="M52 10v16h14M25 37h31M25 48h31M25 59h22M25 70h26" stroke="#897fff" stroke-width="2"/><path d="M32 21h13M52 60h20v23H52z" fill="#161d50" stroke="#aea5ff"/><path d="M57 69h10M57 75h10" stroke="#aea5ff"/>
-          </svg>
-        </span>
-        <span class="channel-text"><strong>Research Notes</strong><small>Experiments, tools, papers, and technical walkthroughs.</small></span><span class="channel-arrow" aria-hidden="true">→</span>
+        <span class="channel-art" aria-hidden="true"><img class="channel-topic-icon" src="{{ '/assets/images/channel-research-notes.svg' | relative_url }}" width="92" height="92" alt="" loading="lazy" decoding="async"></span>
+                <span class="channel-text"><strong>Research Notes</strong><small>Experiments, tools, papers, and technical walkthroughs.</small></span><span class="channel-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </section>
@@ -133,7 +121,7 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
     <figure class="security-map">
       <div class="security-map-hint" aria-hidden="true"><span>↔</span> Swipe horizontally to explore each security layer</div>
       <div class="security-map-viewport" role="region" aria-label="Scrollable research diagram showing the path from AI agent privileges to storage trust boundaries" tabindex="0">
-        <img src="{{ '/assets/images/agent-storage-trust-boundary.svg' | relative_url }}" width="1280" height="470" alt="Research diagram: an AI agent with root privileges issues system calls that cross the Linux LSM and block I/O layers, reaching a possible independent device trust boundary." decoding="async" loading="lazy">
+        <img src="{{ '/assets/images/agent-storage-trust-boundary-v2.svg' | relative_url }}" width="1600" height="610" alt="Research diagram: an AI agent with root privileges issues system calls that cross the Linux LSM and block I/O layers, reaching a possible independent device trust boundary." decoding="async" loading="lazy">
       </div>
       <figcaption><span class="caption-dot" aria-hidden="true"></span> Conceptual attack-and-defense pathway. The diagram illustrates the research threat model, not real-time telemetry or guaranteed protection.</figcaption>
     </figure>

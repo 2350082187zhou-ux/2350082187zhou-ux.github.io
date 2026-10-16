@@ -142,3 +142,21 @@
 .blog-ddl-empty{padding:20px;color:#a9c4d2;font-size:13px}
 @media(max-width:900px){.blog-ddl-row{grid-template-columns:1fr auto}.blog-ddl-detail{grid-column:1/2;grid-row:2}.blog-ddl-row time{grid-column:2;grid-row:1/3}}
 @media(max-width:650px){.blog-deadlines{padding:17px}.blog-deadlines-header{align-items:start;flex-direction:column;gap:9px}.blog-ddl-row{grid-template-columns:1fr;gap:3px}.blog-ddl-detail,.blog-ddl-row time{grid-column:auto;grid-row:auto;text-align:left}.blog-ddl-row time{margin-top:4px}}
+
+/* Precise vector channel art & roomy research-map viewport (Oct 2026 refresh). */
+.channel-card .channel-art img.channel-topic-icon{
+  display:block;width:76px;height:76px;max-width:100%;
+  object-fit:contain;aspect-ratio:1/1;
+  filter:drop-shadow(0 0 12px #2acbff52);
+}
+.channel-card .channel-art{overflow:visible}
+.security-map-viewport img{aspect-ratio:1600 / 610}
+@media(max-width:1200px){
+  .channel-card .channel-art img.channel-topic-icon{width:52px;height:52px}
+}
+@media(max-width:650px){
+  .security-map-viewport img{aspect-ratio:1600/610}
+}
+@media(max-width:430px){
+  .channel-card .channel-art img.channel-topic-icon{width:72px;height:72px}
+}
