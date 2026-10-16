@@ -1,4 +1,4 @@
-# Obtain a D1 ID from: npx wrangler d1 create zz-visitor-map
+# Cloudflare D1 database already created; retained on GitHub Pages static-site architecture.
 name = "zz-visitor-map"
 main = "./visitor-map-worker.js"
 compatibility_date = "2026-10-01"
@@ -10,4 +10,4 @@ crons = ["13 3 * * *"]
 [[d1_databases]]
 binding = "DB"
 database_name = "zz-visitor-map"
-database_id = "REPLACE_WITH_YOUR_DATABASE_ID"
+database_id = "61ea5253-ec87-4858-b54d-b1d70ab5b4cc"
