@@ -16,7 +16,9 @@ description: "Live paper submission and abstract registration deadlines for IEEE
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <title>Security Conference Submission Deadlines | Zedong Zhou</title>
   <link rel="stylesheet" href="{{ '/assets/css/security-deadlines.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/security-ops-upgrade.css' | relative_url }}">
   <script defer src="{{ '/assets/js/security-deadlines.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/security-ops-upgrade.js' | relative_url }}"></script>
 </head>
 <body class="deadline-page">
   <a class="skip-link" href="#deadlines-content">Skip to deadlines</a>
@@ -33,6 +35,7 @@ description: "Live paper submission and abstract registration deadlines for IEEE
     <a class="source-link" href="https://ccfddl.com/" target="_blank" rel="noopener noreferrer">Inspired by CCFDDL <span aria-hidden="true">↗</span></a>
   </header>
   <main id="deadlines-content" class="main-container">
+    <div class="ops-headline" aria-label="Deadline tracker status"><span><span class="ops-live-dot" aria-hidden="true"></span><strong>SECURITY // CFP MONITOR</strong> &nbsp; INDEXED RESEARCH VENUES · LIVE BROWSER CLOCK</span><span id="ops-utc-clock">UTC clock connecting…</span></div>
     <section class="hero">
       <div class="hero-copy">
         <div class="eyebrow"><span class="pulse-point" aria-hidden="true"></span> SECURITY RESEARCH · PAPER SUBMISSION TRACKER</div>
@@ -62,6 +65,24 @@ description: "Live paper submission and abstract registration deadlines for IEEE
       <div><span class="calendar-icon" aria-hidden="true">▦</span> Last manually checked: <time datetime="{{ site.data.security_deadlines.verified_on }}">{{ site.data.security_deadlines.verified_on }}</time></div>
     </div>
 
+    <section class="ops-center" aria-labelledby="ops-center-heading">
+      <div class="ops-copy">
+        <div class="ops-mini-tag">RESEARCH INTELLIGENCE / DEADLINE CONTROL</div>
+        <h2 id="ops-center-heading">Your conference <em>mission control.</em></h2>
+        <p>One research-oriented workspace for verified top-tier security venues and a clearly labeled community CFP feed. Explore deadline proximity, CCF recommendation grades, research disciplines, and submission time zones.</p>
+        <div class="ops-metrics" aria-label="Live event counts">
+          <div><strong id="ops-remaining">--</strong><span>Upcoming milestones</span></div>
+          <div><strong id="ops-official">--</strong><span>Official-checked</span></div>
+          <div><strong id="ops-community">--</strong><span>Community-listed</span></div>
+        </div>
+      </div>
+      <div class="ops-radar" aria-hidden="true">
+        <div class="ops-radar-grid"></div><div class="ops-radar-sweep"></div>
+        <i class="ops-radar-pip a"></i><i class="ops-radar-pip b"></i><i class="ops-radar-pip c"></i>
+        <div class="ops-radar-center">CFP / RADAR<small>DEADLINE SIGNAL</small></div>
+      </div>
+    </section>
+    <p class="ccf-reference">CCF A/B/C labels refer to the <a href="https://www.ccf.org.cn/Academic_Evaluation/NIS/" target="_blank" rel="noopener noreferrer">China Computer Federation (CCF) Network &amp; Information Security recommendation catalogue ↗</a>, not CFP reliability. "Not mapped" does not mean a conference is unranked. CHES / PoPETs rolling journal deadlines may differ from their conference classification.</p>
     <section class="section" aria-labelledby="conference-grid-heading">
       <div class="section-heading">
         <div><div class="section-kicker">01 / VENUE TRACKER</div><h2 id="conference-grid-heading">Four leading security venues</h2></div>
@@ -69,8 +90,10 @@ description: "Live paper submission and abstract registration deadlines for IEEE
       </div>
       <div class="conference-grid">
         {% for conference in site.data.security_deadlines.conferences %}
-        <article class="conf-card accent-{{ conference.theme }}" data-conf-card="{{ conference.id }}" aria-label="{{ conference.short | escape }} 2027 deadlines">
+        {% assign ccf_rank = site.data.security_ccf.ranks[conference.id] | default: 'NA' %}
+        <article class="conf-card accent-{{ conference.theme }}" data-conf-card="{{ conference.id }}" data-ccf-rank="{{ ccf_rank }}" aria-label="{{ conference.short | escape }} 2027 deadlines">
           <div class="conf-top"><span class="conf-monogram">{{ conference.short | slice: 0, 2 }}</span><span class="conf-year">{{ conference.year }}</span></div>
+          <span class="rank-sigil" data-rank="{{ ccf_rank }}">{% if ccf_rank != 'NA' %}CCF {{ ccf_rank }} · RECOMMENDED{% else %}NOT MAPPED{% endif %}</span>
           <h3>{{ conference.short | escape }}</h3>
           <p class="conf-name">{{ conference.name | escape }}</p>
           <p class="conf-track">{{ conference.label | escape }}</p>
@@ -96,9 +119,11 @@ description: "Live paper submission and abstract registration deadlines for IEEE
       </p>
       <div class="extra-grid" aria-label="Automatically tracked security conferences">
         {% for conference in additional_venues %}
-        <article class="extra-venue accent-{{ conference.theme }}" data-extra-conf="{{ conference.id }}">
+        {% assign ccf_rank = site.data.security_ccf.ranks[conference.id] | default: 'NA' %}
+        <article class="extra-venue accent-{{ conference.theme }}" data-extra-conf="{{ conference.id }}" data-ccf-rank="{{ ccf_rank }}">
           <div class="extra-top"><span class="extra-category">{{ conference.label | escape }}</span><span class="extra-edition">{{ conference.year }}</span></div>
           <h3>{{ conference.short | escape }}</h3>
+          <span class="rank-sigil" data-rank="{{ ccf_rank }}">{% if ccf_rank != 'NA' %}CCF {{ ccf_rank }}{% else %}NOT MAPPED{% endif %}</span>
           <p class="extra-venue-name">{{ conference.name | escape }}</p>
           <div class="extra-clock" data-card-count="{{ conference.id }}">Checking countdown…</div>
           <div class="extra-milestone" data-card-label="{{ conference.id }}"></div>
@@ -131,22 +156,43 @@ description: "Live paper submission and abstract registration deadlines for IEEE
             </optgroup>
           </select>
         </label>
+        <label class="toolbar-select">CCF grade
+          <select id="rank-filter" aria-label="Filter by CCF recommended conference grade">
+            <option value="all">All CCF grades</option><option value="A">CCF A</option><option value="B">CCF B</option><option value="C">CCF C</option><option value="NA">Not mapped</option>
+          </select>
+        </label>
+        <label class="toolbar-select">Research area
+          <select id="track-filter" aria-label="Filter by research area">
+            <option value="all">All research areas</option>
+            <option value="systems">Systems &amp; Security</option><option value="crypto">Cryptography</option><option value="hardware">Hardware Security</option><option value="privacy">Privacy</option><option value="forensics">Digital Forensics</option><option value="other">Other</option>
+          </select>
+        </label>
         <label class="toolbar-select">Time zone
-          <select id="zone-select" aria-label="Deadline time zone"><option value="aoe" selected>AoE (UTC−12)</option><option value="local">My local time</option></select>
+          <select id="zone-select" aria-label="Deadline time zone"><option value="aoe" selected>Original / AoE</option><option value="local">My local time</option></select>
         </label>
         <label class="control-check"><input type="checkbox" id="paper-only"><span>Paper only</span></label>
         <label class="control-check"><input type="checkbox" id="show-past"><span>Show past</span></label>
       </div>
+      <div class="ops-board-head">
+        <div class="ops-board-caption"><span id="ops-filter-count">0</span> matching milestones · filterable timeline and full table</div>
+        <div class="ops-view-switch" role="group" aria-label="Timeline or table view">
+          <button type="button" id="view-timeline" aria-pressed="true">◉ Timeline</button>
+          <button type="button" id="view-table" aria-pressed="false">▦ Table</button>
+        </div>
+      </div>
+      <div class="ops-timeline-legend" aria-label="Source reliability legend"><span>Official-checked CFP</span><span>Community-tracked / confirm with organizers</span></div>
+      <div class="ops-timeline" id="ops-timeline" aria-label="Chronological security conference submission timeline"></div>
+      <p class="ops-filters-note">CCF grades follow the published catalogue; imported deadline timestamps may use individual event time zones. Always verify the organizers' CFP before submission.</p>
       <p class="table-scroll-hint"><span aria-hidden="true">↔</span> Swipe horizontally to see full timestamps and calendar actions</p>
-      <div class="table-shell" role="region" aria-label="Scrollable official deadline timeline" tabindex="0">
+      <div class="table-shell" id="deadline-table-shell" role="region" aria-label="Scrollable official deadline table" tabindex="0" hidden>
         <table class="deadline-table">
           <thead><tr><th>Conference</th><th>Cycle / Milestone</th><th>Reported deadline</th><th>Time remaining</th><th>Actions</th></tr></thead>
           <tbody id="deadline-rows">
             {% assign ordered_events = site.data.security_deadlines.events | sort: 'iso_utc' %}
             {% for event in ordered_events %}
               {% assign venue = site.data.security_deadlines.conferences | where: "id", event.conf | first %}
-              <tr data-event-id="{{ event.id }}" data-conf="{{ event.conf }}" data-kind="{{ event.kind }}" data-utc="{{ event.iso_utc }}" data-source="official" data-year="{{ venue.year }}" data-original="{{ event.local_date }} 23:59:59" data-zone-label="AoE (UTC−12)" data-search="{{ venue.short | escape }} {{ venue.name | escape }} {{ event.cycle | escape }} {{ event.label | escape }}">
-                <td class="venue-name"><strong>{{ venue.short | escape }}</strong><small>{{ venue.year }}</small></td>
+              <tr data-event-id="{{ event.id }}" data-conf="{{ event.conf }}" data-kind="{{ event.kind }}" data-rank="{{ site.data.security_ccf.ranks[event.conf] | default: 'NA' }}" data-utc="{{ event.iso_utc }}" data-source="official" data-year="{{ venue.year }}" data-original="{{ event.local_date }} 23:59:59" data-zone-label="AoE (UTC−12)" data-search="{{ venue.short | escape }} {{ venue.name | escape }} {{ event.cycle | escape }} {{ event.label | escape }}">
+                <td class="venue-name"><strong>{{ venue.short | escape }}</strong><small>{{ venue.year }}</small><span class="rank-small" data-rank="{{ site.data.security_ccf.ranks[event.conf] | default: 'NA' }}">{% assign this_ccf = site.data.security_ccf.ranks[event.conf] | default: 'NA' %}{% if this_ccf == 'NA' %}Not mapped{% else %}CCF {{ this_ccf }}{% endif %}</span></td>
                 <td><strong class="cycle-text">{{ event.cycle | escape }}</strong><small>{{ event.label | escape }}</small></td>
                 <td><time class="date-time" datetime="{{ event.iso_utc }}" data-display-date="{{ event.iso_utc }}">{{ event.local_date }} · 23:59:59 AoE</time><small class="tz-hint">UTC−12</small></td>
                 <td><span class="remaining" data-remain="{{ event.id }}">Calculating…</span></td>
@@ -162,8 +208,8 @@ description: "Live paper submission and abstract registration deadlines for IEEE
             {% for event in imported_events %}
               {% assign venue = site.data.security_deadlines_auto.conferences | where: "id", event.conf | first %}
               {% if venue %}
-              <tr data-event-id="{{ event.id | escape }}" data-conf="{{ event.conf | escape }}" data-kind="{{ event.kind | escape }}" data-utc="{{ event.iso_utc }}" data-source="community" data-year="{{ event.year }}" data-original="{{ event.original | escape }}" data-zone-label="{{ event.zone_label | escape }}" data-search="{{ venue.short | escape }} {{ venue.name | escape }} {{ event.cycle | escape }} {{ event.label | escape }} {{ venue.label | escape }}">
-                <td class="venue-name"><strong>{{ venue.short | escape }}</strong><small>{{ event.year }}</small></td>
+              <tr data-event-id="{{ event.id | escape }}" data-conf="{{ event.conf | escape }}" data-kind="{{ event.kind | escape }}" data-rank="{{ site.data.security_ccf.ranks[event.conf] | default: 'NA' }}" data-utc="{{ event.iso_utc }}" data-source="community" data-year="{{ event.year }}" data-original="{{ event.original | escape }}" data-zone-label="{{ event.zone_label | escape }}" data-search="{{ venue.short | escape }} {{ venue.name | escape }} {{ event.cycle | escape }} {{ event.label | escape }} {{ venue.label | escape }}">
+                <td class="venue-name"><strong>{{ venue.short | escape }}</strong><small>{{ event.year }}</small><span class="rank-small" data-rank="{{ site.data.security_ccf.ranks[event.conf] | default: 'NA' }}">{% assign this_ccf = site.data.security_ccf.ranks[event.conf] | default: 'NA' %}{% if this_ccf == 'NA' %}Not mapped{% else %}CCF {{ this_ccf }}{% endif %}</span></td>
                 <td><strong class="cycle-text">{{ event.cycle | escape }}</strong><small>{{ event.label | escape }}</small><small class="source-community">Community listing · check CFP</small></td>
                 <td><time class="date-time" datetime="{{ event.iso_utc }}" data-display-date="{{ event.iso_utc }}">{{ event.original | escape }} {{ event.zone_label | escape }}</time><small class="tz-hint">{{ event.zone_label | escape }}</small></td>
                 <td><span class="remaining" data-remain="{{ event.id | escape }}">Calculating…</span></td>
