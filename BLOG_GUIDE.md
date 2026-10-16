@@ -1,35 +1,46 @@
-# Publishing a blog post
+# Blog content synchronization
 
-Your blog lives at `/blog/` on your GitHub Pages website.
+The academic website at https://zhouzedong.top/blog/ **automatically mirrors** the
+standalone research blog at https://blog.zhouzedong.top/.
 
-## Create a post
+## Where to write
 
-1. On GitHub, open `_posts/` and add a new Markdown file named `YYYY-MM-DD-short-title.md`.
-2. Copy the structure from `_drafts/post-draft.md` and replace all placeholder text.
-3. Use a valid YAML front matter block such as:
+**Only edit the canonical repository:**
+https://github.com/2350082187zhou-ux/research-blog
 
-```yaml
----
-layout: single
-title: "My Research Note"
-date: 2026-10-15
-excerpt: "A short, accurate summary."
-categories:
-  - Research Notes
-tags:
-  - Linux
-  - Storage
----
-```
+1. Add a Markdown post under the canonical repository's `_posts/` directory,
+   named `YYYY-MM-DD-short-title.md`.
+2. Include front matter (title, date, excerpt, optional categories/tags).
+3. Commit changes to the `main` branch of `research-blog`.
+4. The independent blog builds on the push.
+5. The academic site automatically pulls the same homepage, posts, and dedicated
+   blog visuals at its hourly deployment. The scheduled update can be delayed by
+   GitHub Actions; to refresh immediately, manually run the academic site's
+   "Deploy Academic Pages template site to Pages" workflow.
 
-4. Write in Markdown. Use fenced code blocks for commands and cite sources/credit images where appropriate.
-5. Commit the Markdown file to the `master` branch. The existing GitHub Actions workflow automatically builds and deploys the website.
+**Do not author or edit files under this academic repository's `_posts/`.**
+During every academic-site build, the canonical blog's posts replace the posts
+from this academic checkout. Source files in this academic Git repository are
+unchanged by the mirror step; only its rendered site is updated.
 
-New posts receive URLs of the form `/blog/YYYY/MM/DD/short-title/` and appear automatically on `/blog/` in reverse chronological order.
+## Site architecture
 
-## Editing and drafts
+- Canonical blog: `research-blog` (branch `main`), deployed separately at
+  `blog.zhouzedong.top`.
+- Academic site: `2350082187zhou-ux.github.io` (branch `master`), deployed
+  at `zhouzedong.top`.
+- Academic site's `scripts/sync_research_blog.py` fetches the canonical
+  `index.md`, article posts and blog-specific visual assets before each build.
+- Both academic deployment workflows run the mirror step. The regular academic
+  workflow additionally runs approximately once per hour.
+- The academic site retains its own `/blog/` URL and navigation. The article
+  permalinks differ by site, but the rendered article source is shared.
+- The conference deadline database is owned by the **academic website**;
+  the independent blog imports the same data during its own deployment.
 
-- To revise an article, edit the original Markdown file and commit.
-- Keep unpublished notes in `_drafts/`; they are not published in the normal site build.
-- Do not put passwords, tokens, private data, or unpublished sensitive research results in the public repository.
-- The original Academic Pages template sample blog posts have been moved to `_archived_blog_examples/` for safekeeping.
+For images used within individual posts, put them in `assets/blog/` or
+`images/blog/` in the canonical repository and use root-relative URLs in
+Markdown. The mirror script copies those optional folders as well.
+
+Never publish passwords, credentials, confidential files or unpublished
+sensitive experiment results in either public repository.
