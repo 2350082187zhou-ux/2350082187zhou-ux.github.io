@@ -18,6 +18,11 @@
               <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
             </li>
           {% endfor %}
+          <li class="masthead__menu-item persist site-lang-item">
+            <label class="site-lang-picker" aria-label="Website language">🌐 <select data-site-language aria-label="Website language">
+              <option value="en">English</option><option value="zh">中文</option><option value="fr">Français</option><option value="de">Deutsch</option>
+            </select></label>
+          </li>
           <li id="theme-toggle" class="masthead__menu-item persist tail">
             <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
           </li>
