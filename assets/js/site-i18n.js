@@ -83,7 +83,11 @@
       fr:`<em>Projet de recherche et poster ; une référence bibliographique sera ajoutée lorsqu’elle sera disponible.</em>`,
       de:`<em>Forschungs- und Posterprojekt; eine zitierfähige Publikation wird ergänzt, sobald sie verfügbar ist.</em>`
     },
-    '#selected-research-project ~ p': {},
+    '#when-ai-agents-go-rogue-who-protects-your-files + p + p + p': {
+      zh:'有关我的研究兴趣和项目详情，请参阅<a href="/research/">研究页面</a>。',
+      fr:'Consultez la <a href="/research/">page Recherche</a> pour en savoir plus sur mes travaux et projets.',
+      de:'Weitere Informationen zu meinen Interessen und Projekten finden Sie auf meiner <a href="/research/">Forschungsseite</a>.'
+    },
     '#publications': {zh:'学术成果',fr:'Publications',de:'Publikationen'},
     '#publications + p': {
       zh:`我的论文与预印本涉及高效三维重建、电池健康预测、视觉惯性 SLAM 和电力需求预测。完整论文列表、引用信息及代码链接请见<a href="/publications/">学术论文页面</a>。`,
@@ -153,6 +157,27 @@
       de:'© 2026 Zedong Zhou · Linux, Sicherheit und offene Forschung'
     }
   };
+  /* Translate remaining static blog cards and project-method summaries, while
+     keeping official conference names, source CFP data and diagrams canonical. */
+  Object.assign(blog,{
+    '.channel-card.blue .channel-text strong':{zh:'AI 智能体安全',fr:'Sécurité des agents d’IA',de:'KI-Agentensicherheit'},
+    '.channel-card:not(.green):not(.blue):not(.purple) .channel-text strong':{zh:'存储安全',fr:'Sécurité du stockage',de:'Speichersicherheit'},
+    '.channel-card.purple .channel-text strong':{zh:'研究笔记',fr:'Notes de recherche',de:'Forschungsnotizen'},
+    '.feature-overline':{zh:'● 重点研究 · 系统安全',fr:'● ÉTUDE À LA UNE · SÉCURITÉ DES SYSTÈMES',de:'● SCHWERPUNKTFORSCHUNG · SYSTEMSICHERHEIT'},
+    '.feature-methods > div:nth-child(1) strong':{zh:'权限与智能体',fr:'Privilèges et agents',de:'Berechtigungen und Agenten'},
+    '.feature-methods > div:nth-child(1) small':{zh:'当智能体具有 root 权限时，会发生什么？',fr:'Que se passe-t-il avec les privilèges root ?',de:'Was ändert sich bei Root-Rechten?'},
+    '.feature-methods > div:nth-child(2) strong':{zh:'内核安全策略',fr:'Politiques du noyau',de:'Kernel-Richtlinien'},
+    '.feature-methods > div:nth-child(2) small':{zh:'LSM、安全策略、AppArmor 和 eBPF 钩子。',fr:'Application des politiques LSM, AppArmor et hooks eBPF.',de:'LSM-Durchsetzung, AppArmor und eBPF-Hooks.'},
+    '.feature-methods > div:nth-child(3) strong':{zh:'I/O 可观测性',fr:'Observabilité des E/S',de:'I/O-Beobachtbarkeit'},
+    '.feature-methods > div:nth-child(3) small':{zh:'文件操作与块设备跟踪。',fr:'Opérations de fichiers et traçage des blocs.',de:'Dateizugriffe und Block-I/O-Traces.'},
+    '.feature-methods > div:nth-child(4) strong':{zh:'信任边界',fr:'Frontières de confiance',de:'Vertrauensgrenzen'},
+    '.feature-methods > div:nth-child(4) small':{zh:'将主机控制与数据完整性保护分离。',fr:'Séparer le contrôle de l’hôte de l’intégrité des données.',de:'Host-Steuerung von Datenintegrität trennen.'},
+    '.blog-ddl-disclaimer':{
+      zh:'CCF 会议等级参考 <a href="https://www.ccf.org.cn/Academic_Evaluation/NIS/" target="_blank" rel="noopener noreferrer">CCF 网络与信息安全目录 ↗</a>；它与截稿日期真实性验证是两回事。第三方社区数据仅供参考，请务必以官方 CFP 为准。完整页面包含 CCF A/B/C 筛选、研究方向分类、Timeline 时间轴和日历提醒。',
+      fr:'Les catégories CCF proviennent du <a href="https://www.ccf.org.cn/Academic_Evaluation/NIS/" target="_blank" rel="noopener noreferrer">catalogue CCF ↗</a> et ne constituent pas une vérification des CFP. Les données communautaires restent provisoires : confirmez chaque date sur le site officiel. Le centre complet contient les filtres CCF, une chronologie et des rappels.',
+      de:'Die CCF-Einstufungen stammen aus dem <a href="https://www.ccf.org.cn/Academic_Evaluation/NIS/" target="_blank" rel="noopener noreferrer">CCF-Katalog ↗</a> und bestätigen keine Einreichungsfrist. Angaben aus der Community sind vorläufig; prüfen Sie stets den offiziellen CFP. Die Vollansicht bietet CCF-Filter, Zeitachse und Kalenderexport.'
+    }
+  });
   const blogAttrs = {
     '#blog-search': {
       zh:{placeholder:'搜索文章…','aria-label':'搜索博客文章'},
