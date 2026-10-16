@@ -11,9 +11,9 @@ redirect_from:
 
 ## About Me
 
-I received my Bachelor's degree in **Electrical Engineering and Automation** from **Anhui Polytechnic University**, Wuhu, China, in 2025. I am currently pursuing a **Ph.D. in Computer Science** at the **University of Nevada, Reno (UNR)**, USA, under the supervision of [Dr. Niusen Chen](https://www.unr.edu/cse/people/niusen-chen).
+Zedong Zhou received his Bachelor's degree in **Electrical Engineering and Automation** from **Anhui Polytechnic University**, Wuhu, China, in 2025. He is currently pursuing a **Ph.D. in Computer Science** at the **University of Nevada, Reno (UNR)**, USA, under the supervision of [Dr. Niusen Chen](https://www.unr.edu/cse/people/niusen-chen).
 
-My research interests include **computer systems security, operating systems, storage systems, AI agent security, and hardware security**. My current research investigates the security risks posed by AI agents with elevated privileges, evaluates host-side protection mechanisms at the file-system, kernel, and block-device layers, and explores stronger security boundaries for protecting sensitive data against unauthorized modification and deletion.
+His research interests include **computer systems security, operating systems, storage systems, AI agent security, and hardware security**. His current research investigates the security risks posed by AI agents with elevated privileges, evaluates host-side protection mechanisms at the file-system, kernel, and block-device layers, and explores stronger security boundaries for protecting sensitive data against unauthorized modification and deletion.
 
 <div class="security-deadline-entry">
   <span class="security-deadline-entry__symbol" aria-hidden="true">◷</span>
