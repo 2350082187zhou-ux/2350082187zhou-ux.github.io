@@ -1,8 +1,3 @@
-/* Real visit origins: academic homepage only. The cyber blog is untouched.
- * The Cloudflare Worker counts anonymous pageviews automatically.
- * Do not place credentials or the VISITOR_HASH_SECRET in this public file.
- */
-window.ZEDONG_VISITOR_API =
-  window.location.pathname === "/"
-    ? "https://dry-wildflower-8d08.zhouzedongunr.workers.dev"
-    : "";
+/* Site-specific geographic pageview statistics. */
+window.ZEDONG_VISITOR_API = "https://dry-wildflower-8d08.zhouzedongunr.workers.dev";
+window.ZEDONG_VISITOR_SITE = /^\/blog(?:\/|$)/.test(window.location.pathname) ? "blog" : (window.location.pathname === "/" ? "home" : "");
