@@ -29,7 +29,8 @@
  continents.map(d=>'<path class="geo-land" d="'+d+'"/>').join('')+
  '<g data-geo-dots></g><text x="26" y="446" font-family="monospace" font-size="12" fill="#398ca5">APPROXIMATE GEOIP · NO PERSONAL IP ADDRESS DISPLAY</text></svg>';
  const endpoint=typeof window.ZEDONG_VISITOR_API==='string'?window.ZEDONG_VISITOR_API.trim().replace(/\/+$/,''):'';
- const enabled=/^https:\/\/[a-z0-9.-]+(:[0-9]+)?$/i.test(endpoint);
+ const site=window.ZEDONG_VISITOR_SITE;
+ const enabled=/^https:\/\/[a-z0-9.-]+(:[0-9]+)?$/i.test(endpoint) && (site==='home'||site==='blog');
  const views=Array.from(document.querySelectorAll('[data-visitor-geo]'));
  if(!views.length)return;
  const homeAutomatic=views.some(view=>view.classList.contains('home-visitor-activity'));
@@ -62,7 +63,7 @@
      v.querySelectorAll('[data-geo-t]').forEach(el=>{const key=el.dataset.geoT;if(t[key]){if(key==='heading')el.innerHTML=t[key];else el.textContent=t[key];}});
    }
    const n=v.querySelector('[data-geo-status]');if(n)n.textContent=t[state]||t.pending;
-   const b=v.querySelector('[data-geo-optin]');if(b){b.hidden=homeAutomatic||!enabled;b.textContent=consented()?t.stop:t.share;}
+   const b=v.querySelector('[data-geo-optin]');if(b)b.remove();
    if(data){
      const pointCount=Array.isArray(data.points)?data.points.length:0;
      for(const [name,val] of Object.entries({total:data.total||0,countries:data.countries||0,points:pointCount})){
@@ -75,7 +76,7 @@
    if(!enabled)return;
    status('loading');
    try{
-     const response=await fetch(endpoint+'/stats',{mode:'cors',credentials:'omit',cache:'no-store'});
+     const response=await fetch(endpoint+'/stats?site='+site,{mode:'cors',credentials:'omit',cache:'no-store'});
      if(!response.ok)throw Error('HTTP '+response.status);
      const got=await response.json();
      if(!Array.isArray(got.points))throw Error('Invalid map data');
@@ -84,47 +85,21 @@
    }catch(_){status('error');}
    paint();
  }
- async function collect(){
-   if(!enabled||!consented())return;
-   try{
-     const r=await fetch(endpoint+'/collect',{method:'POST',mode:'cors',credentials:'omit',headers:{'Content-Type':'text/plain'},body:'consent=1'});
-     if(r.ok)await refresh();
-   }catch(_){status('error');paint();}
+ async function recordPageView(){
+  if(!enabled)return;
+  const optedOut=navigator.globalPrivacyControl===true||navigator.doNotTrack==='1'||window.doNotTrack==='1';
+  if(!optedOut){
+   try{await fetch(endpoint+'/collect?site='+site,{method:'POST',mode:'cors',credentials:'omit',cache:'no-store',headers:{'Content-Type':'text/plain'},body:'pageview=1',keepalive:true});}
+   catch(_){/* Browser may block analytics. */}
+  }
+  await refresh();
  }
- async function recordHomepageView(){
-   if(!enabled||!homeAutomatic)return;
-   // Respect browser-wide opt-out preferences.
-   const optedOut=navigator.globalPrivacyControl===true ||
-     navigator.doNotTrack==='1' || window.doNotTrack==='1';
-   if(optedOut){await refresh();return;}
-   status('loading');
-   try{
-     const reply=await fetch(endpoint+'/collect',{
-       method:'POST',mode:'cors',credentials:'omit',cache:'no-store',
-       headers:{'Content-Type':'text/plain'},
-       body:'pageview=1',keepalive:true
-     });
-     if(!reply.ok)throw new Error('Request failed: '+reply.status);
-   }catch(_){/* A privacy extension or network might block analytics. */}
-   await refresh();
- }
- for(const v of views){
-   plot(v,null);
-   const b=v.querySelector('[data-geo-optin]');
-   if(homeAutomatic){
-     if(b)b.remove();
-   }else if(b){
-     b.addEventListener('click',async()=>{
-       const agree=!consented();
-       try{if(agree)localStorage.setItem('zz_geo_consent','yes');else localStorage.removeItem('zz_geo_consent')}catch(_){}
-       paint();if(agree)await collect();
-     });
-   }
- }
+ for(const v of views){plot(v,null);const b=v.querySelector('[data-geo-optin]');if(b)b.remove();}
  document.addEventListener('zedong:language-changed',paint);
  paint();
  if(enabled){
-   if(homeAutomatic)recordHomepageView();
-   else refresh().then(()=>{if(consented())collect();});
+   recordPageView();
+   window.setInterval(()=>{if(!document.hidden)refresh();},60000);
+   document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
  }
 })();
