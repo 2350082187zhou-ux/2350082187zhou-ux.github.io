@@ -109,6 +109,6 @@ redirect_from:
       <span class="visitor-geo-status" data-geo-status role="status">Loading geographic pageview statistics…</span>
       
     </div>
-    <p class="visitor-geo-privacy" data-geo-t="privacy">Opening this homepage automatically counts page views by country and approximate region. No cookies, full IP addresses, precise GPS locations or persistent visitor IDs are stored. Records are retained for up to 90 days.</p>
+    <p class="visitor-geo-privacy" data-geo-t="privacy">Opening this homepage automatically counts page views grouped by country. The globe displays country-level totals. No cookies, full IP addresses, precise GPS locations or persistent visitor IDs are stored. Records are retained for up to 90 days.</p>
   </div>
 </section>
