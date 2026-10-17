@@ -1,35 +1,28 @@
-# Homepage visitor origins — automatic, no button
+# Independent homepage and blog visitor maps
 
-GitHub Pages loads `assets/js/visitor-geo.js` on the academic homepage.
-When opened, it automatically submits `pageview=1` to the existing Cloudflare
-Worker `dry-wildflower-8d08` and loads the public `/stats` API.
-The cyber blog remains unchanged and does not send automatic pageviews.
+Homepage: `https://zhouzedong.top/` → `site=home` → existing D1 table `geo_visits`.
+Blog: `https://zhouzedong.top/blog/` → `site=blog` → new table `geo_visits_blog`.
+Maps refresh statistics every 60 seconds while visible and when revisiting an inactive browser tab. Refresh polling does not add pageviews. Each actual load attempts one view, respecting browser Do Not Track and Global Privacy Control preferences. No full IP address or cookie is stored; counts represent pageviews, not unique people.
 
-## Privacy and what the numbers mean
+## STEP 1: One-time D1 migration (BEFORE worker deployment)
 
-- The Worker receives approximate IP-based Cloudflare geolocation metadata,
-  but it never reads, stores, or exposes a full IP address, User-Agent or GPS.
-- Only UTC day, ISO country code, latitude/longitude rounded to 2 degrees and
-  a freshly generated random row ID are written to D1.
-- These rows represent **page views**, not deduplicated or unique people.
-  Reloading the homepage increments the count again.
-- No cookies or durable visitor identifiers are used.
-- Pageview requests are skipped when the browser advertises Do Not Track or
-  Global Privacy Control. Ad blockers, disabled JavaScript and network
-  restrictions can also prevent counting.
-- The world map plots real aggregate points only; no mock traffic is used.
-- Rows older than 90 days are deleted by scheduled Worker cron, and again
-  during new pageview inserts. The page discloses automatic approximate stats.
-- IP-derived location can be imprecise (VPNs/mobile providers); international
-  privacy and disclosure requirements should be reviewed for this use.
+In Cloudflare dashboard open Workers & Pages → D1 → zz-visitor-map → Console, and execute:
 
-## Update the Worker already created on Cloudflare
+```sql
+CREATE TABLE IF NOT EXISTS geo_visits_blog (fingerprint TEXT NOT NULL, day TEXT NOT NULL, country TEXT NOT NULL, lat REAL NOT NULL, lon REAL NOT NULL);
+CREATE INDEX IF NOT EXISTS idx_geo_visits_blog_day ON geo_visits_blog(day);
+```
 
-Cloudflare account has Worker `dry-wildflower-8d08`, binding `DB` to
-D1 database `zz-visitor-map`, and an existing D1 table `geo_visits`.
-**No database schema migration is needed.**
+Alternatively, in Windows PowerShell with Wrangler authenticated:
 
-In Windows PowerShell:
+```powershell
+npx.cmd --yes wrangler@latest d1 execute zz-visitor-map --remote --command "CREATE TABLE IF NOT EXISTS geo_visits_blog (fingerprint TEXT NOT NULL, day TEXT NOT NULL, country TEXT NOT NULL, lat REAL NOT NULL, lon REAL NOT NULL)"
+npx.cmd --yes wrangler@latest d1 execute zz-visitor-map --remote --command "CREATE INDEX IF NOT EXISTS idx_geo_visits_blog_day ON geo_visits_blog(day)"
+```
+
+Do not drop or change existing `geo_visits`; historical records remain in the homepage counter. Blog begins at zero because past visits cannot be separated retroactively.
+
+## STEP 2: Redeploy updated Worker
 
 ```powershell
 Set-Location "$env:USERPROFILE\zz-visitor-worker"
@@ -40,24 +33,15 @@ node --check .\visitor-map-worker.js
 npx.cmd --yes wrangler@latest deploy --config .\wrangler.toml
 ```
 
-The website client should be deployed before / alongside the new Worker.
-While transitioning, Worker accepts the old `consent=1` event payload as well.
+Worker is `dry-wildflower-8d08`, D1 binding `DB` → `zz-visitor-map`. Updating GitHub does not itself deploy Cloudflare Worker.
 
-## Verification
+## STEP 3: Verify
 
 ```powershell
-$api = "https://dry-wildflower-8d08.zhouzedongunr.workers.dev"
-Invoke-RestMethod "$api/stats" -Headers @{Origin="https://zhouzedong.top"}
+$api="https://dry-wildflower-8d08.zhouzedongunr.workers.dev"
+$h=@{Origin="https://zhouzedong.top"}
+Invoke-RestMethod "$api/stats?site=home" -Headers $h
+Invoke-RestMethod "$api/stats?site=blog" -Headers $h
 ```
 
-Visit `https://zhouzedong.top/` once from a browser without DNT enabled and
-with Cloudflare geo metadata available, then run the request again. The
-`total` field should increment by one; `countries` and `points` represent
-approximate locations. The website itself shows the same data.
-
-`VISITOR_HASH_SECRET` is no longer used by the Worker. The previous secret
-was shared in a transcript; remove it from Worker settings once this version is
-deployed, or rotate if used elsewhere. Never paste an active secret into chat.
-
-Cloudflare Worker CORS Origin checks limit ordinary browsers, but are not a
-strong defense against determined script-origin spoofing or artificial traffic.
+Visit the homepage once, then blog once, comparing each individual total before/after. Browser extensions, absent Cloudflare geography or DNT/GPC can prevent recording; reloading a page counts another pageview. D1 rows older than 90 days are cleaned by daily cron and on new records. CORS alone is not sufficient to prevent forged requests, so counts are approximate. Review visitor privacy notice and applicable privacy law before enabling this feature.
