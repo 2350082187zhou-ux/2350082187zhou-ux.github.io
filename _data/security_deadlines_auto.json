@@ -64,6 +64,20 @@
       "source": "community"
     },
     {
+      "id": "dimva",
+      "short": "DIMVA",
+      "name": "The Conference on Detection of Intrusions and Malware & Vulnerability Assessment",
+      "year": 2027,
+      "location": "Enschede, The Netherlands",
+      "dates": "June 30 - July 2",
+      "label": "Malware & Intrusion",
+      "theme": "orange",
+      "tier": "additional",
+      "official": "https://www.dimva.org/dimva2027/",
+      "note": "Abstract registration required (1 week before deadline AoE).",
+      "source": "community"
+    },
+    {
       "id": "eurosp",
       "short": "Euro S&P",
       "name": "IEEE European Symposium on Security and Privacy",
@@ -313,6 +327,21 @@
       "official": "https://eurosp2027.ieee-security.org/"
     },
     {
+      "id": "auto-dimva-2027-2026-12-10-1",
+      "conf": "dimva",
+      "year": 2027,
+      "cycle": "Cycle 1",
+      "kind": "paper",
+      "label": "Full paper submission · community listed",
+      "iso_utc": "2026-12-11T11:59:00Z",
+      "local_date": "2026-12-10",
+      "local_time": "23:59",
+      "zone_label": "AoE (UTC−12)",
+      "original": "2026-12-10 23:59",
+      "source": "community",
+      "official": "https://www.dimva.org/dimva2027/"
+    },
+    {
       "id": "auto-asiaccs-2027-2026-12-11-1",
       "conf": "asiaccs",
       "year": 2027,
@@ -371,6 +400,21 @@
       "original": "2027-02-16 23:59",
       "source": "community",
       "official": "https://secrypt.scitevents.org"
+    },
+    {
+      "id": "auto-dimva-2027-2027-02-18-2",
+      "conf": "dimva",
+      "year": 2027,
+      "cycle": "Cycle 2",
+      "kind": "paper",
+      "label": "Full paper submission · community listed",
+      "iso_utc": "2027-02-19T11:59:00Z",
+      "local_date": "2027-02-18",
+      "local_time": "23:59",
+      "zone_label": "AoE (UTC−12)",
+      "original": "2027-02-18 23:59",
+      "source": "community",
+      "official": "https://www.dimva.org/dimva2027/"
     },
     {
       "id": "auto-pets-2027-2027-02-28-2",
