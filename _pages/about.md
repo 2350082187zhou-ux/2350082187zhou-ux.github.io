@@ -25,6 +25,8 @@ redirect_from:
 
 <p data-home-i18n="anhuiDegree"><strong>Bachelor's Degree in Electrical Engineering and Automation</strong><br>Wuhu, Anhui, China<br><em>September 2021 – June 20, 2025</em></p>
 
+<p data-home-i18n="anhuiMinor"><strong>Minor Degree in English Literature</strong><br>Anhui Polytechnic University · Wuhu, Anhui, China<br><em>2022 – 2025</em></p>
+
 <h2 id="undergraduate-research-background" data-home-i18n="undergradTitle">Undergraduate Research Background</h2>
 
 <p data-home-i18n="undergradDesc">My undergraduate research focused on <strong>applied intelligent algorithms</strong>, with work in <strong>visual–inertial SLAM and mapping</strong>, battery health prediction, and energy forecasting. I also developed familiarity with <strong>computer vision, 3D reconstruction</strong>, and the concepts and applications of <strong>large language models (LLMs)</strong>. These interests complement my current Ph.D. research in systems and AI agent security.</p>
