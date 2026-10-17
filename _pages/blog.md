@@ -198,9 +198,9 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
   </div>
   <div class="visitor-geo-bottom">
     <span class="visitor-geo-status" data-geo-status role="status">Visitor analytics are not connected yet. No visitor locations have been recorded by this feature.</span>
-    <button type="button" class="visitor-geo-optin" data-geo-optin hidden>Share my approximate region</button>
+
   </div>
-  <p class="visitor-geo-privacy" data-geo-t="privacy">Opt-in only. No full IP addresses or GPS coordinates are saved or shown. Anonymous approximate locations are kept for up to 90 days.</p>
+  <p class="visitor-geo-privacy" data-geo-t="privacy">Page views are recorded automatically unless browser privacy settings block them. No full IP addresses or GPS coordinates are saved or shown. Anonymous approximate locations are kept for up to 90 days.</p>
  </div>
 </section>
 
