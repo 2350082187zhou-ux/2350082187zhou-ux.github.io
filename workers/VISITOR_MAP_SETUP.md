@@ -1,4 +1,6 @@
-# Independent homepage and blog visitor maps
+# Independent country-by-country pageview dashboards
+
+Both dashboards use a 3D globe on the left and a country-by-country pageview count list on the right. Exact coordinates are not shown. The globe uses one aggregate marker per country rather than individual geographical records.
 
 Homepage: `https://zhouzedong.top/` → `site=home` → existing D1 table `geo_visits`.
 Blog: `https://zhouzedong.top/blog/` → `site=blog` → new table `geo_visits_blog`.
@@ -44,4 +46,8 @@ Invoke-RestMethod "$api/stats?site=home" -Headers $h
 Invoke-RestMethod "$api/stats?site=blog" -Headers $h
 ```
 
-Visit the homepage once, then blog once, comparing each individual total before/after. Browser extensions, absent Cloudflare geography or DNT/GPC can prevent recording; reloading a page counts another pageview. D1 rows older than 90 days are cleaned by daily cron and on new records. CORS alone is not sufficient to prevent forged requests, so counts are approximate. Review visitor privacy notice and applicable privacy law before enabling this feature.
+After deploying the new Worker, each stats endpoint includes `countryCounts` with country ISO code, complete `count`, and aggregated coarse coordinates used only to orient the globe. Country counts come from `SELECT country, COUNT(*) ... GROUP BY country` over all 90-day rows, rather than the first 500 region markers. The existing D1 data and tables remain unchanged except for creating the blog table if it does not yet exist.
+
+Visit the homepage once, then blog once, comparing each individual total before/after. The `countryCounts` values should sum to the respective `total`. Check that `site=home` and `site=blog` have independent counts.
+
+**Deployment prerequisite:** GitHub Pages updates do not deploy Worker code. Create `geo_visits_blog` before deploying the updated Worker. Without the Worker change, the page temporarily aggregates the existing limited `points` response, which may become incomplete at 500 region groups. Browser extensions, absent Cloudflare geography or DNT/GPC can prevent recording; reloading a page counts another pageview. D1 rows older than 90 days are cleaned by daily cron and on new records. CORS alone is not sufficient to prevent forged requests, so counts are approximate. Review visitor privacy notice and applicable privacy law before enabling this feature.
