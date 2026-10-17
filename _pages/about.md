@@ -79,7 +79,7 @@ redirect_from:
     <div>
       <span class="visitor-geo-kicker" data-geo-t="eyebrow">RESEARCH WEBSITE ACTIVITY</span>
       <h2 id="global-visitors-heading" data-geo-t="heading">Website Activity <span>&amp; Visitor Origins</span></h2>
-      <p data-geo-t="description">An overview of where readers access my academic website. The figures count page views by country and approximate region, not unique visitors.</p>
+      <p data-geo-t="description">An overview of where readers access my academic website. The figures show page views grouped by country, not unique visitors.</p>
     </div>
     <span class="visitor-geo-badge" data-geo-t="badge">VISITOR GEOGRAPHY</span>
   </div>
@@ -87,22 +87,22 @@ redirect_from:
     <div class="visitor-geo-stats">
       <div><small data-geo-t="visits">Page views · 90 days</small><strong data-geo-stat="total">—</strong></div>
       <div><small data-geo-t="countries">Countries / regions</small><strong data-geo-stat="countries">—</strong></div>
-      <div><small data-geo-t="locations">Approximate locations</small><strong data-geo-stat="points">—</strong></div>
+      <div><small data-geo-t="locations">Top visiting country</small><strong data-geo-stat="topcountry">—</strong></div>
     </div>
     <div class="visitor-geo-split">
       <div class="visitor-geo-map">
         <div data-geo-map aria-label="Interactive 3D globe of academic website visitor origins"></div>
         <span class="visitor-geo-compass" aria-hidden="true">3D EARTH · DRAG TO ROTATE</span>
       </div>
-      <aside class="visitor-geo-origins" aria-label="Countries and approximate visitor locations">
+      <aside class="visitor-geo-origins" aria-label="Page views by visitor country">
         <div class="geo-origins-heading">
-          <span data-geo-region-title>Countries &amp; visitor regions</span>
+          <span data-geo-region-title>Page views by country</span>
           <small data-geo-region-caption>Last 90 days · page views</small>
         </div>
         <div class="geo-origins-list" data-geo-origins aria-live="polite">
-          <p class="geo-origins-empty">Loading visitor locations…</p>
+          <p class="geo-origins-empty">Loading countries…</p>
         </div>
-        <p class="geo-origins-note" data-geo-region-note>Approximate regions only, not exact addresses. Select a location to rotate the globe.</p>
+        <p class="geo-origins-note" data-geo-region-note>Counts are page views, not individual people. Select a country to orient the globe.</p>
       </aside>
     </div>
     <div class="visitor-geo-bottom">
