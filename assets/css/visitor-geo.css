@@ -60,3 +60,84 @@
 .home-visitor-activity .visitor-geo-map:before{content:"3D EARTH · DRAG TO ROTATE";position:absolute;top:12px;left:12px;color:#70ffe1;font:700 10px/1.5 ui-monospace,monospace;letter-spacing:.08em;z-index:3;pointer-events:none}
 .home-visitor-activity .geo-globe-unavailable{min-height:220px;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;background:#041827;color:#aee4f7}
 @media(max-width:600px){.home-visitor-activity .visitor-geo-map [data-geo-map]{height:240px}}
+
+/* Cybersecurity blog: globe at left, sortable country totals at right. */
+.cyber-site .visitor-geo-split{
+ display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+ background:#041827;min-height:430px;
+}
+.cyber-site .visitor-geo-split .visitor-geo-map{
+ min-width:0;position:relative;overflow:hidden;border-right:1px solid #24566b;
+ background:#041827;
+}
+.cyber-site .visitor-geo-split .visitor-geo-map [data-geo-map]{
+ width:100%;height:450px;min-height:450px;
+}
+.cyber-site .visitor-geo-split .visitor-geo-map:before{
+ content:"";display:none!important;
+}
+.cyber-site .visitor-geo-split .visitor-geo-compass{
+ left:16px;bottom:14px;top:auto;right:auto;color:#9ae5e5;
+ letter-spacing:.06em;font-size:10px;text-shadow:0 2px 6px #001;
+}
+.cyber-site .visitor-geo-origins{
+ min-width:0;display:flex;flex-direction:column;background:#061c2d;color:#d5eff7;
+}
+.cyber-site .geo-origins-heading{
+ display:flex;flex-direction:column;gap:4px;padding:18px 18px 14px;
+ border-bottom:1px solid #214f62;background:#08273a;
+}
+.cyber-site .geo-origins-heading>span{
+ font:750 15px/1.35 system-ui,sans-serif;color:#e6faff;
+}
+.cyber-site .geo-origins-heading small{
+ color:#8db8c8;font:500 11px/1.35 system-ui,sans-serif;
+}
+.cyber-site .geo-origins-list{
+ padding:10px 13px;flex:1;max-height:346px;overflow-y:auto;
+ scrollbar-width:thin;scrollbar-color:#346c7b #061c2d;
+}
+.cyber-site .geo-origin-country-button{
+ display:block;width:100%;padding:11px 8px;border:0;border-bottom:1px solid #1a4050;
+ text-align:left;background:transparent;border-radius:5px;cursor:pointer;
+}
+.cyber-site .geo-origin-country-button:hover,
+.cyber-site .geo-origin-country-button:focus-visible{
+ background:#104356;outline:2px solid #20a4a3;outline-offset:-2px;
+}
+.cyber-site .geo-origin-country-line{
+ display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:9px;
+}
+.cyber-site .geo-origin-country-name{
+ min-width:0;color:#e1f7f9;font:700 12px/1.4 system-ui,sans-serif;
+}
+.cyber-site .geo-origin-country-count{
+ background:#0b4848;color:#65f1d1;border-radius:6px;padding:3px 7px;
+ white-space:nowrap;font:700 11px/1.4 ui-monospace,monospace;
+}
+.cyber-site .geo-origin-bar{
+ display:block;width:100%;height:5px;background:#153e4e;
+ border-radius:16px;overflow:hidden;
+}
+.cyber-site .geo-origin-bar>span{
+ display:block;height:100%;background:linear-gradient(90deg,#23a69b,#75e6cc);
+ border-radius:16px;
+}
+.cyber-site .geo-origins-note{
+ margin:0!important;padding:12px 16px!important;border-top:1px solid #1c4655;
+ color:#89b1bc!important;font:450 11px/1.6 system-ui,sans-serif!important;
+}
+.cyber-site .geo-origins-empty{
+ margin:0!important;padding:24px 8px!important;color:#abcdd8!important;
+ font:500 12px/1.5 system-ui,sans-serif!important;text-align:center;
+}
+.cyber-site [data-geo-stat="topcountry"]{
+ font-size:clamp(12px,1.7vw,18px)!important;line-height:1.35!important;
+ overflow-wrap:anywhere;
+}
+@media(max-width:740px){
+ .cyber-site .visitor-geo-split{grid-template-columns:1fr}
+ .cyber-site .visitor-geo-split .visitor-geo-map{border-right:0;border-bottom:1px solid #24566b}
+ .cyber-site .visitor-geo-split .visitor-geo-map [data-geo-map]{height:360px;min-height:360px}
+ .cyber-site .geo-origins-list{max-height:300px}
+}
