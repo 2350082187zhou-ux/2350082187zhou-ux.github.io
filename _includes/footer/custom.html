@@ -8,6 +8,9 @@
 {% else %}
 <script defer src="{{ '/assets/js/site-i18n.js' | relative_url }}"></script>
 {% endif %}
+{% if page.url == '/' %}
+<script defer src="https://unpkg.com/globe.gl@2.45.0/dist/globe.gl.min.js"></script>
+{% endif %}
 <script defer src="{{ '/assets/js/visitor-geo-config.js' | relative_url }}"></script>
 <script defer src="{{ '/assets/js/visitor-geo.js' | relative_url }}"></script>
 <!-- end custom footer snippets -->
