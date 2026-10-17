@@ -182,7 +182,7 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
   <div>
    <span class="visitor-geo-kicker" data-geo-t="eyebrow">GLOBAL RESEARCH VISITOR RADAR</span>
    <h2 id="global-visitors-heading" data-geo-t="heading">Visitors Around the World <span>↗</span></h2>
-   <p data-geo-t="description">An approximate geographic distribution of visitors to my research website. Individual IP addresses are never published.</p>
+   <p data-geo-t="description">Page views to my cybersecurity blog by visitor country. Counts are not unique people.</p>
   </div>
   <span class="visitor-geo-badge" data-geo-t="badge">● PRIVACY-FIRST TELEMETRY</span>
  </div>
@@ -190,11 +190,23 @@ description: "Zedong Zhou's cybersecurity research blog: Linux kernel, eBPF, AI 
   <div class="visitor-geo-stats">
    <div><small data-geo-t="visits">Visits · 90 days</small><strong data-geo-stat="total">—</strong></div>
    <div><small data-geo-t="countries">Countries / regions</small><strong data-geo-stat="countries">—</strong></div>
-   <div><small data-geo-t="locations">Approximate locations</small><strong data-geo-stat="points">—</strong></div>
+   <div><small data-geo-t="locations">Top visiting country</small><strong data-geo-stat="topcountry">—</strong></div>
   </div>
-  <div class="visitor-geo-map">
-   <div data-geo-map aria-label="World map of approximate visitor locations"></div>
-   <span class="visitor-geo-compass" aria-hidden="true">N ↑ · GEO / IP</span>
+  <div class="visitor-geo-split">
+   <div class="visitor-geo-map">
+    <div data-geo-map aria-label="Interactive globe showing country-level blog page views"></div>
+    <span class="visitor-geo-compass" aria-hidden="true">3D EARTH · DRAG TO ROTATE</span>
+   </div>
+   <aside class="visitor-geo-origins" aria-label="Page views by visitor country">
+    <div class="geo-origins-heading">
+     <span data-geo-region-title>Page views by country</span>
+     <small data-geo-region-caption>Last 90 days · page views</small>
+    </div>
+    <div class="geo-origins-list" data-geo-origins aria-live="polite">
+     <p class="geo-origins-empty">Loading countries…</p>
+    </div>
+    <p class="geo-origins-note" data-geo-region-note>Counts are page views, not individual people. Select a country to orient the globe.</p>
+   </aside>
   </div>
   <div class="visitor-geo-bottom">
     <span class="visitor-geo-status" data-geo-status role="status">Visitor analytics are not connected yet. No visitor locations have been recorded by this feature.</span>
