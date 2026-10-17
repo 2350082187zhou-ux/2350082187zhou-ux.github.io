@@ -40,6 +40,70 @@
  const consented=()=>{try{return localStorage.getItem('zz_geo_consent')==='yes'}catch(_){return false}};
  function status(key){state=key;for(const v of views){const n=v.querySelector('[data-geo-status]');if(n)n.textContent=dict()[key]||dict().pending;}}
  const globes=new WeakMap();
+ const regionCopy={
+  en:['Countries & visitor regions','Last 90 days · page views','Approximate regions only. Select a location to rotate the globe.','Loading visitor locations…','No recorded visitor locations yet.','Visitor location service unavailable.','page views','Approx.'],
+  zh:['访客国家与地区','最近90天 · 页面浏览量','仅显示近似位置。点击地区可旋转地球。','正在加载访问地区…','暂时没有地区记录。','暂时无法获取访客地区数据。','次浏览','近似位置'],
+  ja:['訪問元の国と地域','過去90日間 · ページビュー','おおよその位置のみ。地域を選ぶと地球が回転します。','訪問地域を読み込み中…','記録された訪問地域はありません。','地域データを取得できません。','表示','おおよそ'],
+  ko:['방문 국가 및 지역','최근 90일 · 페이지 조회','대략적인 위치만 표시합니다. 지역을 선택하면 지구본이 회전합니다.','방문 위치를 불러오는 중…','기록된 방문 지역이 없습니다.','위치 데이터를 불러올 수 없습니다.','조회','대략적인 위치'],
+  fr:['Pays et régions des visiteurs','90 derniers jours · pages vues','Régions approximatives uniquement. Cliquez pour orienter le globe.','Chargement des régions…','Aucune région enregistrée.','Données de localisation indisponibles.','vues','Approx.'],
+  de:['Besucherländer und Regionen','Letzte 90 Tage · Seitenaufrufe','Nur ungefähre Regionen. Anklicken, um die Erde auszurichten.','Besuchsregionen werden geladen…','Noch keine Regionen erfasst.','Standortdaten sind nicht verfügbar.','Aufrufe','Ungefähr']
+ };
+ const regionText=()=>regionCopy[loc()]||regionCopy.en;
+ const coordinate=(n,a,b)=>Math.abs(Math.round(n))+'°'+(n>=0?a:b);
+ function renderOrigins(view,stats){
+   const host=view.querySelector('[data-geo-origins]');if(!host)return;
+   const copy=regionText();
+   const heading=view.querySelector('[data-geo-region-title]'),caption=view.querySelector('[data-geo-region-caption]'),note=view.querySelector('[data-geo-region-note]');
+   if(heading)heading.textContent=copy[0];
+   if(caption)caption.textContent=copy[1];
+   if(note)note.textContent=copy[2];
+   host.replaceChildren();
+   const raw=stats&&Array.isArray(stats.points)?stats.points:[];
+   const points=raw.map(p=>({country:String(p.country||'--').toUpperCase(),lat:Number(p.lat),lon:Number(p.lon),count:Number(p.count)}))
+      .filter(p=>/^[A-Z]{2}$/.test(p.country)&&Number.isFinite(p.lat)&&Math.abs(p.lat)<=90&&Number.isFinite(p.lon)&&Math.abs(p.lon)<=180&&Number.isFinite(p.count)&&p.count>0);
+   if(!points.length){
+     const empty=document.createElement('p');empty.className='geo-origins-empty';
+     empty.textContent=state==='error'?copy[5]:stats?copy[4]:copy[3];
+     host.appendChild(empty);return;
+   }
+   const groups=new Map();
+   for(const p of points){
+     if(!groups.has(p.country))groups.set(p.country,{count:0,points:[]});
+     const g=groups.get(p.country);g.count+=p.count;g.points.push(p);
+   }
+   const sorted=[...groups.entries()].sort((a,b)=>b[1].count-a[1].count);
+   let display;
+   try{display=new Intl.DisplayNames([loc()],{type:'region'});}catch(_){display=null;}
+   let shown=0;
+   for(const [code,group] of sorted){
+     const section=document.createElement('section');section.className='geo-origin-country';
+     const title=document.createElement('div');title.className='geo-origin-country-top';
+     const name=document.createElement('strong');name.className='geo-origin-country-name';
+     let human=code;try{human=(display&&display.of(code))||code}catch(_){}
+     name.textContent=human+' ('+code+')';
+     const total=document.createElement('span');total.className='geo-origin-country-count';
+     total.textContent=new Intl.NumberFormat(loc()).format(group.count)+' '+copy[6];
+     title.append(name,total);section.appendChild(title);
+     group.points.sort((a,b)=>b.count-a.count);
+     for(const p of group.points){
+       if(shown>=80)break;
+       const btn=document.createElement('button');btn.type='button';btn.className='geo-origin-location';
+       const pos=document.createElement('span');pos.textContent=copy[7]+' '+coordinate(p.lat,'N','S')+' · '+coordinate(p.lon,'E','W');
+       const count=document.createElement('span');count.className='geo-region-count';
+       count.textContent=new Intl.NumberFormat(loc()).format(p.count)+' ×';
+       btn.append(pos,count);
+       btn.setAttribute('aria-label',human+' '+pos.textContent+' '+count.textContent);
+       btn.addEventListener('click',()=>{
+         const map=view.querySelector('[data-geo-map]');const globe=map&&globes.get(map);
+         if(globe){globe.controls().autoRotate=false;globe.pointOfView({lat:p.lat,lng:p.lon,altitude:1.65},1100);}
+       });
+       section.appendChild(btn);shown++;
+     }
+     host.appendChild(section);
+     if(shown>=80)break;
+   }
+ }
+
  function createGlobe(view){
   if(window.ZEDONG_VISITOR_SITE!=='blog'&&window.ZEDONG_VISITOR_SITE!=='home')return null;
   if(typeof window.Globe!=='function'){
@@ -52,7 +116,7 @@
   host.innerHTML='';
   const compact=site==='home';
   const width=Math.max(260,host.clientWidth||720);
-  const height=w=>compact?Math.min(350,Math.max(220,w*.48)):Math.min(570,Math.max(330,w*.53));
+  const height=w=>compact?(window.matchMedia('(max-width:650px)').matches?280:340):Math.min(570,Math.max(330,w*.53));
   try{
    const g=window.Globe()(host)
      .width(width).height(height(width))
@@ -104,6 +168,7 @@
    }
    const n=v.querySelector('[data-geo-status]');if(n)n.textContent=t[state]||t.pending;
    const b=v.querySelector('[data-geo-optin]');if(b)b.remove();
+   renderOrigins(v,data);
    if(data){
      const pointCount=Array.isArray(data.points)?data.points.length:0;
      for(const [name,val] of Object.entries({total:data.total||0,countries:data.countries||0,points:pointCount})){
@@ -135,6 +200,14 @@
   await refresh();
  }
  for(const v of views){plot(v,null);const b=v.querySelector('[data-geo-optin]');if(b)b.remove();}
+ // A second CDN is used only if the first globe script was unavailable.
+ if(typeof window.Globe!=='function'&&(site==='home'||site==='blog')){
+   const backup=document.createElement('script');
+   backup.src='https://cdn.jsdelivr.net/npm/globe.gl@2.45.0/dist/globe.gl.min.js';
+   backup.onload=()=>{for(const v of views)plot(v,data);};
+   backup.onerror=()=>{for(const v of views){const h=v.querySelector('[data-geo-map]');if(h)h.innerHTML='<div class="geo-globe-unavailable">3D globe resources are unavailable. Check internet access or browser blockers.</div>';}};
+   document.head.appendChild(backup);
+ }
  document.addEventListener('zedong:language-changed',paint);
  paint();
  if(enabled){
