@@ -41,19 +41,21 @@
  function status(key){state=key;for(const v of views){const n=v.querySelector('[data-geo-status]');if(n)n.textContent=dict()[key]||dict().pending;}}
  const globes=new WeakMap();
  function createGlobe(view){
-  if(window.ZEDONG_VISITOR_SITE!=='blog')return null;
+  if(window.ZEDONG_VISITOR_SITE!=='blog'&&window.ZEDONG_VISITOR_SITE!=='home')return null;
   if(typeof window.Globe!=='function'){
    const h=view.querySelector('[data-geo-map]');
-   if(h&&!h.querySelector('.geo-globe-unavailable'))h.innerHTML='<div class="geo-globe-unavailable">3D globe could not load. Check browser extensions or network access to the globe library.</div>';
+   if(h&&!h.querySelector('.geo-globe-unavailable'))h.innerHTML='<div class="geo-globe-unavailable">3D globe could not load. Check network access to Globe.GL.</div>';
    return null;
   }
   const host=view.querySelector('[data-geo-map]');if(!host)return null;
   if(globes.has(host))return globes.get(host);
   host.innerHTML='';
-  const width=Math.max(300,host.clientWidth||720);
+  const compact=site==='home';
+  const width=Math.max(260,host.clientWidth||720);
+  const height=w=>compact?Math.min(350,Math.max(220,w*.48)):Math.min(570,Math.max(330,w*.53));
   try{
    const g=window.Globe()(host)
-     .width(width).height(Math.min(570,Math.max(330,width*.53)))
+     .width(width).height(height(width))
      .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
      .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
      .backgroundColor('#041827').showAtmosphere(true).atmosphereColor('#41bfe4')
@@ -65,10 +67,10 @@
      .pointLabel(p=>p.country+' · '+p.count+' page views');
    const controls=g.controls();controls.autoRotate=true;controls.autoRotateSpeed=.35;controls.enableDamping=true;
    if(typeof ResizeObserver==='function'){
-    const obs=new ResizeObserver(()=>{if(!host.isConnected){obs.disconnect();return;}const w=host.clientWidth;if(w>0)g.width(w).height(Math.min(570,Math.max(330,w*.53)));});obs.observe(host);
+    const obs=new ResizeObserver(()=>{if(!host.isConnected){obs.disconnect();return;}const w=host.clientWidth;if(w>0)g.width(w).height(height(w));});obs.observe(host);
    }
    globes.set(host,g);return g;
-  }catch(e){host.innerHTML='<div class="geo-globe-unavailable">WebGL 3D globe is unavailable in this browser. Enable hardware acceleration and reload.</div>';return null;}
+  }catch(e){host.innerHTML='<div class="geo-globe-unavailable">WebGL 3D globe unavailable. Try enabling hardware acceleration.</div>';return null;}
  }
  function plot(view,stats){
    const host=view.querySelector('[data-geo-map]');if(!host)return;
@@ -78,7 +80,7 @@
     globe.pointsData(points);
     return;
    }
-   if(site==='blog')return; // Show the 3D diagnostic rather than the old incomplete 2D map.
+   if(site==='blog'||site==='home')return; // Show a meaningful diagnostic if 3D cannot load.
    host.innerHTML=shapes;
    if(!stats||!Array.isArray(stats.points))return;
    const parent=host.querySelector('[data-geo-dots]'),ns='http://www.w3.org/2000/svg';
