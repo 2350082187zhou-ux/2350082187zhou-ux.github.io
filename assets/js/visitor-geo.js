@@ -2,12 +2,12 @@
    Requires Cloudflare Worker URL in visitor-map-config.js. */
 (()=>{'use strict';
  const langs={
- en:{heading:'Visitors Around the World <span>↗</span>',eyebrow:'GLOBAL RESEARCH VISITOR RADAR',description:'An approximate geographic distribution of visitors to my research website. Individual IP addresses are never published.',badge:'● PRIVACY-FIRST TELEMETRY',visits:'Visits · 90 days',countries:'Countries / regions',locations:'Approximate locations',pending:'Visitor analytics are not connected yet. No visitor locations have been recorded by this feature.',loading:'Checking visitor map service…',error:'Visitor map service is unavailable.',empty:'Automatic pageview tracking is active. No recorded locations yet.',active:'Live pageview origins · last 90 days',share:'Share my approximate region',stop:'Stop counting my future visits',privacy:'Page views are counted automatically unless browser privacy settings block them. No full IP addresses or GPS coordinates are saved or shown. Anonymous approximate locations are kept for up to 90 days.'},
- zh:{heading:'全球访客<span>散点地图 ↗</span>',eyebrow:'全球学术访问雷达',description:'展示本学术网站访客的近似地理分布。只展示真实的聚合统计，不会公开任何访客的完整 IP 地址。',badge:'● 隐私优先统计',visits:'访问量 · 近 90 天',countries:'国家 / 地区',locations:'来源地位置',pending:'访客统计服务尚未连接。该功能目前尚未采集真实访问位置。',loading:'正在连接全球访客统计…',error:'暂时无法连接访客统计服务。',empty:'统计已启用，但还没有获得授权的访客记录。',active:'真实页面访问来源 · 近 90 天',share:'同意分享我的近似地区',stop:'停止记录我之后的访问',privacy:'访问时自动计数（遵循浏览器隐私拒绝设置）；不保存或展示完整 IP、精确 GPS 或身份信息。匿名近似地理数据保留最多 90 天。'},
- fr:{heading:'Visiteurs dans le monde <span>↗</span>',eyebrow:'RADAR MONDIAL DES VISITEURS',description:'Carte des régions approximatives des visiteurs du site. Les adresses IP individuelles ne sont jamais publiées.',badge:'● STATISTIQUES RESPECTUEUSES DE LA VIE PRIVÉE',visits:'Visites · 90 jours',countries:'Pays / régions',locations:'Localisations approximatives',pending:'Le service de statistiques n’est pas connecté. Aucun emplacement n’a encore été enregistré.',loading:'Connexion aux statistiques…',error:'Le service de statistiques est indisponible.',empty:'Le suivi des pages vues est actif, sans aucune région enregistrée pour le moment.',active:'Origine réelle des pages vues · 90 jours',share:'Partager ma région approximative',stop:'Ne plus comptabiliser mes visites',privacy:'Comptage automatique sauf refus via les réglages du navigateur. Aucune IP complète ni position GPS précise n’est enregistrée ou publiée. Conservation maximale de 90 jours.'},
- ja:{heading:'世界の訪問者',eyebrow:'学術サイトの訪問状況',description:'訪問者の大まかな地域分布。個人のIPアドレスは公開しません。',badge:'プライバシー重視',visits:'訪問 · 90日',countries:'国・地域',locations:'おおよその地域',pending:'訪問元のデータサービスはまだ接続されていません。',loading:'統計サービスに接続しています…',error:'統計サービスを利用できません。',empty:'ページビュー集計は有効ですが、記録された地域はまだありません。',active:'実際の集計データ · 過去90日',share:'おおよその地域を共有する',stop:'今後の訪問を記録しない',privacy:'明示的な同意が必要です。完全なIPアドレス、GPS位置、個人情報は保存・公開されません。'},
- ko:{heading:'전 세계 방문자',eyebrow:'학술 사이트 방문 현황',description:'방문자의 대략적인 지역 분포입니다. 개인 IP 주소는 공개하지 않습니다.',badge:'개인정보 보호 중심',visits:'방문 · 90일',countries:'국가 / 지역',locations:'대략적인 위치',pending:'방문자 통계 서비스가 아직 연결되지 않았습니다. 이 기능은 현재 방문자 위치를 기록하지 않습니다.',loading:'통계 서비스 연결 중…',error:'통계 서비스를 사용할 수 없습니다.',empty:'페이지 조회 통계가 활성화되었지만 아직 방문 지역 기록은 없습니다.',active:'실제 페이지 조회 지역 · 최근 90일',share:'나의 대략적인 지역 공유',stop:'앞으로의 방문 기록 중지',privacy:'브라우저 개인정보 보호 설정을 존중하면서 방문 시 자동 집계합니다. 전체 IP, 정확한 GPS 및 개인 식별 정보는 저장되거나 공개되지 않습니다.'},
- de:{heading:'Besucher weltweit <span>↗</span>',eyebrow:'WELTWEITER BESUCHERRADAR',description:'Ungefähre geografische Verteilung der Besucher meiner Forschungswebsite. Einzelne IP-Adressen werden nicht veröffentlicht.',badge:'● DATENSCHONENDE ANALYSE',visits:'Besuche · 90 Tage',countries:'Länder / Regionen',locations:'Ungefähre Standorte',pending:'Der Besucherdienst ist noch nicht verbunden. Es wurden keine Standorte erfasst.',loading:'Verbindung zum Besucherdienst…',error:'Der Besucherdienst ist nicht verfügbar.',empty:'Seitenaufrufe werden automatisch erfasst; noch keine Standorte verfügbar.',active:'Echte Seitenaufrufe nach Herkunft · 90 Tage',share:'Meine ungefähre Region teilen',stop:'Zukünftige Besuche nicht erfassen',privacy:'Automatische Zählung unter Beachtung der Browser-Datenschutzeinstellungen. Keine vollständigen IP-Adressen oder präzisen GPS-Koordinaten werden gespeichert oder veröffentlicht. Aufbewahrung höchstens 90 Tage.'}
+ en:{heading:'Visitors Around the World <span>↗</span>',eyebrow:'GLOBAL RESEARCH VISITOR RADAR',description:'An approximate geographic distribution of visitors to my research website. Individual IP addresses are never published.',badge:'● PRIVACY-FIRST TELEMETRY',visits:'Visits · 90 days',countries:'Countries / regions',locations:'Top visiting country',pending:'Visitor analytics are not connected yet. No visitor locations have been recorded by this feature.',loading:'Checking visitor map service…',error:'Visitor map service is unavailable.',empty:'Automatic pageview tracking is active. No recorded locations yet.',active:'Live pageview origins · last 90 days',share:'Share my approximate region',stop:'Stop counting my future visits',privacy:'Page views are counted automatically unless browser privacy settings block them. No full IP addresses or GPS coordinates are saved or shown. Anonymous approximate locations are kept for up to 90 days.'},
+ zh:{heading:'全球访客<span>散点地图 ↗</span>',eyebrow:'全球学术访问雷达',description:'展示本学术网站访客的近似地理分布。只展示真实的聚合统计，不会公开任何访客的完整 IP 地址。',badge:'● 隐私优先统计',visits:'访问量 · 近 90 天',countries:'国家 / 地区',locations:'访问最多的国家',pending:'访客统计服务尚未连接。该功能目前尚未采集真实访问位置。',loading:'正在连接全球访客统计…',error:'暂时无法连接访客统计服务。',empty:'统计已启用，但还没有获得授权的访客记录。',active:'真实页面访问来源 · 近 90 天',share:'同意分享我的近似地区',stop:'停止记录我之后的访问',privacy:'访问时自动计数（遵循浏览器隐私拒绝设置）；不保存或展示完整 IP、精确 GPS 或身份信息。匿名近似地理数据保留最多 90 天。'},
+ fr:{heading:'Visiteurs dans le monde <span>↗</span>',eyebrow:'RADAR MONDIAL DES VISITEURS',description:'Carte des régions approximatives des visiteurs du site. Les adresses IP individuelles ne sont jamais publiées.',badge:'● STATISTIQUES RESPECTUEUSES DE LA VIE PRIVÉE',visits:'Visites · 90 jours',countries:'Pays / régions',locations:'Pays le plus visité',pending:'Le service de statistiques n’est pas connecté. Aucun emplacement n’a encore été enregistré.',loading:'Connexion aux statistiques…',error:'Le service de statistiques est indisponible.',empty:'Le suivi des pages vues est actif, sans aucune région enregistrée pour le moment.',active:'Origine réelle des pages vues · 90 jours',share:'Partager ma région approximative',stop:'Ne plus comptabiliser mes visites',privacy:'Comptage automatique sauf refus via les réglages du navigateur. Aucune IP complète ni position GPS précise n’est enregistrée ou publiée. Conservation maximale de 90 jours.'},
+ ja:{heading:'世界の訪問者',eyebrow:'学術サイトの訪問状況',description:'訪問者の大まかな地域分布。個人のIPアドレスは公開しません。',badge:'プライバシー重視',visits:'訪問 · 90日',countries:'国・地域',locations:'最多閲覧国',pending:'訪問元のデータサービスはまだ接続されていません。',loading:'統計サービスに接続しています…',error:'統計サービスを利用できません。',empty:'ページビュー集計は有効ですが、記録された地域はまだありません。',active:'実際の集計データ · 過去90日',share:'おおよその地域を共有する',stop:'今後の訪問を記録しない',privacy:'明示的な同意が必要です。完全なIPアドレス、GPS位置、個人情報は保存・公開されません。'},
+ ko:{heading:'전 세계 방문자',eyebrow:'학술 사이트 방문 현황',description:'방문자의 대략적인 지역 분포입니다. 개인 IP 주소는 공개하지 않습니다.',badge:'개인정보 보호 중심',visits:'방문 · 90일',countries:'국가 / 지역',locations:'최다 방문 국가',pending:'방문자 통계 서비스가 아직 연결되지 않았습니다. 이 기능은 현재 방문자 위치를 기록하지 않습니다.',loading:'통계 서비스 연결 중…',error:'통계 서비스를 사용할 수 없습니다.',empty:'페이지 조회 통계가 활성화되었지만 아직 방문 지역 기록은 없습니다.',active:'실제 페이지 조회 지역 · 최근 90일',share:'나의 대략적인 지역 공유',stop:'앞으로의 방문 기록 중지',privacy:'브라우저 개인정보 보호 설정을 존중하면서 방문 시 자동 집계합니다. 전체 IP, 정확한 GPS 및 개인 식별 정보는 저장되거나 공개되지 않습니다.'},
+ de:{heading:'Besucher weltweit <span>↗</span>',eyebrow:'WELTWEITER BESUCHERRADAR',description:'Ungefähre geografische Verteilung der Besucher meiner Forschungswebsite. Einzelne IP-Adressen werden nicht veröffentlicht.',badge:'● DATENSCHONENDE ANALYSE',visits:'Besuche · 90 Tage',countries:'Länder / Regionen',locations:'Land mit meisten Aufrufen',pending:'Der Besucherdienst ist noch nicht verbunden. Es wurden keine Standorte erfasst.',loading:'Verbindung zum Besucherdienst…',error:'Der Besucherdienst ist nicht verfügbar.',empty:'Seitenaufrufe werden automatisch erfasst; noch keine Standorte verfügbar.',active:'Echte Seitenaufrufe nach Herkunft · 90 Tage',share:'Meine ungefähre Region teilen',stop:'Zukünftige Besuche nicht erfassen',privacy:'Automatische Zählung unter Beachtung der Browser-Datenschutzeinstellungen. Keine vollständigen IP-Adressen oder präzisen GPS-Koordinaten werden gespeichert oder veröffentlicht. Aufbewahrung höchstens 90 Tage.'}
  };
  const continents=[
  'M64 105L83 101 98 83 136 74 154 79 170 97 188 88 208 96 225 92 251 114 274 122 283 143 276 160 258 171 243 196 218 202 208 218 191 207 183 186 166 195 146 175 127 168 115 145 98 143 82 129 67 120Z',
@@ -41,69 +41,74 @@
  function status(key){state=key;for(const v of views){const n=v.querySelector('[data-geo-status]');if(n)n.textContent=dict()[key]||dict().pending;}}
  const globes=new WeakMap();
  const regionCopy={
-  en:['Countries & visitor regions','Last 90 days · page views','Approximate regions only. Select a location to rotate the globe.','Loading visitor locations…','No recorded visitor locations yet.','Visitor location service unavailable.','page views','Approx.'],
-  zh:['访客国家与地区','最近90天 · 页面浏览量','仅显示近似位置。点击地区可旋转地球。','正在加载访问地区…','暂时没有地区记录。','暂时无法获取访客地区数据。','次浏览','近似位置'],
-  ja:['訪問元の国と地域','過去90日間 · ページビュー','おおよその位置のみ。地域を選ぶと地球が回転します。','訪問地域を読み込み中…','記録された訪問地域はありません。','地域データを取得できません。','表示','おおよそ'],
-  ko:['방문 국가 및 지역','최근 90일 · 페이지 조회','대략적인 위치만 표시합니다. 지역을 선택하면 지구본이 회전합니다.','방문 위치를 불러오는 중…','기록된 방문 지역이 없습니다.','위치 데이터를 불러올 수 없습니다.','조회','대략적인 위치'],
-  fr:['Pays et régions des visiteurs','90 derniers jours · pages vues','Régions approximatives uniquement. Cliquez pour orienter le globe.','Chargement des régions…','Aucune région enregistrée.','Données de localisation indisponibles.','vues','Approx.'],
-  de:['Besucherländer und Regionen','Letzte 90 Tage · Seitenaufrufe','Nur ungefähre Regionen. Anklicken, um die Erde auszurichten.','Besuchsregionen werden geladen…','Noch keine Regionen erfasst.','Standortdaten sind nicht verfügbar.','Aufrufe','Ungefähr']
+ en:['Page views by country','Last 90 days · page views','Visits count page loads, not unique people. Select a country to rotate the globe.','Loading country totals…','No country visits recorded yet.','Country totals unavailable.','page views','Country totals may be incomplete until the Worker is updated.'],
+ zh:['各国家访问次数','最近90天 · 页面浏览量','统计的是页面浏览次数，而非去重人数。点击国家可旋转地球。','正在加载国家数据…','还没有国家访问记录。','无法获取国家统计数据。','次浏览','更新 Cloudflare Worker 后可获得完整国家统计。'],
+ ja:['国別ページビュー','過去90日間 · ページビュー','人数ではなくページ表示回数です。国をクリックすると地球が回転します。','国別データを読み込み中…','国別の記録はまだありません。','国別データを取得できません。','表示','Worker更新まで集計が不完全な場合があります。'],
+ ko:['국가별 페이지 조회','최근 90일 · 페이지 조회','방문자 수가 아닌 페이지 조회 수입니다. 국가를 누르면 지구본이 회전합니다.','국가별 통계를 불러오는 중…','기록된 방문 국가가 없습니다.','국가 통계를 불러올 수 없습니다.','조회','Worker 업데이트 전에는 국가별 집계가 불완전할 수 있습니다.'],
+ fr:['Vues par pays','90 derniers jours · pages vues','Nombre de pages vues, pas de visiteurs uniques. Cliquez sur un pays pour orienter le globe.','Chargement des pays…','Aucun pays enregistré.','Statistiques indisponibles.','vues','Le total peut être incomplet avant la mise à jour du Worker.'],
+ de:['Seitenaufrufe je Land','Letzte 90 Tage · Seitenaufrufe','Gezählt werden Seitenaufrufe, nicht einzelne Besucher. Land zum Drehen anklicken.','Länderdaten werden geladen…','Noch keine Länder erfasst.','Länderstatistik nicht verfügbar.','Aufrufe','Bis zum Worker-Update können Länderzahlen unvollständig sein.']
  };
  const regionText=()=>regionCopy[loc()]||regionCopy.en;
- const coordinate=(n,a,b)=>Math.abs(Math.round(n))+'°'+(n>=0?a:b);
- function renderOrigins(view,stats){
-   const host=view.querySelector('[data-geo-origins]');if(!host)return;
-   const copy=regionText();
-   const heading=view.querySelector('[data-geo-region-title]'),caption=view.querySelector('[data-geo-region-caption]'),note=view.querySelector('[data-geo-region-note]');
-   if(heading)heading.textContent=copy[0];
-   if(caption)caption.textContent=copy[1];
-   if(note)note.textContent=copy[2];
-   host.replaceChildren();
-   const raw=stats&&Array.isArray(stats.points)?stats.points:[];
-   const points=raw.map(p=>({country:String(p.country||'--').toUpperCase(),lat:Number(p.lat),lon:Number(p.lon),count:Number(p.count)}))
-      .filter(p=>/^[A-Z]{2}$/.test(p.country)&&Number.isFinite(p.lat)&&Math.abs(p.lat)<=90&&Number.isFinite(p.lon)&&Math.abs(p.lon)<=180&&Number.isFinite(p.count)&&p.count>0);
-   if(!points.length){
-     const empty=document.createElement('p');empty.className='geo-origins-empty';
-     empty.textContent=state==='error'?copy[5]:stats?copy[4]:copy[3];
-     host.appendChild(empty);return;
+ function countryRows(stats){
+  if(!stats)return [];
+  // Country aggregates from SQL are authoritative; the old endpoint's limited points are fallback only.
+  const official=Array.isArray(stats.countryCounts);
+  const src=official?stats.countryCounts:(Array.isArray(stats.points)?stats.points:[]);
+  const groups=new Map();
+  for(const p of src){
+   const country=String(p.country||'').toUpperCase(),count=Number(p.count),lat=Number(p.lat),lon=Number(p.lon);
+   if(!/^[A-Z]{2}$/.test(country)||!Number.isFinite(count)||count<=0)continue;
+   if(!groups.has(country))groups.set(country,{country,count:0,lat:0,lon:0,weight:0});
+   const g=groups.get(country);g.count+=count;
+   if(Number.isFinite(lat)&&Math.abs(lat)<=90&&Number.isFinite(lon)&&Math.abs(lon)<=180){
+    g.lat+=lat*count;g.lon+=lon*count;g.weight+=count;
    }
-   const groups=new Map();
-   for(const p of points){
-     if(!groups.has(p.country))groups.set(p.country,{count:0,points:[]});
-     const g=groups.get(p.country);g.count+=p.count;g.points.push(p);
-   }
-   const sorted=[...groups.entries()].sort((a,b)=>b[1].count-a[1].count);
-   let display;
-   try{display=new Intl.DisplayNames([loc()],{type:'region'});}catch(_){display=null;}
-   let shown=0;
-   for(const [code,group] of sorted){
-     const section=document.createElement('section');section.className='geo-origin-country';
-     const title=document.createElement('div');title.className='geo-origin-country-top';
-     const name=document.createElement('strong');name.className='geo-origin-country-name';
-     let human=code;try{human=(display&&display.of(code))||code}catch(_){}
-     name.textContent=human+' ('+code+')';
-     const total=document.createElement('span');total.className='geo-origin-country-count';
-     total.textContent=new Intl.NumberFormat(loc()).format(group.count)+' '+copy[6];
-     title.append(name,total);section.appendChild(title);
-     group.points.sort((a,b)=>b.count-a.count);
-     for(const p of group.points){
-       if(shown>=80)break;
-       const btn=document.createElement('button');btn.type='button';btn.className='geo-origin-location';
-       const pos=document.createElement('span');pos.textContent=copy[7]+' '+coordinate(p.lat,'N','S')+' · '+coordinate(p.lon,'E','W');
-       const count=document.createElement('span');count.className='geo-region-count';
-       count.textContent=new Intl.NumberFormat(loc()).format(p.count)+' ×';
-       btn.append(pos,count);
-       btn.setAttribute('aria-label',human+' '+pos.textContent+' '+count.textContent);
-       btn.addEventListener('click',()=>{
-         const map=view.querySelector('[data-geo-map]');const globe=map&&globes.get(map);
-         if(globe){globe.controls().autoRotate=false;globe.pointOfView({lat:p.lat,lng:p.lon,altitude:1.65},1100);}
-       });
-       section.appendChild(btn);shown++;
-     }
-     host.appendChild(section);
-     if(shown>=80)break;
-   }
+  }
+  return [...groups.values()].map(g=>({
+   country:g.country,count:g.count,lat:g.weight?g.lat/g.weight:0,
+   lon:g.weight?g.lon/g.weight:0,
+   hasLocation:g.weight>0
+  })).sort((a,b)=>b.count-a.count||a.country.localeCompare(b.country));
  }
-
+ function countryName(code){
+  try{return new Intl.DisplayNames([loc()],{type:'region'}).of(code)||code;}catch(_){return code;}
+ }
+ function renderOrigins(view,stats){
+  const host=view.querySelector('[data-geo-origins]');if(!host)return;
+  const copy=regionText(),rows=countryRows(stats);
+  const heading=view.querySelector('[data-geo-region-title]'),caption=view.querySelector('[data-geo-region-caption]'),note=view.querySelector('[data-geo-region-note]');
+  if(heading)heading.textContent=copy[0];
+  if(caption)caption.textContent=copy[1];
+  const potentiallyLimited=stats&&!Array.isArray(stats.countryCounts)&&Array.isArray(stats.points)&&stats.points.length>=500;
+  if(note)note.textContent=potentiallyLimited?copy[7]:copy[2];
+  host.replaceChildren();
+  if(!rows.length){
+   const msg=document.createElement('p');msg.className='geo-origins-empty';
+   msg.textContent=state==='error'?copy[5]:stats?copy[4]:copy[3];host.appendChild(msg);return;
+  }
+  const max=rows[0].count;
+  for(const p of rows){
+   const button=document.createElement('button');button.type='button';
+   button.className='geo-origin-country-button';
+   const line=document.createElement('span');line.className='geo-origin-country-line';
+   const label=document.createElement('span');label.className='geo-origin-country-name';label.textContent=countryName(p.country)+' ('+p.country+')';
+   const count=document.createElement('span');count.className='geo-origin-country-count';
+   count.textContent=new Intl.NumberFormat(loc()).format(p.count)+' '+copy[6];
+   line.append(label,count);
+   const track=document.createElement('span');track.className='geo-origin-bar';
+   const fill=document.createElement('span');fill.style.width=Math.max(3,p.count/max*100).toFixed(1)+'%';track.appendChild(fill);
+   button.append(line,track);
+   button.setAttribute('aria-label',label.textContent+': '+count.textContent);
+   button.addEventListener('click',()=>{
+    const map=view.querySelector('[data-geo-map]'),globe=map&&globes.get(map);
+    if(globe&&p.hasLocation){
+     globe.controls().autoRotate=false;
+     globe.pointOfView({lat:p.lat,lng:p.lon,altitude:1.9},1050);
+    }
+   });
+   host.appendChild(button);
+  }
+ }
  function createGlobe(view){
   if(window.ZEDONG_VISITOR_SITE!=='blog'&&window.ZEDONG_VISITOR_SITE!=='home')return null;
   if(typeof window.Globe!=='function'){
@@ -140,8 +145,7 @@
    const host=view.querySelector('[data-geo-map]');if(!host)return;
    const globe=createGlobe(view);
    if(globe){
-    const points=stats&&Array.isArray(stats.points)?stats.points.filter(p=>Number.isFinite(Number(p.lat))&&Number.isFinite(Number(p.lon))&&Number(p.count)>0).map(p=>({lat:Number(p.lat),lon:Number(p.lon),count:Number(p.count),country:String(p.country||'--')})):[];
-    globe.pointsData(points);
+    globe.pointsData(countryRows(stats).filter(p=>p.hasLocation));
     return;
    }
    if(site==='blog'||site==='home')return; // Show a meaningful diagnostic if 3D cannot load.
@@ -163,17 +167,23 @@
   const t=dict();
   for(const v of views){
    // The homepage owns its unified six-language copy. Preserve it; /blog/ still uses this default map dictionary.
-   if(!v.classList.contains('home-visitor-activity')){
-     v.querySelectorAll('[data-geo-t]').forEach(el=>{const key=el.dataset.geoT;if(t[key]){if(key==='heading')el.innerHTML=t[key];else el.textContent=t[key];}});
-   }
+   v.querySelectorAll('[data-geo-t]').forEach(el=>{
+     const key=el.dataset.geoT;
+     if(t[key]&&(key==='locations'||!v.classList.contains('home-visitor-activity'))){
+       if(key==='heading')el.innerHTML=t[key];else el.textContent=t[key];
+     }
+   });
    const n=v.querySelector('[data-geo-status]');if(n)n.textContent=t[state]||t.pending;
    const b=v.querySelector('[data-geo-optin]');if(b)b.remove();
    renderOrigins(v,data);
    if(data){
-     const pointCount=Array.isArray(data.points)?data.points.length:0;
-     for(const [name,val] of Object.entries({total:data.total||0,countries:data.countries||0,points:pointCount})){
-       const el=v.querySelector('[data-geo-stat="'+name+'"]');if(el)el.textContent=new Intl.NumberFormat(loc()).format(val);
-     }
+     const rows=countryRows(data);
+     const total=v.querySelector('[data-geo-stat="total"]');
+     if(total)total.textContent=new Intl.NumberFormat(loc()).format(Number(data.total)||0);
+     const countries=v.querySelector('[data-geo-stat="countries"]');
+     if(countries)countries.textContent=new Intl.NumberFormat(loc()).format(Number(data.countries)||rows.length);
+     const top=v.querySelector('[data-geo-stat="topcountry"]');
+     if(top)top.textContent=rows.length?countryName(rows[0].country)+' · '+new Intl.NumberFormat(loc()).format(rows[0].count):'—';
    }
   }
  }
@@ -184,7 +194,7 @@
      const response=await fetch(endpoint+'/stats?site='+site,{mode:'cors',credentials:'omit',cache:'no-store'});
      if(!response.ok)throw Error('HTTP '+response.status);
      const got=await response.json();
-     if(!Array.isArray(got.points))throw Error('Invalid map data');
+     if(!Array.isArray(got.points)&&!Array.isArray(got.countryCounts))throw Error('Invalid map data');
      data=got;for(const v of views)plot(v,got);
      status(Number(got.total)>0?'active':'empty');
    }catch(_){status('error');}
