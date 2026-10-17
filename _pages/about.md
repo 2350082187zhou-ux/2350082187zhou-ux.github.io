@@ -89,9 +89,21 @@ redirect_from:
       <div><small data-geo-t="countries">Countries / regions</small><strong data-geo-stat="countries">—</strong></div>
       <div><small data-geo-t="locations">Approximate locations</small><strong data-geo-stat="points">—</strong></div>
     </div>
-    <div class="visitor-geo-map">
-      <div data-geo-map aria-label="Approximate world visitor map"></div>
-      <span class="visitor-geo-compass" aria-hidden="true">WORLDWIDE · GEO</span>
+    <div class="visitor-geo-split">
+      <div class="visitor-geo-map">
+        <div data-geo-map aria-label="Interactive 3D globe of academic website visitor origins"></div>
+        <span class="visitor-geo-compass" aria-hidden="true">3D EARTH · DRAG TO ROTATE</span>
+      </div>
+      <aside class="visitor-geo-origins" aria-label="Countries and approximate visitor locations">
+        <div class="geo-origins-heading">
+          <span data-geo-region-title>Countries &amp; visitor regions</span>
+          <small data-geo-region-caption>Last 90 days · page views</small>
+        </div>
+        <div class="geo-origins-list" data-geo-origins aria-live="polite">
+          <p class="geo-origins-empty">Loading visitor locations…</p>
+        </div>
+        <p class="geo-origins-note" data-geo-region-note>Approximate regions only, not exact addresses. Select a location to rotate the globe.</p>
+      </aside>
     </div>
     <div class="visitor-geo-bottom">
       <span class="visitor-geo-status" data-geo-status role="status">Loading geographic pageview statistics…</span>
