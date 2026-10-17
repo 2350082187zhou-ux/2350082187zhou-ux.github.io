@@ -32,14 +32,16 @@ export default {
  const cutoff=new Date(Date.now()-90*86400000).toISOString().slice(0,10);
  try{
   if(path==='/stats'&&request.method==='GET'){
-   const [points,total,countries]=await Promise.all([
+   const [points,total,countries,countryCounts]=await Promise.all([
      env.DB.prepare(`SELECT country,lat,lon,COUNT(*) AS count FROM ${table} WHERE day>=? GROUP BY country,lat,lon ORDER BY count DESC LIMIT 500`).bind(cutoff).all(),
      env.DB.prepare(`SELECT COUNT(*) AS n FROM ${table} WHERE day>=?`).bind(cutoff).first(),
-     env.DB.prepare(`SELECT COUNT(DISTINCT country) AS n FROM ${table} WHERE day>=?`).bind(cutoff).first()
+     env.DB.prepare(`SELECT COUNT(DISTINCT country) AS n FROM ${table} WHERE day>=?`).bind(cutoff).first(),
+     env.DB.prepare(`SELECT country, COUNT(*) AS count, AVG(lat) AS lat, AVG(lon) AS lon FROM ${table} WHERE day>=? GROUP BY country ORDER BY count DESC`).bind(cutoff).all()
    ]);
    return response({
       site,total:Number(total?.n||0),countries:Number(countries?.n||0),
       points:(points.results||[]).map(p=>({country:p.country,lat:Number(p.lat),lon:Number(p.lon),count:Number(p.count)})),
+      countryCounts:(countryCounts.results||[]).map(p=>({country:p.country,count:Number(p.count),lat:Number(p.lat),lon:Number(p.lon)})),
       windowDays:90,updated:new Date().toISOString()
    },origin);
   }
