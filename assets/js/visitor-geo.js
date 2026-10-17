@@ -39,8 +39,40 @@
  const dict=()=>langs[loc()];
  const consented=()=>{try{return localStorage.getItem('zz_geo_consent')==='yes'}catch(_){return false}};
  function status(key){state=key;for(const v of views){const n=v.querySelector('[data-geo-status]');if(n)n.textContent=dict()[key]||dict().pending;}}
+ const globes=new WeakMap();
+ function createGlobe(view){
+  if(window.ZEDONG_VISITOR_SITE!=='blog'||typeof window.Globe!=='function')return null;
+  const host=view.querySelector('[data-geo-map]');if(!host)return null;
+  if(globes.has(host))return globes.get(host);
+  host.innerHTML='';
+  const width=Math.max(300,host.clientWidth||720);
+  try{
+   const g=window.Globe()(host)
+     .width(width).height(Math.min(570,Math.max(330,width*.53)))
+     .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+     .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+     .backgroundColor('#041827').showAtmosphere(true).atmosphereColor('#41bfe4')
+     .atmosphereAltitude(.18)
+     .pointLat(p=>p.lat).pointLng(p=>p.lon)
+     .pointAltitude(p=>Math.min(.23,.035+Math.log2(p.count+1)*.025))
+     .pointRadius(p=>Math.min(.65,.13+Math.log2(p.count+1)*.065))
+     .pointColor(()=>'#48ffd7')
+     .pointLabel(p=>p.country+' · '+p.count+' page views');
+   const controls=g.controls();controls.autoRotate=true;controls.autoRotateSpeed=.35;controls.enableDamping=true;
+   if(typeof ResizeObserver==='function'){
+    const obs=new ResizeObserver(()=>{if(!host.isConnected){obs.disconnect();return;}const w=host.clientWidth;if(w>0)g.width(w).height(Math.min(570,Math.max(330,w*.53)));});obs.observe(host);
+   }
+   globes.set(host,g);return g;
+  }catch(e){host.innerHTML='';return null;}
+ }
  function plot(view,stats){
    const host=view.querySelector('[data-geo-map]');if(!host)return;
+   const globe=createGlobe(view);
+   if(globe){
+    const points=stats&&Array.isArray(stats.points)?stats.points.filter(p=>Number.isFinite(Number(p.lat))&&Number.isFinite(Number(p.lon))&&Number(p.count)>0).map(p=>({lat:Number(p.lat),lon:Number(p.lon),count:Number(p.count),country:String(p.country||'--')})):[];
+    globe.pointsData(points);
+    return;
+   }
    host.innerHTML=shapes;
    if(!stats||!Array.isArray(stats.points))return;
    const parent=host.querySelector('[data-geo-dots]'),ns='http://www.w3.org/2000/svg';
