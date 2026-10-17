@@ -15,7 +15,7 @@ export default {
   // Enforce 90-day retention even when there are no new pageviews.
   if(!env.DB)return;
   const cutoff=new Date(Date.now()-90*86400000).toISOString().slice(0,10);
-  ctx.waitUntil(env.DB.prepare('DELETE FROM geo_visits WHERE day<?').bind(cutoff).run());
+  ctx.waitUntil(Promise.all(['geo_visits','geo_visits_blog'].map(table=>env.DB.prepare(`DELETE FROM ${table} WHERE day<?`).bind(cutoff).run())));
  },
  async fetch(request,env){
  const origin=request.headers.get('Origin')||'';
@@ -24,17 +24,21 @@ export default {
     'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Methods':'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers':'Content-Type','Vary':'Origin'}});
  if(!env.DB)return response({error:'Backend not configured'},origin,503);
- const path=new URL(request.url).pathname;
+ const url=new URL(request.url);
+ const path=url.pathname;
+ const site=url.searchParams.get('site')||'home';
+ if(site!=='home'&&site!=='blog')return response({error:'Invalid site'},origin,400);
+ const table=site==='blog'?'geo_visits_blog':'geo_visits';
  const cutoff=new Date(Date.now()-90*86400000).toISOString().slice(0,10);
  try{
   if(path==='/stats'&&request.method==='GET'){
    const [points,total,countries]=await Promise.all([
-     env.DB.prepare('SELECT country,lat,lon,COUNT(*) AS count FROM geo_visits WHERE day>=? GROUP BY country,lat,lon ORDER BY count DESC LIMIT 500').bind(cutoff).all(),
-     env.DB.prepare('SELECT COUNT(*) AS n FROM geo_visits WHERE day>=?').bind(cutoff).first(),
-     env.DB.prepare('SELECT COUNT(DISTINCT country) AS n FROM geo_visits WHERE day>=?').bind(cutoff).first()
+     env.DB.prepare(`SELECT country,lat,lon,COUNT(*) AS count FROM ${table} WHERE day>=? GROUP BY country,lat,lon ORDER BY count DESC LIMIT 500`).bind(cutoff).all(),
+     env.DB.prepare(`SELECT COUNT(*) AS n FROM ${table} WHERE day>=?`).bind(cutoff).first(),
+     env.DB.prepare(`SELECT COUNT(DISTINCT country) AS n FROM ${table} WHERE day>=?`).bind(cutoff).first()
    ]);
    return response({
-      total:Number(total?.n||0),countries:Number(countries?.n||0),
+      site,total:Number(total?.n||0),countries:Number(countries?.n||0),
       points:(points.results||[]).map(p=>({country:p.country,lat:Number(p.lat),lon:Number(p.lon),count:Number(p.count)})),
       windowDays:90,updated:new Date().toISOString()
    },origin);
@@ -52,9 +56,9 @@ export default {
    }
    const day=new Date().toISOString().slice(0,10);
    // Random record ID per page view, never a stable visitor fingerprint.
-   await env.DB.prepare('INSERT INTO geo_visits (fingerprint,day,country,lat,lon) VALUES (?,?,?,?,?)')
+   await env.DB.prepare(`INSERT INTO ${table} (fingerprint,day,country,lat,lon) VALUES (?,?,?,?,?)`)
      .bind(crypto.randomUUID(),day,country,Math.round(lat/2)*2,Math.round(lon/2)*2).run();
-   await env.DB.prepare('DELETE FROM geo_visits WHERE day<?').bind(cutoff).run();
+   await env.DB.prepare(`DELETE FROM ${table} WHERE day<?`).bind(cutoff).run();
    return response({recorded:true},origin);
   }
   return response({error:'Not found'},origin,404);
