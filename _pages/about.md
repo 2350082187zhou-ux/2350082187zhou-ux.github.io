@@ -11,7 +11,7 @@ redirect_from:
 
 <h2 id="about-me" data-home-i18n="aboutTitle">About Me</h2>
 
-<p data-home-i18n="introEducation">I received my Bachelor's degree in <strong>Electrical Engineering and Automation</strong> from <strong>Anhui Polytechnic University</strong>, Wuhu, China, in 2025. I am currently pursuing a <strong>Ph.D. in Computer Science</strong> at the <strong>University of Nevada, Reno (UNR)</strong>, USA, under the supervision of <a href="https://niusenc.github.io/" target="_blank" rel="noopener noreferrer">Dr. Niusen Chen</a> (<a href="https://www.unr.edu/cse/people/niusen-chen" target="_blank" rel="noopener noreferrer">UNR faculty profile</a>).</p>
+<p data-home-i18n="introEducation">I received my Bachelor's degree in <strong>Electrical Engineering and Automation</strong> from <strong>Anhui Polytechnic University</strong>, Wuhu, China, in 2025. I am currently pursuing a <strong>Ph.D. in Computer Science</strong> at the <strong>University of Nevada, Reno (UNR)</strong>, USA, under the supervision of <a href="https://niusenc.github.io/" target="_blank" rel="noopener noreferrer">Dr. Niusen Chen</a>.</p>
 
 <p data-home-i18n="introResearch">My research interests include <strong>computer systems security, operating systems, storage systems, AI agent security, and hardware security</strong>. My current research investigates the security risks posed by AI agents with elevated privileges, evaluates host-side protection mechanisms at the file-system, kernel, and block-device layers, and explores stronger security boundaries for protecting sensitive data against unauthorized modification and deletion.</p>
 
