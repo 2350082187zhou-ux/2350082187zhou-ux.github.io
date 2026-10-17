@@ -41,7 +41,12 @@
  function status(key){state=key;for(const v of views){const n=v.querySelector('[data-geo-status]');if(n)n.textContent=dict()[key]||dict().pending;}}
  const globes=new WeakMap();
  function createGlobe(view){
-  if(window.ZEDONG_VISITOR_SITE!=='blog'||typeof window.Globe!=='function')return null;
+  if(window.ZEDONG_VISITOR_SITE!=='blog')return null;
+  if(typeof window.Globe!=='function'){
+   const h=view.querySelector('[data-geo-map]');
+   if(h&&!h.querySelector('.geo-globe-unavailable'))h.innerHTML='<div class="geo-globe-unavailable">3D globe could not load. Check browser extensions or network access to the globe library.</div>';
+   return null;
+  }
   const host=view.querySelector('[data-geo-map]');if(!host)return null;
   if(globes.has(host))return globes.get(host);
   host.innerHTML='';
@@ -63,7 +68,7 @@
     const obs=new ResizeObserver(()=>{if(!host.isConnected){obs.disconnect();return;}const w=host.clientWidth;if(w>0)g.width(w).height(Math.min(570,Math.max(330,w*.53)));});obs.observe(host);
    }
    globes.set(host,g);return g;
-  }catch(e){host.innerHTML='';return null;}
+  }catch(e){host.innerHTML='<div class="geo-globe-unavailable">WebGL 3D globe is unavailable in this browser. Enable hardware acceleration and reload.</div>';return null;}
  }
  function plot(view,stats){
    const host=view.querySelector('[data-geo-map]');if(!host)return;
@@ -73,6 +78,7 @@
     globe.pointsData(points);
     return;
    }
+   if(site==='blog')return; // Show the 3D diagnostic rather than the old incomplete 2D map.
    host.innerHTML=shapes;
    if(!stats||!Array.isArray(stats.points))return;
    const parent=host.querySelector('[data-geo-dots]'),ns='http://www.w3.org/2000/svg';
