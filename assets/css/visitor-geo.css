@@ -49,3 +49,6 @@
 .cyber-site .visitor-geo-map [data-geo-map] canvas{display:block;max-width:100%}
 .cyber-site .visitor-geo-map{background:#041827}
 @media(max-width:720px){.cyber-site .visitor-geo-map [data-geo-map]{min-height:330px}}
+
+.cyber-site .visitor-geo-map:before{content:"3D EARTH  ·  DRAG TO ROTATE  ·  SCROLL TO ZOOM";position:absolute;left:16px;top:15px;color:#70ffe1;font:700 11px/1.5 ui-monospace,monospace;letter-spacing:.12em;z-index:3;pointer-events:none;text-shadow:0 2px 7px #001}
+.cyber-site .geo-globe-unavailable{min-height:360px;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;background:radial-gradient(circle at 50% 50%,#123b57,#041827 70%);color:#aee4f7;font:600 14px/1.7 system-ui,sans-serif}
