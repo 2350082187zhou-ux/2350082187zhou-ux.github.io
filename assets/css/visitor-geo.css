@@ -52,3 +52,11 @@
 
 .cyber-site .visitor-geo-map:before{content:"3D EARTH  ·  DRAG TO ROTATE  ·  SCROLL TO ZOOM";position:absolute;left:16px;top:15px;color:#70ffe1;font:700 11px/1.5 ui-monospace,monospace;letter-spacing:.12em;z-index:3;pointer-events:none;text-shadow:0 2px 7px #001}
 .cyber-site .geo-globe-unavailable{min-height:360px;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;background:radial-gradient(circle at 50% 50%,#123b57,#041827 70%);color:#aee4f7;font:600 14px/1.7 system-ui,sans-serif}
+
+/* Compact 3D globe in the original academic homepage visitor panel. */
+.home-visitor-activity .visitor-geo-map [data-geo-map]{height:clamp(220px,36vw,350px);min-height:220px;overflow:hidden;cursor:grab}
+.home-visitor-activity .visitor-geo-map [data-geo-map]:active{cursor:grabbing}
+.home-visitor-activity .visitor-geo-map [data-geo-map] canvas{display:block;max-width:100%}
+.home-visitor-activity .visitor-geo-map:before{content:"3D EARTH · DRAG TO ROTATE";position:absolute;top:12px;left:12px;color:#70ffe1;font:700 10px/1.5 ui-monospace,monospace;letter-spacing:.08em;z-index:3;pointer-events:none}
+.home-visitor-activity .geo-globe-unavailable{min-height:220px;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;background:#041827;color:#aee4f7}
+@media(max-width:600px){.home-visitor-activity .visitor-geo-map [data-geo-map]{height:240px}}
