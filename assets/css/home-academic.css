@@ -106,3 +106,86 @@
  .page__content .home-visitor-activity .visitor-geo-stats>div{padding:11px 9px}
  .page__content .home-visitor-activity .visitor-geo-stats strong{font-size:22px}
 }
+
+
+/* Compact two-column homepage visitor globe and accurate geographic listing. */
+.page__content .home-visitor-activity .visitor-geo-split{
+  display:grid;grid-template-columns:minmax(0,1.07fr) minmax(0,.93fr);
+  background:#fff;min-height:320px;
+}
+.page__content .home-visitor-activity .visitor-geo-split .visitor-geo-map{
+  position:relative;min-width:0;background:#061b2c!important;
+  border-right:1px solid #d8e4ec!important;overflow:hidden;
+}
+.page__content .home-visitor-activity .visitor-geo-split .visitor-geo-map [data-geo-map]{
+  width:100%;height:340px;min-height:340px;cursor:grab;background:#061b2c;
+}
+.page__content .home-visitor-activity .visitor-geo-split .visitor-geo-map [data-geo-map]:active{cursor:grabbing}
+.page__content .home-visitor-activity .visitor-geo-split .visitor-geo-map:before{
+  content:"";display:none!important;
+}
+.page__content .home-visitor-activity .visitor-geo-split .visitor-geo-compass{
+  position:absolute;bottom:13px;left:14px;top:auto;right:auto;
+  z-index:2;color:#b9eaf6!important;letter-spacing:.08em;font-size:9px;
+  pointer-events:none;text-shadow:0 1px 6px #001;
+}
+.page__content .home-visitor-activity .visitor-geo-origins{
+  min-width:0;display:flex;flex-direction:column;background:#fff;color:#213d53;
+}
+.page__content .home-visitor-activity .geo-origins-heading{
+  display:flex;flex-direction:column;gap:3px;padding:15px 17px 12px;
+  border-bottom:1px solid #e2ebf1;background:#f8fbfd;
+}
+.page__content .home-visitor-activity .geo-origins-heading>span{
+  color:#1d506e;font:750 14px/1.35 system-ui,sans-serif;
+}
+.page__content .home-visitor-activity .geo-origins-heading small{
+  color:#728da0;font:500 11px/1.4 system-ui,sans-serif;
+}
+.page__content .home-visitor-activity .geo-origins-list{
+  flex:1;overflow-y:auto;max-height:264px;padding:8px 12px 12px;
+  scrollbar-width:thin;scrollbar-color:#b0c7d6 transparent;
+}
+.page__content .home-visitor-activity .geo-origin-country{
+  padding:5px 2px 8px;border-bottom:1px solid #edf1f5;
+}
+.page__content .home-visitor-activity .geo-origin-country-top{
+  display:flex;gap:10px;justify-content:space-between;align-items:center;
+  padding:5px 3px 7px;
+}
+.page__content .home-visitor-activity .geo-origin-country-name{
+  font:700 12px/1.4 system-ui,sans-serif;color:#234a63;overflow-wrap:anywhere;
+}
+.page__content .home-visitor-activity .geo-origin-country-count{
+  color:#166d93;background:#edf7fa;border-radius:9px;padding:3px 8px;
+  flex-shrink:0;font:750 11px/1.4 ui-monospace,monospace;
+}
+.page__content .home-visitor-activity .geo-origin-location{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  gap:8px;border:0;border-radius:7px;background:transparent;padding:8px 9px;
+  color:#627f91;font:500 11px/1.35 system-ui,sans-serif;cursor:pointer;
+  text-align:left;transition:background .12s,color .12s;
+}
+.page__content .home-visitor-activity .geo-origin-location:hover,
+.page__content .home-visitor-activity .geo-origin-location:focus-visible{
+  background:#eaf5fa;color:#145c7e;outline:2px solid transparent;
+}
+.page__content .home-visitor-activity .geo-origin-location .geo-region-count{
+  color:#1f7a9a;flex-shrink:0;font-weight:700;
+}
+.page__content .home-visitor-activity .geo-origins-note{
+  padding:9px 14px!important;margin:0!important;border-top:1px solid #e5edf1;
+  color:#758b98!important;font:450 10px/1.5 system-ui,sans-serif!important;
+}
+.page__content .home-visitor-activity .geo-origins-empty{
+  padding:22px 10px!important;margin:0!important;text-align:center;
+  color:#6e8493!important;font:500 12px/1.6 system-ui,sans-serif!important;
+}
+@media(max-width:650px){
+  .page__content .home-visitor-activity .visitor-geo-split{grid-template-columns:1fr}
+  .page__content .home-visitor-activity .visitor-geo-split .visitor-geo-map{border-right:0!important}
+  .page__content .home-visitor-activity .visitor-geo-split .visitor-geo-map [data-geo-map]{
+    height:280px;min-height:280px;
+  }
+  .page__content .home-visitor-activity .geo-origins-list{max-height:250px}
+}
