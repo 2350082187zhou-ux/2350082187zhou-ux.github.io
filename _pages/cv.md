@@ -41,7 +41,7 @@ University of Nevada, Reno
 **Ph.D. in Computer Science**  
 Reno, Nevada, USA  
 *September 2026 – Present*  
-**Ph.D. Advisor:** [Dr. Niusen Chen](https://www.unr.edu/cse/people/niusen-chen)
+**Ph.D. Advisor:** [Dr. Niusen Chen](https://niusenc.github.io/)
 
 ### Anhui Polytechnic University
 
