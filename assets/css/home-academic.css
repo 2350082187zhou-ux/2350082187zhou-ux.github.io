@@ -189,3 +189,34 @@
   }
   .page__content .home-visitor-activity .geo-origins-list{max-height:250px}
 }
+
+/* Country totals beside the academic homepage 3D globe. */
+.page__content .home-visitor-activity .geo-origin-country-button{
+ display:block;width:100%;border:0;border-bottom:1px solid #e6edf3;border-radius:5px;
+ padding:10px 8px;background:transparent;text-align:left;cursor:pointer;
+ color:#1f4d68;font:600 12px/1.4 system-ui,sans-serif;
+}
+.page__content .home-visitor-activity .geo-origin-country-button:hover,
+.page__content .home-visitor-activity .geo-origin-country-button:focus-visible{
+ background:#eff8fc;outline:2px solid #88cde0;outline-offset:-2px;
+}
+.page__content .home-visitor-activity .geo-origin-country-line{
+ display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px;
+}
+.page__content .home-visitor-activity .geo-origin-country-button .geo-origin-country-name{
+ flex:1;min-width:0;color:#244d68;font:700 12px/1.35 system-ui,sans-serif;
+}
+.page__content .home-visitor-activity .geo-origin-country-button .geo-origin-country-count{
+ background:#e9f4fa;color:#176b90;border-radius:6px;padding:2px 7px;
+ font:700 11px/1.45 ui-monospace,monospace;white-space:nowrap;
+}
+.page__content .home-visitor-activity .geo-origin-bar{
+ display:block;height:5px;background:#e3edf4;border-radius:20px;overflow:hidden;
+}
+.page__content .home-visitor-activity .geo-origin-bar>span{
+ display:block;height:100%;background:linear-gradient(90deg,#1a7fa3,#4ebecb);border-radius:20px;
+}
+.page__content .home-visitor-activity [data-geo-stat="topcountry"]{
+ font-size:clamp(12px,1.6vw,17px)!important;line-height:1.35!important;
+ overflow-wrap:anywhere;
+}
