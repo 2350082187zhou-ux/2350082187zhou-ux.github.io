@@ -92,20 +92,6 @@
       "source": "community"
     },
     {
-      "id": "eurocrypt",
-      "short": "EUROCRYPT",
-      "name": "European Cryptology Conference",
-      "year": 2027,
-      "location": "Eindhoven, Netherlands",
-      "dates": "April 11-15",
-      "label": "Cryptography",
-      "theme": "violet",
-      "tier": "additional",
-      "official": "https://eurocrypt.iacr.org/2027/",
-      "note": "",
-      "source": "community"
-    },
-    {
       "id": "fc",
       "short": "Financial Crypto",
       "name": "Financial Cryptography and Data Security",
@@ -191,21 +177,6 @@
     }
   ],
   "events": [
-    {
-      "id": "auto-eurocrypt-2027-2026-09-17-1",
-      "conf": "eurocrypt",
-      "year": 2027,
-      "cycle": "Main deadline",
-      "kind": "paper",
-      "label": "Full paper submission · community listed",
-      "iso_utc": "2026-09-18T11:59:00Z",
-      "local_date": "2026-09-17",
-      "local_time": "23:59",
-      "zone_label": "AoE (UTC−12)",
-      "original": "2026-09-17 23:59",
-      "source": "community",
-      "official": "https://eurocrypt.iacr.org/2027/"
-    },
     {
       "id": "auto-fc-2027-2026-09-24-1",
       "conf": "fc",
