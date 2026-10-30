@@ -92,20 +92,6 @@
       "source": "community"
     },
     {
-      "id": "fc",
-      "short": "Financial Crypto",
-      "name": "Financial Cryptography and Data Security",
-      "year": 2027,
-      "location": "Barbados",
-      "dates": "February 8–12",
-      "label": "Cryptography",
-      "theme": "violet",
-      "tier": "additional",
-      "official": "https://fc27.ifca.ai/",
-      "note": "",
-      "source": "community"
-    },
-    {
       "id": "csf",
       "short": "IEEE CSF",
       "name": "IEEE Computer Security Foundations Symposium",
@@ -177,21 +163,6 @@
     }
   ],
   "events": [
-    {
-      "id": "auto-fc-2027-2026-09-24-1",
-      "conf": "fc",
-      "year": 2027,
-      "cycle": "Main deadline",
-      "kind": "paper",
-      "label": "Full paper submission · community listed",
-      "iso_utc": "2026-09-25T11:59:00Z",
-      "local_date": "2026-09-24",
-      "local_time": "23:59",
-      "zone_label": "AoE (UTC−12)",
-      "original": "2026-09-24 23:59",
-      "source": "community",
-      "official": "https://fc27.ifca.ai/"
-    },
     {
       "id": "auto-dfceurope-2027-2026-10-09-1",
       "conf": "dfceurope",
