@@ -343,9 +343,45 @@
     mapLocale(lang);
     document.dispatchEvent(new CustomEvent('zedong:language-changed',{detail:{lang}}));
   }
+  // Share language preference with the separate blog subdomain.
+  // The optional URL parameter handles browsers that block cookies.
+  function shareLanguage(lang){
+    try {
+      if(location.hostname==='zhouzedong.top'||location.hostname.endsWith('.zhouzedong.top')){
+        document.cookie='zz_site_lang='+encodeURIComponent(lang)+'; Path=/; Domain=zhouzedong.top; Max-Age=31536000; SameSite=Lax; Secure';
+      }
+    } catch(_){}
+  }
+  function sharedLanguage(){
+    try {
+      const entry=document.cookie.split('; ').find(v=>v.startsWith('zz_site_lang='));
+      if(entry){
+        const value=decodeURIComponent(entry.slice('zz_site_lang='.length));
+        if(supported.includes(value))return value;
+      }
+    } catch(_){}
+    return null;
+  }
+  document.addEventListener('click', event => {
+    const a=event.target.closest('a[href]');
+    if(!a||event.defaultPrevented||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    const target=new URL(a.href,location.href);
+    if(!['zhouzedong.top','www.zhouzedong.top','blog.zhouzedong.top'].includes(target.hostname))return;
+    const selected=document.querySelector('[data-home-language]')?.value||current();
+    if(!supported.includes(selected))return;
+    if(selected==='en'&&target.hostname===location.hostname)target.searchParams.delete('lang');
+    else target.searchParams.set('lang',selected);
+    a.href=target.toString();
+  },true);
   function current(){
     const q=new URL(location.href).searchParams.get('lang');
-    if(supported.includes(q))return q;
+    if(supported.includes(q)){
+      try{localStorage.setItem('zz_site_lang',q);}catch(_){}
+      shareLanguage(q);
+      return q;
+    }
+    const shared=sharedLanguage();
+    if(shared)return shared;
     try{const pref=localStorage.getItem('zz_site_lang');if(supported.includes(pref))return pref;}catch(_){}
     return 'en';
   }
@@ -353,6 +389,7 @@
   if(chosen)chosen.addEventListener('change',()=>{
     const lang=supported.includes(chosen.value)?chosen.value:'en';
     try{localStorage.setItem('zz_site_lang',lang)}catch(_){}
+    shareLanguage(lang);
     const u=new URL(location.href);
     if(lang==='en')u.searchParams.delete('lang');else u.searchParams.set('lang',lang);
     history.replaceState(null,'',u.pathname+u.search+u.hash);
