@@ -34,8 +34,22 @@ jobs:
         uses: actions/checkout@v7.0.1
       - name: Synchronize blog homepage and posts from research-blog
         run: python3 scripts/sync_research_blog.py
+      - name: Verify mirrored poster and blog files
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          checks = [
+              Path('_posts/2026-11-06-when-ai-agents-go-rogue-research-poster.md'),
+              Path('assets/blog/When AI Agents Go Rogue Who Protects Your Files.pdf'),
+              Path('assets/blog/ai-agents-go-rogue-poster-overview.svg'),
+          ]
+          for p in checks:
+              if not p.is_file() or p.stat().st_size == 0:
+                  raise SystemExit(f'Missing required blog resource: {p}')
+              print(f'OK: {p} ({p.stat().st_size} bytes)')
+          PY
       - name: Setup Ruby, JRuby and TruffleRuby
-        uses: ruby/setup-ruby@v1.328.0
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
           bundler-cache: true
@@ -48,6 +62,21 @@ jobs:
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+      - name: Validate generated public poster and blog pages
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          output = Path('_site')
+          files = [
+              output / 'assets/blog/When AI Agents Go Rogue Who Protects Your Files.pdf',
+              output / 'blog/index.html',
+              output / 'blog/2026/11/06/when-ai-agents-go-rogue-research-poster/index.html',
+          ]
+          for p in files:
+              if not p.is_file() or p.stat().st_size == 0:
+                  raise SystemExit(f'PUBLIC PAGE MISSING: {p}')
+              print(f'Built successfully: {p} ({p.stat().st_size} bytes)')
+          PY
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v5.0.0
 
