@@ -50,6 +50,7 @@ jobs:
           PY
       - name: Validate six-language content and JavaScript
         run: |
+          node --check assets/js/home-languages.js
           node --check assets/js/site-i18n.js
           node --check assets/js/blog-bilingual.js
           python3 - <<'PY'
