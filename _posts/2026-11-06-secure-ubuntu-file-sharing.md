@@ -10,7 +10,7 @@ author_profile: true
 
 > **隐私声明：** 本文所有主机名、域名、用户名与路径仅作示例；不包含实验设备的真实 IP 地址、内部 DNS 名称、非公开端口、凭据或原始终端截图。
 
-![Windows 与 Ubuntu 通过 SSH/SCP/SFTP 加密传输文件的示意图]({{ '/assets/images/secure-ubuntu-file-transfer.svg' | relative_url }})
+![Windows 与 Ubuntu 通过 SSH/SCP/SFTP 加密传输文件的示意图]({{ '/assets/blog/secure-ubuntu-file-transfer.svg' | relative_url }})
 
 ## 为什么记录这个过程？
 
