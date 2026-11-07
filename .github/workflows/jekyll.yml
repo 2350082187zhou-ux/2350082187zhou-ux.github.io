@@ -48,6 +48,26 @@ jobs:
                   raise SystemExit(f'Missing required blog resource: {p}')
               print(f'OK: {p} ({p.stat().st_size} bytes)')
           PY
+      - name: Validate six-language content and JavaScript
+        run: |
+          node --check assets/js/site-i18n.js
+          node --check assets/js/blog-bilingual.js
+          python3 - <<'PY'
+          from pathlib import Path
+          languages = ('en', 'zh', 'ja', 'ko', 'de', 'fr')
+          posts = (
+            Path('_posts/2026-11-06-secure-ubuntu-file-sharing.md'),
+            Path('_posts/2026-11-06-when-ai-agents-go-rogue-research-poster.md'),
+          )
+          for post in posts:
+              content = post.read_text(encoding='utf-8')
+              for language in languages:
+                  assert f'data-blog-lang="{language}"' in content, f'Missing {language}: {post}'
+                  assert f'title_{language}:' in content, f'Missing title {language}: {post}'
+              print('Six languages verified:', post)
+          for path in ('assets/css/blog-bilingual.css', 'assets/js/blog-bilingual.js'):
+              assert Path(path).is_file(), f'File missing after synchronization: {path}'
+          PY
       - name: Setup Ruby, JRuby and TruffleRuby
         uses: ruby/setup-ruby@v1
         with:
