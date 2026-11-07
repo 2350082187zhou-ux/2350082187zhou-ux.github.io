@@ -68,6 +68,13 @@ jobs:
               print('Six languages verified:', post)
           for path in ('assets/css/blog-bilingual.css', 'assets/js/blog-bilingual.js'):
               assert Path(path).is_file(), f'File missing after synchronization: {path}'
+          blog_page = Path('_pages/blog.md').read_text(encoding='utf-8')
+          for language in languages:
+              assert f'data-blog-locale="{language}"' in blog_page, f'Missing localized hero for {language}'
+          for language in ('zh', 'ja', 'ko', 'de', 'fr'):
+              image = Path(f'assets/images/cyber-linux-defense-{language}.svg')
+              assert image.is_file() and image.stat().st_size > 0, f'Missing translated diagram: {image}'
+          print('All six hero text versions and localized diagram images verified.')
           PY
       - name: Setup Ruby, JRuby and TruffleRuby
         uses: ruby/setup-ruby@v1
