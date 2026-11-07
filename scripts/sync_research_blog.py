@@ -33,6 +33,11 @@ BLOG_ASSETS = [
     "assets/images/channel-storage-security.svg",
     "assets/images/cyber-lab-backdrop.svg",
     "assets/images/cyber-linux-defense.svg",
+    "assets/images/cyber-linux-defense-zh.svg",
+    "assets/images/cyber-linux-defense-ja.svg",
+    "assets/images/cyber-linux-defense-ko.svg",
+    "assets/images/cyber-linux-defense-de.svg",
+    "assets/images/cyber-linux-defense-fr.svg",
     "assets/images/linux-tux-original.svg",
 ]
 POST_SUFFIXES = {".md", ".markdown", ".html"}
