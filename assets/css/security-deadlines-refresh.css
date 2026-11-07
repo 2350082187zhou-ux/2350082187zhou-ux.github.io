@@ -1,0 +1,37 @@
+/* Conference deadline page refresh: accessible navigation and integrated blog */
+html{scroll-behavior:smooth}
+.deadline-page .section-jump-nav{position:relative;z-index:5;display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 24px;padding:10px;border:1px solid #25536b;border-radius:18px;background:linear-gradient(120deg,#102c42,#081b2c);box-shadow:0 12px 40px #0004}
+.deadline-page .section-jump-nav a{flex:1;min-width:130px;text-align:center;padding:13px 14px;border:1px solid #346079;border-radius:12px;color:#d3eef8;font:700 13px 'DM Sans',sans-serif;text-decoration:none;transition:background .2s,transform .2s}
+.deadline-page .section-jump-nav a:hover,.deadline-page .section-jump-nav a:focus-visible{background:#174f69;color:#fff;transform:translateY(-2px)}
+.deadline-page :is(#conference-venues,#more-conferences,#timeline,#research-blog,#guide-heading){scroll-margin-top:36px}
+.deadline-page .refresh-blog-section{margin-top:75px;margin-bottom:50px;padding:30px;border:1px solid #28536b;border-radius:26px;background:radial-gradient(circle at 7% 5%,#154c56aa,transparent 45%),linear-gradient(135deg,#0b2236,#071523 70%);box-shadow:0 18px 60px #0004}
+.deadline-page .refresh-blog-heading{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:25px}
+.deadline-page .refresh-blog-heading h2{font-size:clamp(25px,3vw,43px);letter-spacing:-.04em;line-height:1.1;color:#f3fbff}
+.deadline-page .refresh-blog-heading h2 span{color:#60e3c4}
+.deadline-page .refresh-blog-heading p{margin-top:12px;max-width:650px;color:#a6c4d4}
+.deadline-page .refresh-blog-browse{color:#7fe6d6;text-decoration:none;white-space:nowrap;border-bottom:1px solid #499e96;padding-bottom:5px}
+.deadline-page .refresh-blog-grid{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(260px,1fr);gap:20px}
+.deadline-page .refresh-blog-feature,.deadline-page .refresh-blog-side{overflow:hidden;border:1px solid #365a73;border-radius:20px;background:#0c273c}
+.deadline-page .refresh-blog-art{display:block;overflow:hidden;background:#091c2c}
+.deadline-page .refresh-blog-art img{width:100%;height:auto;display:block;transition:transform .3s}
+.deadline-page .refresh-blog-art:hover img{transform:scale(1.025)}
+.deadline-page .refresh-blog-copy{padding:27px}
+.deadline-page .refresh-blog-meta,.deadline-page .refresh-side-kicker{font:700 11px 'JetBrains Mono',monospace;letter-spacing:.11em;color:#70e3d4}
+.deadline-page .refresh-blog-meta span{padding:0 8px;color:#64889a}
+.deadline-page .refresh-blog-copy h3{margin:13px 0;font-size:clamp(22px,2.5vw,31px);line-height:1.2}
+.deadline-page .refresh-blog-copy h3 a{color:#fff;text-decoration:none}
+.deadline-page .refresh-blog-copy h3 a:hover{color:#6fe9d0}
+.deadline-page .refresh-blog-copy p,.deadline-page .refresh-blog-side p{color:#b8d0db;line-height:1.8}
+.deadline-page .refresh-blog-tags{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 23px}
+.deadline-page .refresh-blog-tags span{padding:5px 10px;border-radius:7px;border:1px solid #3a6c7b;color:#a9efdf;font:700 11px 'JetBrains Mono',monospace}
+.deadline-page .refresh-primary-link{display:inline-flex;align-items:center;gap:15px;background:#2ccfa9;color:#062327!important;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:10px}
+.deadline-page .refresh-primary-link:hover{background:#82f3d7}
+.deadline-page .refresh-blog-side{padding:29px;display:flex;flex-direction:column;gap:15px;background:linear-gradient(155deg,#123b51,#0b2033)}
+.deadline-page .refresh-blog-side h3{font-size:clamp(25px,2.7vw,35px);color:#fff;line-height:1.14;margin:10px 0}
+.deadline-page .refresh-blog-side a{display:flex;align-items:center;gap:12px;border:1px solid #34617b;border-radius:11px;color:#d8f4f5;text-decoration:none;padding:13px;font-size:13px}
+.deadline-page .refresh-blog-side a:hover{background:#1a4e61}
+.deadline-page .refresh-blog-side a span:first-child{color:#77edd8;font-family:monospace;font-weight:700}
+.deadline-page .refresh-blog-side a span:last-child{margin-left:auto}
+.deadline-page .refresh-side-note{margin-top:auto;padding:14px;border-left:2px solid #65d8bc;background:#10354a;color:#b4d7d7;font-size:12px;line-height:1.7}
+@media(max-width:820px){.deadline-page .refresh-blog-grid{grid-template-columns:1fr}.deadline-page .refresh-blog-heading{align-items:start;flex-direction:column}.deadline-page .refresh-blog-section{padding:17px}.deadline-page .section-jump-nav a{min-width:125px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.deadline-page .section-jump-nav a,.deadline-page .refresh-blog-art img{transition:none}}
