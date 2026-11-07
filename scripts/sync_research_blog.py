@@ -20,9 +20,11 @@ BLOG_REPO_URL = "https://github.com/2350082187zhou-ux/research-blog.git"
 BLOG_ASSETS = [
     "assets/css/blog-deadlines-ops.css",
     "assets/css/cyber-blog.css",
+    "assets/css/blog-bilingual.css",
     "assets/css/cyber-cinematic.css",
     "assets/js/blog-deadlines-ops.js",
     "assets/js/cyber-blog.js",
+    "assets/js/blog-bilingual.js",
     "assets/js/cyber-cinematic.js",
     "assets/js/security-inline.js",
     "assets/images/agent-storage-trust-boundary-v2.svg",
