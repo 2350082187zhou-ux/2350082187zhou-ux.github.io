@@ -17,6 +17,7 @@ description: "Live paper submission and abstract registration deadlines for IEEE
   <title>Security Conference Submission Deadlines | Zedong Zhou</title>
   <link rel="stylesheet" href="{{ '/assets/css/security-deadlines.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/security-ops-upgrade.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/security-deadlines-refresh.css' | relative_url }}">
   <script defer src="{{ '/assets/js/security-deadlines.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/js/security-ops-upgrade.js' | relative_url }}"></script>
 </head>
@@ -32,9 +33,12 @@ description: "Live paper submission and abstract registration deadlines for IEEE
       <a class="active" href="{{ '/security-deadlines/' | relative_url }}" aria-current="page">Deadlines</a>
       <a href="{{ '/cv/' | relative_url }}">CV</a>
     </nav>
-    <a class="source-link" href="https://ccfddl.com/" target="_blank" rel="noopener noreferrer">Inspired by CCFDDL <span aria-hidden="true">↗</span></a>
+    <a class="source-link" href="#research-blog" aria-label="Jump to research blog on this page">Research Blog <span aria-hidden="true">↓</span></a>
   </header>
   <main id="deadlines-content" class="main-container">
+    <nav class="section-jump-nav" aria-label="Explore this page">
+      <a href="#conference-venues">Top venues</a><a href="#more-conferences">More conferences</a><a href="#timeline">Deadline timeline</a><a href="#research-blog">Latest blog</a><a href="#guide-heading">Submission tips</a>
+    </nav>
     <div class="ops-headline" aria-label="Deadline tracker status"><span><span class="ops-live-dot" aria-hidden="true"></span><strong>SECURITY // CFP MONITOR</strong> &nbsp; INDEXED RESEARCH VENUES · LIVE BROWSER CLOCK</span><span id="ops-utc-clock">UTC clock connecting…</span></div>
     <section class="hero">
       <div class="hero-copy">
@@ -83,7 +87,7 @@ description: "Live paper submission and abstract registration deadlines for IEEE
       </div>
     </section>
     <p class="ccf-reference">CCF A/B/C labels refer to the <a href="https://www.ccf.org.cn/Academic_Evaluation/NIS/" target="_blank" rel="noopener noreferrer">China Computer Federation (CCF) Network &amp; Information Security recommendation catalogue ↗</a>, not CFP reliability. "Not mapped" does not mean a conference is unranked. CHES / PoPETs rolling journal deadlines may differ from their conference classification.</p>
-    <section class="section" aria-labelledby="conference-grid-heading">
+    <section class="section" id="conference-venues" aria-labelledby="conference-grid-heading">
       <div class="section-heading">
         <div><div class="section-kicker">01 / VENUE TRACKER</div><h2 id="conference-grid-heading">Four leading security venues</h2></div>
         <span class="side-caption">2027 editions · official dates only</span>
@@ -233,6 +237,37 @@ description: "Live paper submission and abstract registration deadlines for IEEE
         <div><span class="guide-num">01</span><strong>Abstracts may be mandatory</strong><p>IEEE S&amp;P and USENIX Security 2027 require an earlier registration milestone. Do not wait until the full-paper date.</p></div>
         <div><span class="guide-num">02</span><strong>AoE is not local midnight</strong><p>Anywhere on Earth (UTC−12) deadlines appear at a different hour in your local time zone. Switch the display above to check.</p></div>
         <div><span class="guide-num">03</span><strong>Verify the official CFP</strong><p>Conference organizers can revise deadlines or submission rules. This independent tracker is a reference, not an official announcement.</p></div>
+      </div>
+    </section>
+
+    <section class="section refresh-blog-section" id="research-blog" aria-labelledby="research-blog-heading">
+      <div class="section-heading refresh-blog-heading">
+        <div><div class="section-kicker">05 / SYSTEMS SECURITY LAB NOTES</div><h2 id="research-blog-heading">From deadlines to <span>hands-on research.</span></h2>
+        <p>Submission planning, practical Linux experiments, and security research notes in one place.</p></div>
+        <a class="refresh-blog-browse" href="{{ '/blog/' | relative_url }}">All blog posts ↗</a>
+      </div>
+      <div class="refresh-blog-grid">
+        <article class="refresh-blog-feature">
+          <a class="refresh-blog-art" href="{{ '/blog/2026/11/06/secure-ubuntu-file-sharing/' | relative_url }}" aria-label="Read SSH SCP SFTP file sharing tutorial">
+            <img src="{{ '/assets/images/secure-ubuntu-file-transfer.svg' | relative_url }}" alt="Windows and Ubuntu computers exchanging files through an encrypted SSH connection" loading="lazy" width="1200" height="540">
+          </a>
+          <div class="refresh-blog-copy">
+            <div class="refresh-blog-meta">NOV 06, 2026 <span>·</span> LINUX / NETWORKING <span>·</span> TUTORIAL</div>
+            <h3><a href="{{ '/blog/2026/11/06/secure-ubuntu-file-sharing/' | relative_url }}">Secure File Sharing Between Windows and Ubuntu</a></h3>
+            <p>从 Linux 主机名与 DNS 检查，到 SSH 远程连接、SCP 文件上传下载及 SFTP 管理。示例地址和网络标识均已脱敏。</p>
+            <div class="refresh-blog-tags"><span>Ubuntu</span><span>SSH</span><span>SCP</span><span>SFTP</span></div>
+            <a class="refresh-primary-link" href="{{ '/blog/2026/11/06/secure-ubuntu-file-sharing/' | relative_url }}">Read the tutorial <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <aside class="refresh-blog-side" aria-label="Reading and submission workflow">
+          <div class="refresh-side-kicker">RESEARCH WORKFLOW</div>
+          <h3>Read. Experiment.<br>Write. Submit.</h3>
+          <p>Use the conference tracker to plan your next submission and research notes to document repeatable experiments.</p>
+          <a href="#timeline"><span>01</span> Find upcoming CFP milestones <span aria-hidden="true">↓</span></a>
+          <a href="{{ '/blog/' | relative_url }}"><span>02</span> Explore the full blog <span aria-hidden="true">↗</span></a>
+          <a href="{{ '/research/' | relative_url }}"><span>03</span> Explore research projects <span aria-hidden="true">↗</span></a>
+          <div class="refresh-side-note">All demo network details are fictional. Real experimental host information is not published.</div>
+        </aside>
       </div>
     </section>
     <footer class="site-footer">
