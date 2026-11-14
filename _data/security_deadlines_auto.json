@@ -50,20 +50,6 @@
       "source": "community"
     },
     {
-      "id": "dfceurope",
-      "short": "DFRWS Europe",
-      "name": "Digital Forensics Conference Europe",
-      "year": 2027,
-      "location": "Edinburgh, Scotland",
-      "dates": "March 30-April 2",
-      "label": "Digital Forensics",
-      "theme": "orange",
-      "tier": "additional",
-      "official": "https://dfrws.org/conferences/dfceurope2027/",
-      "note": "Abstract and title registration required by October 2, 2026 (AoE). Deadline extended.",
-      "source": "community"
-    },
-    {
       "id": "dimva",
       "short": "DIMVA",
       "name": "The Conference on Detection of Intrusions and Malware & Vulnerability Assessment",
@@ -163,21 +149,6 @@
     }
   ],
   "events": [
-    {
-      "id": "auto-dfceurope-2027-2026-10-09-1",
-      "conf": "dfceurope",
-      "year": 2027,
-      "cycle": "Main deadline",
-      "kind": "paper",
-      "label": "Full paper submission · community listed",
-      "iso_utc": "2026-10-10T11:59:00Z",
-      "local_date": "2026-10-09",
-      "local_time": "23:59",
-      "zone_label": "AoE (UTC−12)",
-      "original": "2026-10-09 23:59",
-      "source": "community",
-      "official": "https://dfrws.org/conferences/dfceurope2027/"
-    },
     {
       "id": "auto-ches-2027-2026-10-15-1",
       "conf": "ches",
