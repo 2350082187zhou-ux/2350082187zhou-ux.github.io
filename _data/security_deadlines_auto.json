@@ -164,36 +164,6 @@
   ],
   "events": [
     {
-      "id": "auto-ches-2027-2026-10-15-1",
-      "conf": "ches",
-      "year": 2027,
-      "cycle": "Cycle 1",
-      "kind": "paper",
-      "label": "Full paper submission · community listed",
-      "iso_utc": "2026-10-16T11:59:00Z",
-      "local_date": "2026-10-15",
-      "local_time": "23:59",
-      "zone_label": "AoE (UTC−12)",
-      "original": "2026-10-15 23:59",
-      "source": "community",
-      "official": "https://ches.iacr.org/2027/"
-    },
-    {
-      "id": "auto-csf-2027-2026-10-15-1",
-      "conf": "csf",
-      "year": 2027,
-      "cycle": "Cycle 1",
-      "kind": "paper",
-      "label": "Full paper submission · community listed",
-      "iso_utc": "2026-10-16T11:59:00Z",
-      "local_date": "2026-10-15",
-      "local_time": "23:59",
-      "zone_label": "AoE (UTC−12)",
-      "original": "2026-10-15 23:59",
-      "source": "community",
-      "official": "https://www.ieee-security.org/TC/CSF2027/"
-    },
-    {
       "id": "auto-ctrsa-2027-2026-10-22-1",
       "conf": "ctrsa",
       "year": 2027,
@@ -299,10 +269,10 @@
       "official": "https://asiaccs2027.cityu.edu.mo/home/index.html"
     },
     {
-      "id": "auto-ches-2027-2027-01-15-2",
+      "id": "auto-ches-2027-2027-01-15-1",
       "conf": "ches",
       "year": 2027,
-      "cycle": "Cycle 2",
+      "cycle": "Cycle 1",
       "kind": "paper",
       "label": "Full paper submission · community listed",
       "iso_utc": "2027-01-16T11:59:00Z",
@@ -314,10 +284,10 @@
       "official": "https://ches.iacr.org/2027/"
     },
     {
-      "id": "auto-csf-2027-2027-01-28-2",
+      "id": "auto-csf-2027-2027-01-28-1",
       "conf": "csf",
       "year": 2027,
-      "cycle": "Cycle 2",
+      "cycle": "Main deadline",
       "kind": "paper",
       "label": "Full paper submission · community listed",
       "iso_utc": "2027-01-29T11:59:00Z",
@@ -419,10 +389,10 @@
       "official": "https://pstnet.ca/pst2027"
     },
     {
-      "id": "auto-ches-2027-2027-04-15-3",
+      "id": "auto-ches-2027-2027-04-15-2",
       "conf": "ches",
       "year": 2027,
-      "cycle": "Cycle 3",
+      "cycle": "Cycle 2",
       "kind": "paper",
       "label": "Full paper submission · community listed",
       "iso_utc": "2027-04-16T11:59:00Z",
